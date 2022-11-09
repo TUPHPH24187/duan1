@@ -70,14 +70,14 @@ public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
         }
     }
 
-    @Override
-    public String updateCTSanPham(ChiTietSanPham ctsp) {
-       if (chiTietsanPhamRepository.update(ctsp)) {
-            return "Cap nhap thanh cong";
-        } else {
-            return "Cap nhap that bai";
-        }
-    }
+//    @Override
+//    public String updateCTSanPham(ChiTietSanPham ctsp) {
+//       if (chiTietsanPhamRepository.update(ctsp)) {
+//            return "Cap nhap thanh cong";
+//        } else {
+//            return "Cap nhap that bai";
+//        }
+//    }
 
     
 

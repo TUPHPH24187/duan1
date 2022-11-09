@@ -11,9 +11,6 @@ import model.KichThuoc;
 import model.ChatLieu;
 import model.XuatXu;
 import repository.ChiTietSanPhamRepository;
-
-
-
 import repository.KichThuocRepository;
 import repository.XuatXuRepository;
 import repository.ChatLieuRepository;
@@ -61,23 +58,7 @@ public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
 
     }
 
-    @Override
-    public String deleteCTSanPham(ChiTietSanPham ctsp) {
-       if (chiTietsanPhamRepository.delete(ctsp)) {
-            return "Xoa thanh cong";
-        } else {
-            return "Xoa that bai";
-        }
-    }
-
-//    @Override
-//    public String updateCTSanPham(ChiTietSanPham ctsp) {
-//       if (chiTietsanPhamRepository.update(ctsp)) {
-//            return "Cap nhap thanh cong";
-//        } else {
-//            return "Cap nhap that bai";
-//        }
-//    }
+   
 
     
 

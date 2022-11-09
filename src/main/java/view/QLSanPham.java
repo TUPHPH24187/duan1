@@ -340,21 +340,7 @@ public class QLSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        ChiTietSanPham ctsp = new ChiTietSanPham();
-        String maGiayStr = txtMaGiay.getText();
-        Integer maGiay = Integer.parseInt(maGiayStr);
-
-        int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn xóa không", "Xác nhận",
-                JOptionPane.YES_NO_OPTION);
-        if (xacNhan != JOptionPane.YES_OPTION) {//nếu không chắc
-            return;
-        } else {
-            String result = quanLySanPhamService.deleteCTSanPham(ctsp);
-           JOptionPane.showMessageDialog(this, result);
-
-            loadTable(quanLySanPhamService.getListChiTietSanPham());
-        }
-
+        
 
     }//GEN-LAST:event_btnXoaActionPerformed
 

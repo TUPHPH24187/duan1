@@ -28,6 +28,5 @@ public interface QuanLyChiTietSanPhamService {
     
     String addCTSanPham(ChiTietSanPham ctsp);
    
-    String deleteCTSanPham(ChiTietSanPham ctsp);
-//   String updateCTSanPham(ChiTietSanPham ctsp);
+   
 }

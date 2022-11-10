@@ -17,25 +17,7 @@ import javax.swing.JOptionPane;
  * @author concu
  */
 public class DBConnection {
-    
-   
-    
-//    public static Connection getConnection()  throws ClassNotFoundException{
-//        Connection conn = null;
-//        try {
-//            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-//            String url = "jdbc:sqlserver://localhost:1433;databaseName=QLBG";
-//            String user = "sa";
-//            String pass = "123456";
-//            conn = DriverManager.getConnection(url, user, pass);
-//            if(conn != null) {
-//                //System.out.println("KEt Noi thanh cong");
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e.toString());
-//        }
-//        return conn;
-//    }
+
     
     
     private static String hostName = "localhost";

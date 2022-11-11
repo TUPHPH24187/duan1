@@ -5,7 +5,7 @@
 package Services;
 
 import java.util.ArrayList;
-import DomainModels.ChiTietSanPham;
+import ViewModels.ChiTietSanPham;
 import DomainModels.KichThuoc;
 import DomainModels.ChatLieu;
 import DomainModels.XuatXu;

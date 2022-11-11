@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DomainModels;
+package ViewModels;
 
+import DomainModels.ChatLieu;
+import DomainModels.KichThuoc;
+import DomainModels.XuatXu;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Column;

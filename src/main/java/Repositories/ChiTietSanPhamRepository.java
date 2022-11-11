@@ -6,7 +6,7 @@ package Repositories;
 
 import Utilities.HibernateConfig;
 import java.util.ArrayList;
-import DomainModels.ChiTietSanPham;
+import ViewModels.ChiTietSanPham;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;

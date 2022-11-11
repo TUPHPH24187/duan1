@@ -3,7 +3,7 @@ package Utilities;
 
 import java.util.Properties;
 import DomainModels.ChatLieu;
-import DomainModels.ChiTietSanPham;
+import ViewModels.ChiTietSanPham;
 import DomainModels.KichThuoc;
 import DomainModels.XuatXu;
 import org.hibernate.SessionFactory;

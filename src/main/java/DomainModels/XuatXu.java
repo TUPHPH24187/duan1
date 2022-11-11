@@ -4,6 +4,7 @@
  */
 package DomainModels;
 
+import ViewModels.ChiTietSanPham;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;

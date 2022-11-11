@@ -14,12 +14,11 @@ import Services.ClockService;
  */
 public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
         private QLSanPham qlsanpham;
-//        private QLGiaoDich qlgiaodich;
-//        private QLNhanVien qlnhanvien;   
-//        private QLKhachHang qlkhachhang;
-//        private QLKhuyenMai qlkhuyenmai;
-//        private QLDoiMatKhau qLDoiMatKhau;
-//        private QLTraHang qLTraHang;
+        private QLGiaoDich qlgiaodich;
+        private QLNhanVien qlnhanvien;   
+        private QLKhachHang qlkhachhang;
+        private QLKhuyenMai qlkhuyenmai;
+        private QLTraHang qLTraHang;
     
     
     /**
@@ -275,35 +274,35 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSanPhamActionPerformed
 
     private void btnGiaoDichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoDichActionPerformed
-//        if (qlgiaodich == null) {
-//            qlgiaodich = new QLGiaoDich();
-//            tbMain.addTab("Quản lý giao dịch", qlgiaodich);
-//        }
-//        tbMain.setSelectedComponent(qlgiaodich);
+        if (qlgiaodich == null) {
+            qlgiaodich = new QLGiaoDich();
+            tbMain.addTab("Quản lý giao dịch", qlgiaodich);
+        }
+        tbMain.setSelectedComponent(qlgiaodich);
     }//GEN-LAST:event_btnGiaoDichActionPerformed
 
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
-//        if (qlnhanvien == null) {
-//            qlnhanvien = new QLNhanVien();
-//            tbMain.addTab("Quản lý nhân viên", qlnhanvien);
-//        }
-//        tbMain.setSelectedComponent(qlnhanvien);
+        if (qlnhanvien == null) {
+            qlnhanvien = new QLNhanVien();
+            tbMain.addTab("Quản lý nhân viên", qlnhanvien);
+        }
+        tbMain.setSelectedComponent(qlnhanvien);
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
-//        if (qlkhachhang == null) {
-//            qlkhachhang = new QLKhachHang();
-//            tbMain.addTab("Quản lý khách hàng", qlkhachhang);
-//        }
-//        tbMain.setSelectedComponent(qlkhachhang);
+        if (qlkhachhang == null) {
+            qlkhachhang = new QLKhachHang();
+            tbMain.addTab("Quản lý khách hàng", qlkhachhang);
+        }
+        tbMain.setSelectedComponent(qlkhachhang);
     }//GEN-LAST:event_btnKhachHangActionPerformed
 
     private void btnTraHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraHangActionPerformed
-//        if (qLTraHang == null) {
-//            qLTraHang = new QLTraHang();
-//            tbMain.addTab("Quản lý trả hàng", qLTraHang);
-//        }
-//        tbMain.setSelectedComponent(qLTraHang);
+        if (qLTraHang == null) {
+            qLTraHang = new QLTraHang();
+            tbMain.addTab("Quản lý trả hàng", qLTraHang);
+        }
+        tbMain.setSelectedComponent(qLTraHang);
     }//GEN-LAST:event_btnTraHangActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
@@ -312,11 +311,11 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
-//        if (qlkhuyenmai == null) {
-//            qlkhuyenmai = new QLKhuyenMai();
-//            tbMain.addTab("Quản lý khuyến mãi", qlkhuyenmai);
-//        }
-//        tbMain.setSelectedComponent(qlkhuyenmai);
+        if (qlkhuyenmai == null) {
+            qlkhuyenmai = new QLKhuyenMai();
+            tbMain.addTab("Quản lý khuyến mãi", qlkhuyenmai);
+        }
+        tbMain.setSelectedComponent(qlkhuyenmai);
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
 
     private void btnClockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClockActionPerformed
@@ -355,14 +354,10 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
 
     private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
 
-        //        new QLDoiMatKhau().setVisible(true);
+      
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
-    private void processLoginSuccessfull (){
     
-    
-    
-}
     
     /**
      * @param args the command line arguments

@@ -41,8 +41,6 @@ public class ChiTietSanPhamRepository {
         return null;
     }
 
-    
-    
     public  ChiTietSanPham find(Integer MaCTSP) {
         try {
             session.getSession().beginTransaction();
@@ -52,7 +50,7 @@ public class ChiTietSanPhamRepository {
         }
     }
 
-    public boolean delete(ChiTietSanPham MaCTSP) {
+    public Boolean delete(ChiTietSanPham MaCTSP) {
         try {
             session.getSession().beginTransaction();
             session.getSession().delete(MaCTSP);
@@ -64,7 +62,7 @@ public class ChiTietSanPhamRepository {
         }
     }
 
-    public boolean saveorupdate(ChiTietSanPham MaCTSP) {
+    public Boolean saveorupdate(ChiTietSanPham MaCTSP) {
         try {
             session.getSession().beginTransaction();
             session.getSession().saveOrUpdate(MaCTSP);

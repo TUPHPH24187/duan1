@@ -5,42 +5,31 @@
 package DomainModels;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+
 
 /**
  *
  * @author concu
  */
-@Entity
-@Table(name = "ChucVu")
+
 public class ChucVu implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MaCV")
+   
     private Integer MaCV;
 
-    @Column(name = "TenCV")
+    
     private String TenCV;
 
-    @OneToMany(mappedBy = "chucVu", fetch = FetchType.LAZY)
-    private List<NhanVien> listNhanVien;
+    
+    
 
     public ChucVu() {
     }
 
-    public ChucVu(Integer MaCV, String TenCV, List<NhanVien> listNhanVien) {
+    public ChucVu(Integer MaCV, String TenCV) {
         this.MaCV = MaCV;
         this.TenCV = TenCV;
-        this.listNhanVien = listNhanVien;
+        
     }
     
     /**
@@ -71,18 +60,6 @@ public class ChucVu implements Serializable {
         this.TenCV = TenCV;
     }
 
-    /**
-     * @return the listNhanVien
-     */
-    public List<NhanVien> getListNhanVien() {
-        return listNhanVien;
-    }
-
-    /**
-     * @param listNhanVien the listNhanVien to set
-     */
-    public void setListNhanVien(List<NhanVien> listNhanVien) {
-        this.listNhanVien = listNhanVien;
-    }
+   
 
 }

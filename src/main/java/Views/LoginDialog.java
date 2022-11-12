@@ -217,7 +217,6 @@ public class LoginDialog extends javax.swing.JDialog {
                 pst.close();
                 conn.close();
                 JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
-//                new ManHinhHeThongBanGiay().setVisible(true);
 
                 dispose();
             } else {

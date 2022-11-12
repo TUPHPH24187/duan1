@@ -18,45 +18,28 @@ import javax.persistence.Table;
  *
  * @author concu
  */
+public class NhanVien implements Serializable {
 
-@Entity
-@Table(name = "NhanVien")
-public class NhanVien implements Serializable{
-    
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MaNV")
     private Integer MaNV;
-    
-    @Column(name = "TenNV")
+
     private String TenNV;
-    
-    @Column(name = "NgaySinh")
+
     private String NgaySinh;
-    
-    @Column(name = "GioiTinh")
+
     private Integer GioiTinh;
-    
-    @Column(name = "SoDienThoai")
+
     private String SoDienThoai;
-    
-    @Column(name = "DiaChi")
+
     private String DiaChi;
-    
-    @Column(name = "Email")
+
     private String Email;
-    
-    @Column(name = "MatKhau")
+
     private String MatKhau;
-    
-    @Column(name = "TrangThai")
+
     private Integer TrangThai;
 
-    @ManyToOne
-    @JoinColumn(name = "MaCV", nullable = false)
     private ChucVu chucVu;
-    
+
     public Integer getMaNV() {
         return MaNV;
     }
@@ -190,7 +173,21 @@ public class NhanVien implements Serializable{
     public void setChucVu(ChucVu chucVu) {
         this.chucVu = chucVu;
     }
-    
-    
-    
+
+    public NhanVien(Integer MaNV, String TenNV, String NgaySinh, Integer GioiTinh, String SoDienThoai, String DiaChi, String Email, String MatKhau, Integer TrangThai, ChucVu chucVu) {
+        this.MaNV = MaNV;
+        this.TenNV = TenNV;
+        this.NgaySinh = NgaySinh;
+        this.GioiTinh = GioiTinh;
+        this.SoDienThoai = SoDienThoai;
+        this.DiaChi = DiaChi;
+        this.Email = Email;
+        this.MatKhau = MatKhau;
+        this.TrangThai = TrangThai;
+        this.chucVu = chucVu;
+    }
+
+    public NhanVien() {
+    }
+
 }

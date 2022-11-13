@@ -14,24 +14,19 @@ import java.io.Serializable;
 public class NhanVien implements Serializable {
 
     private Integer MaNV;
-
     private String TenNV;
-
     private String NgaySinh;
-
     private Integer GioiTinh;
-
     private String SoDienThoai;
-
     private String DiaChi;
-
     private String Email;
-
     private String MatKhau;
-
     private Integer TrangThai;
-
     private ChucVu chucVu;
+
+    public NhanVien(String maNV, String hoTen, String ngaySinh, String gioiTinh, String sDt, String diaChi, String email, String matKhau, String trangThai) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     public Integer getMaNV() {
         return MaNV;

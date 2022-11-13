@@ -10,13 +10,22 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import DomainModels.ChucVu;
 import DomainModels.NhanVien;
+import Services.QuanLyNhanVienService;
+import ViewModels.KhanhHangViewModel;
+import ViewModels.NhanVienViewModel;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author concu
  */
-public class QLNhanVien extends javax.swing.JPanel {
 
+
+public class QLNhanVien extends javax.swing.JPanel {
+    QuanLyNhanVienService quanLyNhanVienService;
+    
     
     private DefaultComboBoxModel defaultComboBoxModel;
     private DefaultTableModel defaultTableModel;
@@ -26,6 +35,10 @@ public class QLNhanVien extends javax.swing.JPanel {
      */
     public QLNhanVien() {
         initComponents();
+        
+        
+        quanLyNhanVienService = new QuanLyNhanVienService();
+        hienTHi();
         
 //        loadComboBox(quanLySanPhamService.getListChucVu());
 //
@@ -52,6 +65,53 @@ public class QLNhanVien extends javax.swing.JPanel {
 
         }
 
+    }
+    
+    public void hienTHi() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) tbNV.getModel();
+            model.setRowCount(0);
+            List<NhanVienViewModel> nhanVien = quanLyNhanVienService.layNhanViens();
+            for (NhanVienViewModel nv : nhanVien) {
+                Object[] nvs = new Object[]{
+                    nv.getMaNV(),
+                    nv.getTenNV(),
+                    nv.getNgaySinh(),
+                    nv.getGioiTinh(),
+                    nv.getSoDienThoai(),
+                    nv.getDiaChi(),
+                    nv.getEmail(),
+                    nv.getMatKhau(),
+                    nv.getTrangThai(),};
+                model.addRow(nvs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    
+    public NhanVien layTT() {
+        String gioiTinh;
+        String maNV = txtMaNV.getText();
+        String hoTen = txtTenNV.getText();
+        String ngaySinh = txtNgaySinh.getText();
+        
+        if (rbNam.isSelected()) {
+            gioiTinh = "1";
+        } else {
+            gioiTinh = "2";
+        }
+        
+        String sDt = txtSDT.getText();
+        String diaChi = txtDiaChi.getText();
+        String email = txtEmail.getText();
+        String matKhau = txtMK.getText();
+        String trangThai = ckbTrangThai.getSelectedItem().toString();
+
+        NhanVien nhanVien = new NhanVien( maNV,hoTen, ngaySinh, gioiTinh, sDt, diaChi,email ,matKhau, trangThai);
+        return nhanVien;
     }
 
     /**

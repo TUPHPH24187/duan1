@@ -4,17 +4,94 @@
  */
 package Views;
 
+import Services.QuanLyKhachHangSevice;
+import ViewModels.KhanhHangViewModel;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author concu
  */
 public class QLKhachHang extends javax.swing.JPanel {
 
+    QuanLyKhachHangSevice quanLyKhachHangSevice;
+
     /**
      * Creates new form QLKhachHang
      */
     public QLKhachHang() {
         initComponents();
+        quanLyKhachHangSevice = new QuanLyKhachHangSevice();
+        hienTHi();
+    }
+
+    public void hienTHi() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) JBang.getModel();
+            model.setRowCount(0);
+            List<KhanhHangViewModel> khachHang = quanLyKhachHangSevice.layDSKH();
+            for (KhanhHangViewModel kh : khachHang) {
+                Object[] khs = new Object[]{
+                    kh.getMaKH(),
+                    kh.getHoTen(),
+                    kh.getNgaySinh(),
+                    kh.getGioiTinh(),
+                    kh.getsDT(),
+                    kh.getDiaChi(),
+                    kh.getTrangThai(),};
+                model.addRow(khs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public KhanhHangViewModel layTT() {
+        String gioiTinh;
+        String maKH = txtMaKH.getText();
+        String hoTen = txtTen.getText();
+        String ngaySinh = txtNgaySinh.getText();
+        if (rbNam.isSelected()) {
+            gioiTinh = "1";
+        } else {
+            gioiTinh = "2";
+        }
+        String sDt = txtSDT.getText();
+        String diaChi = txtDiaChi.getText();
+        String trangThai = cbbTrangThai.getSelectedItem().toString();
+
+        KhanhHangViewModel khanhHang = new KhanhHangViewModel(maKH, hoTen, ngaySinh, gioiTinh, sDt, diaChi, trangThai);
+        return khanhHang;
+    }
+
+    public void fill() {
+        int index = JBang.getSelectedRow();
+        String maKH = JBang.getValueAt(index, 0).toString();
+        String hoTen = JBang.getValueAt(index, 1).toString();
+        String ngaySinh = JBang.getValueAt(index, 2).toString();
+        String gioiTinh = JBang.getValueAt(index, 3).toString();
+        String sDt = JBang.getValueAt(index, 4).toString();
+        String diaChi = JBang.getValueAt(index, 5).toString();
+        String trangThai = JBang.getValueAt(index, 6).toString();
+
+        txtMaKH.setText(maKH);
+        txtTen.setText(hoTen);
+        txtNgaySinh.setText(ngaySinh);
+        if (gioiTinh == "1") {
+            rbNam.isSelected();
+        } else {
+
+            rbNu.isSelected();
+        }
+        txtSDT.setText(sDt);
+        txtDiaChi.setText(diaChi);
+        cbbTrangThai.setSelectedItem(trangThai);
     }
 
     /**
@@ -33,12 +110,12 @@ public class QLKhachHang extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         rbNam = new javax.swing.JRadioButton();
         rbNu = new javax.swing.JRadioButton();
-        ckbTrangThai = new javax.swing.JComboBox<>();
+        cbbTrangThai = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         txtDiaChi = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JBang = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnThem = new javax.swing.JButton();
@@ -59,39 +136,64 @@ public class QLKhachHang extends javax.swing.JPanel {
         buttonGroup1.add(rbNu);
         rbNu.setText("Nữ");
 
-        ckbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        cbbTrangThai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbTrangThaiActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Địa chỉ:");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("QUẢN LÝ KHÁCH HÀNG");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JBang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã KH", "Họ Tên", "Ngày Sinh", "Giới Tính", "Số Điện Thoại", "Địa Chỉ", "Trạng Thái"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        JBang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBangMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(JBang);
 
         jLabel2.setText("Họ Tên:");
 
         jLabel3.setText("Ngày sinh");
 
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("SĐT:");
 
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Giới tính:");
 
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnMoi.setText("Mới");
         btnMoi.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +226,7 @@ public class QLKhachHang extends javax.swing.JPanel {
                         .addComponent(rbNu, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtTen)
                     .addComponent(txtNgaySinh)
-                    .addComponent(ckbTrangThai, 0, 409, Short.MAX_VALUE))
+                    .addComponent(cbbTrangThai, 0, 409, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -194,7 +296,7 @@ public class QLKhachHang extends javax.swing.JPanel {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(ckbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThem)
                     .addComponent(btnSua)
                     .addComponent(btnXoa)
@@ -206,25 +308,81 @@ public class QLKhachHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        
+
         txtMaKH.setText("");
         txtTen.setText("");
         txtSDT.setText("");
         txtDiaChi.setText("");
         txtNgaySinh.setText("");
         rbNam.setSelected(true);
-        
+
     }//GEN-LAST:event_btnMoiActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            KhanhHangViewModel khachHang = layTT();
+            if (quanLyKhachHangSevice.ThemKhachHang(khachHang) == true) {
+                JOptionPane.showMessageDialog(this, "Thêm thành công");
+                hienTHi();
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void cbbTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTrangThaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbTrangThaiActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            int index = JBang.getSelectedRow();
+            String ma = JBang.getValueAt(index, 0).toString();
+            quanLyKhachHangSevice.XoaKhachHang(txtMaKH.getText());
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+            hienTHi();
+        } catch (SQLException ex) {
+            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void JBangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBangMouseClicked
+        // TODO add your handling code here:
+        fill();
+    }//GEN-LAST:event_JBangMouseClicked
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+                 try {
+            // TODO add your handling code here:
+            KhanhHangViewModel khachHang = layTT();
+            if (quanLyKhachHangSevice.SuaKhachHang(khachHang)) {
+                JOptionPane.showMessageDialog(this, "Sửa thành công");
+                hienTHi();
+            } else {
+                JOptionPane.showMessageDialog(this, "Sửa thất bại");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JBang;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> ckbTrangThai;
+    private javax.swing.JComboBox<String> cbbTrangThai;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -234,7 +392,6 @@ public class QLKhachHang extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JRadioButton rbNam;
     private javax.swing.JRadioButton rbNu;
     private javax.swing.JTextField txtDiaChi;

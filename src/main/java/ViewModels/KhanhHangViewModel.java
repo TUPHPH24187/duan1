@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DomainModels;
+package ViewModels;
 
 /**
  *
- * @author concu
+ * @author ADM
  */
-public class KhachHang {
-    private String maKH;
+public class KhanhHangViewModel {
+     private String maKH;
     private String hoTen;
     private String ngaySinh;
     private String gioiTinh;
@@ -17,10 +17,10 @@ public class KhachHang {
     private String diaChi;
     private String trangThai;
 
-    public KhachHang() {
+    public KhanhHangViewModel() {
     }
 
-    public KhachHang(String maKH, String hoTen, String ngaySinh, String gioiTinh, String sDT, String diaChi, String trangThai) {
+    public KhanhHangViewModel(String maKH, String hoTen, String ngaySinh, String gioiTinh, String sDT, String diaChi, String trangThai) {
         this.maKH = maKH;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
@@ -84,6 +84,11 @@ public class KhachHang {
 
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
+    }
+
+    @Override
+    public String toString() {
+        return "KhanhHangViewModel{" + "maKH=" + maKH + ", hoTen=" + hoTen + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", sDT=" + sDT + ", diaChi=" + diaChi + ", trangThai=" + trangThai + '}';
     }
     
     

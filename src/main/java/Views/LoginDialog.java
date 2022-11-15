@@ -17,6 +17,7 @@ import DomainModels.NguoiDung;
 import DomainModels.NhanVien;
 import Helpers.DataValidator;
 import Helpers.MessageDialogHelper;
+import Helpers.ShareData;
 import Repositories.NguoiDungRepository;
 import org.jboss.jandex.Main;
 
@@ -208,6 +209,7 @@ public class LoginDialog extends javax.swing.JDialog {
             if(nd == null) {
             MessageDialogHelper.showErrorDialog(this, "Tên đăng nhập hay mật khẩu sai", "Lỗi");
         }else{
+            ShareData.nguoiDangNhap = nd;
             this.dispose();
         }
         } catch (Exception e) {

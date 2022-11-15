@@ -18,10 +18,10 @@ create table KhachHang (
 
 )
 
-create table ChucVu (
-	MaCV int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	TenCV nvarchar(50) ,	
-	
+create table NguoiDung (
+	TenDangNhap  varchar(20) NOT NULL PRIMARY KEY,
+	MatKhau varchar(20) NOT NULL,	
+	VaiTro nvarchar(50) NOT NULL
 )
 
 
@@ -33,10 +33,9 @@ create table NhanVien (
 	SoDienThoai nvarchar(15),
 	DiaChi nvarchar(200) ,
 	Email nvarchar(50) ,	
-	MatKhau nchar(16) ,
 	TrangThai Smallint ,
 	
-	MaCV int null foreign key references ChucVu(MaCV),
+	
 )
 
 
@@ -73,8 +72,8 @@ create table ChiTietSanPham (
 create table KhuyenMai (
 	MaKhuyenMai int IDENTITY(1,1) not null PRIMARY KEY,
 	TenKhuyenMai varchar(30) ,
-	NgayBatDau date,
-	NgayKetThuc date,
+	NgayBatDau nchar(10),
+	NgayKetThuc nchar(10),
 	GiamGia int,
 	TrangThai Smallint ,
 	MaCTSP int null foreign key references ChiTietSanPham(MaCTSP),

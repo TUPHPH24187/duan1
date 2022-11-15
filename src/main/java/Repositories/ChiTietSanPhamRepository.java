@@ -41,37 +41,6 @@ public class ChiTietSanPhamRepository {
         return null;
     }
 
-    public  ChiTietSanPham find(Integer MaCTSP) {
-        try {
-            session.getSession().beginTransaction();
-            return (ChiTietSanPham) session.getSession().get(ChiTietSanPham.class, MaCTSP);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public Boolean delete(ChiTietSanPham MaCTSP) {
-        try {
-            session.getSession().beginTransaction();
-            session.getSession().delete(MaCTSP);
-            session.getSession().getTransaction().commit();
-            return true;
-        } catch (Exception e) {
-            session.getSession().getTransaction().rollback();
-            return false;
-        }
-    }
-
-    public Boolean saveorupdate(ChiTietSanPham MaCTSP) {
-        try {
-            session.getSession().beginTransaction();
-            session.getSession().saveOrUpdate(MaCTSP);
-            session.getSession().getTransaction().commit();
-            return true;
-        } catch (Exception e) {
-            session.getSession().getTransaction().rollback();
-            return false;
-        }
-    }
+   
 
 }

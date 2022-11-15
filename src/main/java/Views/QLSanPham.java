@@ -14,7 +14,7 @@ import DomainModels.KichThuoc;
 import DomainModels.ChatLieu;
 import DomainModels.XuatXu;
 import Repositories.ChiTietSanPhamRepository;
-import Services.QuanLyChiTietSanPhamService;
+import Service.impl.QuanLyChiTietSanPhamService;
 import Services.QuanLyChiTietSanPhamImpl;
 
 /**

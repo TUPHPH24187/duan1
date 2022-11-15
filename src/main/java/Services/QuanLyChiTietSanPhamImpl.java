@@ -13,7 +13,7 @@ import Repositories.ChiTietSanPhamRepository;
 import Repositories.KichThuocRepository;
 import Repositories.XuatXuRepository;
 import Repositories.ChatLieuRepository;
-import Services.QuanLyChiTietSanPhamService;
+import Service.impl.QuanLyChiTietSanPhamService;
 
 
 

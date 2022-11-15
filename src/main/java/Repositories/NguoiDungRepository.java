@@ -16,11 +16,15 @@ import java.sql.ResultSet;
  */
 public class NguoiDungRepository {
 
-    public NguoiDung checkLogin(String tenDangNhap, String matKhau) throws Exception {
-        String sql = "select tenDangNhap,matKhau ,vaitro from NguoiDung"
-                + "where tenDangNhap=? and matKhau = ? ";
+    public NguoiDung checkLogin(String tenDangNhap, String matKhau) 
+        throws Exception {
+        String sql = "select TenDangNhap, MatKhau , VaiTro from NguoiDung " 
+                +" where TenDangNhap=? and matKhau = ?";
 
-        try ( Connection con = DBConnection.openDbConnection();  PreparedStatement pst = con.prepareStatement(sql);) {
+        try ( Connection con = DBConnection.openDbConnection();  
+                PreparedStatement pst = con.prepareStatement(sql);
+                
+            ){
             pst.setString(1, tenDangNhap);
             pst.setString(2, matKhau);
 

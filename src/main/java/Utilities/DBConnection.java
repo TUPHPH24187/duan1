@@ -47,7 +47,7 @@ public class DBConnection {
     }
 
     //2. Thực thi truy vấn Thêm, Sửa , Xoá
-    public static int ExcuteDungna(String sql, Object... args) {
+    public static int Excute(String sql, Object... args) {
         PreparedStatement pstm = getStmt(sql, args);
         try {
             try {

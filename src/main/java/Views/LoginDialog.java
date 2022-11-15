@@ -13,7 +13,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import DomainModels.ChucVu;
+import DomainModels.NguoiDung;
 import DomainModels.NhanVien;
+import Helpers.DataValidator;
+import Helpers.MessageDialogHelper;
+import Repositories.NguoiDungRepository;
 import org.jboss.jandex.Main;
 
 
@@ -188,43 +192,27 @@ public class LoginDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        DBConnection db = new DBConnection();
-        Connection conn = null;
+        StringBuilder sb = new StringBuilder();
+        DataValidator.vailidateEmpty(txtuser, sb, "Tên đăng nhập không được để trống");
+        DataValidator.vailidateEmpty(txtPasswork, sb, "Mật khẩu không được để trống");
+        
+        if(sb.length() > 0) {
+            MessageDialogHelper.showErrorDialog(this, sb.toString(),"Lỗi");
+            return;
+        }
+        
+        NguoiDungRepository ndRepo = new NguoiDungRepository();
+        
         try {
-            conn = db.openDbConnection();
-            String sql = "select * from NhanVien where Email='" + txtuser.getText() + "' and MatKhau='" + txtPasswork.getText() + "'";
-
-            PreparedStatement pst = conn.prepareCall(sql);
-
-            ResultSet rs = pst.executeQuery();
-
-            if (txtuser.getText().equals("")|| txtPasswork.getText().equals("")) {
-                
-                JOptionPane.showMessageDialog(this, "Chưa nhập tài khoản hoặc mật khẩu");
-                
-                txtuser.setBackground(Color.red);
-                txtPasswork.setBackground(Color.red);
-
-            } else if (rs.next()) {
-                String Email = rs.getString("Email");
-                String MatKhau = rs.getString("MatKhau");
-
-                NhanVien nv = new NhanVien();
-
-                nv.setEmail(Email);
-                nv.setMatKhau(MatKhau);
-                rs.close();
-                pst.close();
-                conn.close();
-                JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
-
-                dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu");
-            }
-
+            NguoiDung nd  = ndRepo.checkLogin(txtuser.getText(), new String(txtPasswork.getPassword()));
+            if(nd == null) {
+            MessageDialogHelper.showErrorDialog(this, "Tên đăng nhập hay mật khẩu sai", "Lỗi");
+        }else{
+            this.dispose();
+        }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Đăng nhập thất bại");
+            e.printStackTrace();
+            MessageDialogHelper.showErrorDialog(this, e.getMessage(), "Lỗi");
         }
 
        

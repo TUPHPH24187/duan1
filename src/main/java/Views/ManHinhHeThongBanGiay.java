@@ -60,7 +60,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
         btnDangXuat = new javax.swing.JButton();
         btnKhuyenMai = new javax.swing.JButton();
         btnClock = new javax.swing.JButton();
-        btnDoiMatKhau = new javax.swing.JButton();
+        btnDangKy = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblLogin = new javax.swing.JLabel();
         lblVaiTro = new javax.swing.JLabel();
@@ -152,11 +152,12 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
             }
         });
 
-        btnDoiMatKhau.setBackground(new java.awt.Color(204, 255, 255));
-        btnDoiMatKhau.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\password.png")); // NOI18N
-        btnDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
+        btnDangKy.setBackground(new java.awt.Color(204, 255, 255));
+        btnDangKy.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\password.png")); // NOI18N
+        btnDangKy.setText("Đăng ký");
+        btnDangKy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDoiMatKhauActionPerformed(evt);
+                btnDangKyActionPerformed(evt);
             }
         });
 
@@ -202,7 +203,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
                     .addComponent(btnKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnClock, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnKhuyenMai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDoiMatKhau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDangKy, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -230,7 +231,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -352,10 +353,10 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
     
     }//GEN-LAST:event_formWindowOpened
 
-    private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
+    private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
 
       
-    }//GEN-LAST:event_btnDoiMatKhauActionPerformed
+    }//GEN-LAST:event_btnDangKyActionPerformed
 
     
     
@@ -396,8 +397,8 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClock;
+    private javax.swing.JButton btnDangKy;
     private javax.swing.JButton btnDangXuat;
-    private javax.swing.JButton btnDoiMatKhau;
     private javax.swing.JButton btnGiaoDich;
     private javax.swing.JButton btnKhachHang;
     private javax.swing.JButton btnKhuyenMai;

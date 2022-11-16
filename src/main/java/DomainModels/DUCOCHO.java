@@ -10,4 +10,7 @@ package DomainModels;
  */
 public class DUCOCHO {
     
+    
+    
+    
 }

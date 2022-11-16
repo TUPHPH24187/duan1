@@ -7,6 +7,7 @@ package Repositories;
 import Utilities.HibernateConfig;
 import java.util.ArrayList;
 import ViewModels.ChiTietSanPham;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -33,14 +34,37 @@ public class ChiTietSanPhamRepository {
             transaction = session.beginTransaction();
             check = (Integer) session.save(ctsp);
             transaction.commit();
-            System.out.println("ma hoa don" + check);
             return check > 0;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
 
+    ////////////////////////////////////////////
+    
+    public List<ChiTietSanPham> findAll(int MaCTSP) {
+       session.beginTransaction();
+       List<ChiTietSanPham> list = getList();
+       session.getTransaction().commit();
+       return list;
+   }
+    
+    public ChiTietSanPham findByid(int MaCTSP) {
+       session.beginTransaction();
+       ChiTietSanPham ctsp = findByid(MaCTSP);
+       session.getTransaction().commit();
+       return ctsp;
+   }
+    
+    
    
+    
 
+    
+            
+   
+    
+   
+   
 }

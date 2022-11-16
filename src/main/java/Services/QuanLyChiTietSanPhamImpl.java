@@ -14,11 +14,14 @@ import Repositories.KichThuocRepository;
 import Repositories.XuatXuRepository;
 import Repositories.ChatLieuRepository;
 import Service.impl.QuanLyChiTietSanPhamService;
+import Utilities.HibernateConfig;
+import java.util.List;
+import org.hibernate.Session;
 
 
 
 public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
-
+    Session session = HibernateConfig.getFACTORY().openSession();
     
     private KichThuocRepository kichThuocRepository = new KichThuocRepository();
     private XuatXuRepository xuatXuRepository = new XuatXuRepository();
@@ -50,18 +53,14 @@ public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
     @Override
     public String addCTSanPham(ChiTietSanPham ctsp) {
         if (chiTietsanPhamRepository.add(ctsp)) {
-            return "Them thanh cong";
+            return "Thêm thành công";
         } else {
-            return "Them that bai";
+            return "Thêm thất bại";
         }
 
     }
 
-   
-
-    
-
-    }
+}
    
 
     

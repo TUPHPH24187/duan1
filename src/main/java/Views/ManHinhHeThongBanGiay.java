@@ -20,6 +20,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
     private QLKhachHang qlkhachhang;
     private QLKhuyenMai qlkhuyenmai;
     private QLTraHang qLTraHang;
+    private QLThongKe1 qLThongke1;
 
     /**
      * Creates new form ManHinhHeThongBanGiay
@@ -120,6 +121,11 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
         btnThongKe.setBackground(new java.awt.Color(204, 255, 255));
         btnThongKe.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\documents-icon.png")); // NOI18N
         btnThongKe.setText("THỐNG KÊ");
+        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeActionPerformed(evt);
+            }
+        });
 
         btnDangXuat.setBackground(new java.awt.Color(204, 255, 255));
         btnDangXuat.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\Button-Log-Off-icon.png")); // NOI18N
@@ -339,6 +345,14 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
         dialog.setVisible(true);
 
     }//GEN-LAST:event_btnDangKyActionPerformed
+
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+       if (qLThongke1 == null) {
+            qLThongke1 = new QLThongKe1();
+            tbMain.addTab("Quản lý thống kê", qLThongke1);
+        }
+        tbMain.setSelectedComponent(qLThongke1);
+    }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void processLoginSucess() {
         lblLogin.setText(ShareData.nguoiDangNhap.getTenDangNhap());

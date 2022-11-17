@@ -58,7 +58,8 @@ create table ChatLieu (
 
 
 create table ChiTietSanPham (
-	MaCTSP nchar(10) NOT NULL PRIMARY KEY,
+	id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	MaCTSP nchar(10) not null,
 	TenCTSP nvarchar(50),
 	MaChatLieu int null foreign key references ChatLieu(MaChatLieu),
 	MaXuatXu int null foreign key references XuatXu(MaXuatXu),
@@ -76,7 +77,7 @@ create table KhuyenMai (
 	NgayKetThuc nchar(10),
 	GiamGia int,
 	TrangThai Smallint ,
-	MaCTSP nchar(10) foreign key references ChiTietSanPham(MaCTSP),
+	id int null foreign key references ChiTietSanPham(id),
 )
 
 
@@ -106,7 +107,7 @@ create table HoaDon (
 create table HoaDonChiTiet (
 	MaHDCT int IDENTITY(1,1) not null PRIMARY KEY,
 	MaHD int null foreign key references HoaDon(MaHD),
-	MaCTSP nchar(10) foreign key references ChiTietSanPham(MaCTSP),
+	id int foreign key references ChiTietSanPham(id),
 	SoLuong int not null,
 	Gia decimal not null,
 	GiamGia decimal not null,

@@ -20,7 +20,7 @@ import org.hibernate.query.Query;
  */
 public class ChiTietSanPhamRepository {
 
-    Session session = HibernateConfig.getFACTORY().openSession();
+     private final Session session = HibernateConfig.getFACTORY().openSession();
 
     public ArrayList<ChiTietSanPham> getList() {
         Query q = session.createQuery("From ChiTietSanPham");// truy vấn trên entity(HQL)
@@ -46,7 +46,7 @@ public class ChiTietSanPhamRepository {
     
     
     private final SessionFactory sf = HibernateConfig.getFACTORY();
-    public ChiTietSanPham find(int MaCTSP) {
+    public ChiTietSanPham find(Integer MaCTSP) {
         try {
             sf.getCurrentSession().beginTransaction();
             return (ChiTietSanPham) sf.getCurrentSession().get(ChiTietSanPham.class, MaCTSP);

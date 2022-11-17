@@ -175,6 +175,8 @@ public class QLSanPham extends javax.swing.JPanel {
 
         jLabel8.setText("Mã giày:");
 
+        txtMaGiay.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -307,7 +309,7 @@ public class QLSanPham extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         StringBuilder sb = new StringBuilder();
-        DataValidator.vailidateEmpty(txtMaGiay, sb, "Mã giày không được để trống");
+
         DataValidator.vailidateEmpty(txtTenGiay, sb, "Tên giày không được để trống");
         DataValidator.vailidateEmpty(txtGia, sb, "Giá không được để trống");
         DataValidator.vailidateEmpty(txtSoLuong, sb, "Số lượng không được để trống");
@@ -318,8 +320,6 @@ public class QLSanPham extends javax.swing.JPanel {
         }
 
         ChiTietSanPham ctsp = new ChiTietSanPham();
-
-        String masp = txtMaGiay.getText();
 
         String tenSP = txtTenGiay.getText();
 
@@ -345,7 +345,6 @@ public class QLSanPham extends javax.swing.JPanel {
 
         ctsp.setTrangThai(rbHoatDong.isSelected() ? 1 : 0);
 
-        ctsp.setMaCTSP(masp);
         ctsp.setTenCTSP(tenSP);
         ctsp.setSoLuong(soLuongStr);
         ctsp.setGia(giaStr);
@@ -379,8 +378,7 @@ public class QLSanPham extends javax.swing.JPanel {
             this.txtSoLuong.setText("");
             this.txtGia.setText("");
             this.txtGiamGia.setText("");
-            this.txtMaGiay.setText("");
-
+            this.txtTenGiay.setText("");
         }
 
 
@@ -410,15 +408,11 @@ public class QLSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tbSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSanPhamMouseClicked
-
-        String user = this.tbSanPham.getValueAt(this.tbSanPham.
-                getSelectedRow(), 0).toString();
-
-        ChiTietSanPham ctsp = this.spRepo.find(Integer.parseInt(user));
-        this.txtTenGiay.setText(ctsp.getTenCTSP());
-        this.txtSoLuong.setText(String.valueOf(ctsp.getSoLuong()));
-        this.txtGia.setText(String.valueOf(ctsp.getGia()));
-        this.txtGiamGia.setText(String.valueOf(ctsp.getGiamGia()));
+        int row = tbSanPham.getSelectedRow();
+        
+        String maGiay = tbSanPham.getValueAt(row, 0).toString();
+        
+        txtMaGiay.setText(maGiay);
 
     }//GEN-LAST:event_tbSanPhamMouseClicked
 

@@ -22,41 +22,38 @@ import javax.persistence.Table;
  *
  * @author concu
  */
-
 @Entity
 @Table(name = "ChiTietSanPham")
-public class ChiTietSanPham implements Serializable{
+public class ChiTietSanPham implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-    
     @Column(name = "MaCTSP")
-    private String MaCTSP;
-    
+    private Integer MaCTSP;
+
     @Column(name = "TenCTSP")
     private String TenCTSP;
-    
+
     @Column(name = "SoLuong")
     private Integer SoLuong;
-    
+
     @Column(name = "Gia")
     private BigDecimal Gia;
-    
+
     @Column(name = "GiamGia")
     private BigDecimal GiamGia;
-    
+
     @Column(name = "TrangThai")
     private int TrangThai;
-    
+
     @ManyToOne
     @JoinColumn(name = "MaKichThuoc", nullable = false)
     private KichThuoc kichThuoc;
-    
+
     @ManyToOne
     @JoinColumn(name = "MaXuatXu", nullable = false)
     private XuatXu xuatXu;
-    
+
     @ManyToOne
     @JoinColumn(name = "MaChatLieu", nullable = false)
     private ChatLieu chatLieu;
@@ -64,8 +61,8 @@ public class ChiTietSanPham implements Serializable{
     public ChiTietSanPham() {
     }
 
-    public ChiTietSanPham(Integer id, String MaCTSP, String TenCTSP, Integer SoLuong, BigDecimal Gia, BigDecimal GiamGia, int TrangThai, KichThuoc kichThuoc, XuatXu xuatXu, ChatLieu chatLieu) {
-        this.id = id;
+    public ChiTietSanPham(Integer MaCTSP, String TenCTSP, Integer SoLuong, BigDecimal Gia, BigDecimal GiamGia, int TrangThai, KichThuoc kichThuoc, XuatXu xuatXu, ChatLieu chatLieu) {
+
         this.MaCTSP = MaCTSP;
         this.TenCTSP = TenCTSP;
         this.SoLuong = SoLuong;
@@ -77,21 +74,11 @@ public class ChiTietSanPham implements Serializable{
         this.chatLieu = chatLieu;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    
-
-    public String getMaCTSP() {
+    public Integer getMaCTSP() {
         return MaCTSP;
     }
 
-    public void setMaCTSP(String MaCTSP) {
+    public void setMaCTSP(Integer MaCTSP) {
         this.MaCTSP = MaCTSP;
     }
 
@@ -164,8 +151,4 @@ public class ChiTietSanPham implements Serializable{
         return "ChiTietSanPham{" + "MaCTSP=" + MaCTSP + ", TenCTSP=" + TenCTSP + ", SoLuong=" + SoLuong + ", Gia=" + Gia + ", GiamGia=" + GiamGia + ", TrangThai=" + TrangThai + ", kichThuoc=" + kichThuoc + ", xuatXu=" + xuatXu + ", chatLieu=" + chatLieu + '}';
     }
 
-    
-    
-    
-    
 }

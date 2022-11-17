@@ -380,6 +380,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMaGiay">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

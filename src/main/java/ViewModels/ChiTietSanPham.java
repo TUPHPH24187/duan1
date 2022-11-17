@@ -27,6 +27,10 @@ import javax.persistence.Table;
 @Table(name = "ChiTietSanPham")
 public class ChiTietSanPham implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+    
     @Column(name = "MaCTSP")
     private String MaCTSP;
     
@@ -60,7 +64,8 @@ public class ChiTietSanPham implements Serializable{
     public ChiTietSanPham() {
     }
 
-    public ChiTietSanPham(String MaCTSP, String TenCTSP, Integer SoLuong, BigDecimal Gia, BigDecimal GiamGia, int TrangThai, KichThuoc kichThuoc, XuatXu xuatXu, ChatLieu chatLieu) {
+    public ChiTietSanPham(Integer id, String MaCTSP, String TenCTSP, Integer SoLuong, BigDecimal Gia, BigDecimal GiamGia, int TrangThai, KichThuoc kichThuoc, XuatXu xuatXu, ChatLieu chatLieu) {
+        this.id = id;
         this.MaCTSP = MaCTSP;
         this.TenCTSP = TenCTSP;
         this.SoLuong = SoLuong;
@@ -71,6 +76,16 @@ public class ChiTietSanPham implements Serializable{
         this.xuatXu = xuatXu;
         this.chatLieu = chatLieu;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    
 
     public String getMaCTSP() {
         return MaCTSP;

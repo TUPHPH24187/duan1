@@ -21,6 +21,7 @@ import Services.QuanLyChiTietSanPhamImpl;
 
 import Utilities.HibernateConfig;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hibernate.Session;
@@ -32,13 +33,10 @@ import org.hibernate.Session;
 public class QLSanPham extends javax.swing.JPanel {
 
     private QuanLyChiTietSanPhamService quanLySanPhamService = new QuanLyChiTietSanPhamImpl();
-    
-    
+
     private DefaultTableModel defaultTableModel;
     private DefaultComboBoxModel defaultComboBoxModel;
 
-    
-    
     private ChiTietSanPhamRepository spRepo = new ChiTietSanPhamRepository();
 
     /**
@@ -177,8 +175,6 @@ public class QLSanPham extends javax.swing.JPanel {
 
         jLabel8.setText("Mã giày:");
 
-        txtMaGiay.setEnabled(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -311,6 +307,7 @@ public class QLSanPham extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         StringBuilder sb = new StringBuilder();
+        DataValidator.vailidateEmpty(txtMaGiay, sb, "Mã giày không được để trống");
         DataValidator.vailidateEmpty(txtTenGiay, sb, "Tên giày không được để trống");
         DataValidator.vailidateEmpty(txtGia, sb, "Giá không được để trống");
         DataValidator.vailidateEmpty(txtSoLuong, sb, "Số lượng không được để trống");
@@ -319,10 +316,10 @@ public class QLSanPham extends javax.swing.JPanel {
             MessageDialogHelper.showErrorDialog(this, sb.toString(), "Lỗi");
             return;
         }
-        
-        
-        
+
         ChiTietSanPham ctsp = new ChiTietSanPham();
+
+        String masp = txtMaGiay.getText();
 
         String tenSP = txtTenGiay.getText();
 
@@ -348,125 +345,81 @@ public class QLSanPham extends javax.swing.JPanel {
 
         ctsp.setTrangThai(rbHoatDong.isSelected() ? 1 : 0);
 
+        ctsp.setMaCTSP(masp);
         ctsp.setTenCTSP(tenSP);
         ctsp.setSoLuong(soLuongStr);
         ctsp.setGia(giaStr);
         ctsp.setGiamGia(giamgiaStr);
 
-        
-        
-        
-        
-        
-        
-        
-        String result = quanLySanPhamService.addCTSanPham(ctsp);
-        JOptionPane.showMessageDialog(this, result);
-        loadTable(quanLySanPhamService.getListChiTietSanPham());
-    }//GEN-LAST:event_btnThemActionPerformed
-
-    private ChiTietSanPham layThongTinSanPham() {
-        ChiTietSanPham ctsp = new ChiTietSanPham();
-
-        String tenSP = this.txtTenGiay.getText();
-
-        String soLuong = this.txtSoLuong.getText();
-        Integer soLuongStr = Integer.parseInt(soLuong);
-
-        String gia = this.txtGia.getText();
-        Double giaS = Double.parseDouble(gia);
-        BigDecimal giaStr = BigDecimal.valueOf(giaS);
-
-        String giamGia = this.txtGiamGia.getText();
-        Double giamGiaS = Double.parseDouble(giamGia);
-        BigDecimal giamgiaStr = BigDecimal.valueOf(giamGiaS);
-        
         try {
+
             if (Double.valueOf(gia) < 0) {
                 JOptionPane.showMessageDialog(this, "Không được được để âm");
                 this.txtGia.setText("");
-               
-            }
 
-            if (!gia.matches("\\d*+\\.\\d*||\\d*")) {
-                JOptionPane.showMessageDialog(this, "Không được để khoảng trắng");
-                
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Không đúng định dạng");
-            this.txtGia.setText("");
-            
-        }
-        
-        try {
-            if (Double.valueOf(soLuongStr) < 0) {
+            } else if (Double.valueOf(soLuongStr) < 0) {
                 JOptionPane.showMessageDialog(this, "Không được được để âm");
                 this.txtSoLuong.setText("");
-                return null;
-            }
-            
 
-            if (!soLuong.matches("\\d*+\\.\\d*||\\d*")) {
-                JOptionPane.showMessageDialog(this, "Không được để khoảng trắng");
-                return null;
+            } else if (Double.valueOf(giamGia) < 0) {
+                JOptionPane.showMessageDialog(this, "Không được được để âm");
+                this.txtGiamGia.setText("");
+            } else {
+                int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn thêm không", "Xác nhận", JOptionPane.YES_NO_OPTION);
+
+                if (xacNhan == JOptionPane.YES_OPTION) {
+                    String result = quanLySanPhamService.addCTSanPham(ctsp);
+                    JOptionPane.showMessageDialog(this, result);
+                    loadTable(quanLySanPhamService.getListChiTietSanPham());
+                }
             }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Không đúng định dạng");
             this.txtSoLuong.setText("");
-            return null;
+            this.txtGia.setText("");
+            this.txtGiamGia.setText("");
+            this.txtMaGiay.setText("");
+
         }
-        XuatXu xuatXu = (XuatXu) cbXuatXu.getSelectedItem();
-        ctsp.setXuatXu(xuatXu);
 
-        KichThuoc kichThuoc = (KichThuoc) cbSize.getSelectedItem();
-        ctsp.setKichThuoc(kichThuoc);
 
-        ChatLieu chatLieu = (ChatLieu) cbChatLieu.getSelectedItem();
-        ctsp.setChatLieu(chatLieu);
+    }//GEN-LAST:event_btnThemActionPerformed
 
-        ctsp.setTrangThai(rbHoatDong.isSelected() ? 1 : 0);
 
-        
-        return new ChiTietSanPham(WIDTH, tenSP, soLuongStr, giaStr, giamgiaStr, 0, kichThuoc, xuatXu, chatLieu);
-        
-        
-    }
-    
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-       
+
 
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa không","Xác nhận",JOptionPane.YES_NO_OPTION);
-        
-        if(xacNhan == JOptionPane.YES_OPTION) {
+        int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa không", "Xác nhận", JOptionPane.YES_NO_OPTION);
+
+        if (xacNhan == JOptionPane.YES_OPTION) {
             String user = this.tbSanPham.getValueAt(this.tbSanPham.
-                getSelectedRow(), 0).toString();
-            if(this.spRepo.delete(spRepo.find(Integer.parseInt(user)))){
+                    getSelectedRow(), 0).toString();
+            if (this.spRepo.delete(spRepo.find(Integer.parseInt(user)))) {
                 JOptionPane.showMessageDialog(null, "Xóa thành công");
                 loadTable(quanLySanPhamService.getListChiTietSanPham());
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Xóa thất bại");
             }
-            
-            
+
         }
 
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tbSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSanPhamMouseClicked
-        
+
         String user = this.tbSanPham.getValueAt(this.tbSanPham.
                 getSelectedRow(), 0).toString();
-        
+
         ChiTietSanPham ctsp = this.spRepo.find(Integer.parseInt(user));
         this.txtTenGiay.setText(ctsp.getTenCTSP());
         this.txtSoLuong.setText(String.valueOf(ctsp.getSoLuong()));
         this.txtGia.setText(String.valueOf(ctsp.getGia()));
-        this.txtGiamGia.setText(String.valueOf(ctsp.getGiamGia()));        
-        
+        this.txtGiamGia.setText(String.valueOf(ctsp.getGiamGia()));
+
     }//GEN-LAST:event_tbSanPhamMouseClicked
 
     private void loadComboBoxXuatXu(ArrayList<XuatXu> list) {

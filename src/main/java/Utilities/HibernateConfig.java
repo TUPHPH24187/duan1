@@ -25,7 +25,7 @@ public class HibernateConfig {
         properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=QLBG");
         properties.put(Environment.USER, "sa");
         properties.put(Environment.PASS, "123456");
-        //properties.put(Environment.SHOW_SQL, "true");
+        properties.put(Environment.SHOW_SQL, "true");
 
         conf.setProperties(properties);
         conf.addAnnotatedClass(KichThuoc.class);

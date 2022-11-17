@@ -10,6 +10,7 @@ import ViewModels.ChiTietSanPham;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
@@ -43,21 +44,39 @@ public class ChiTietSanPhamRepository {
 
     ////////////////////////////////////////////
     
-    public List<ChiTietSanPham> findAll(int MaCTSP) {
-       session.beginTransaction();
-       List<ChiTietSanPham> list = getList();
-       session.getTransaction().commit();
-       return list;
+    
+    private final SessionFactory sf = HibernateConfig.getFACTORY();
+    public ChiTietSanPham find(int MaCTSP) {
+        try {
+            sf.getCurrentSession().beginTransaction();
+            return (ChiTietSanPham) sf.getCurrentSession().get(ChiTietSanPham.class, MaCTSP);
+        } catch (Exception e) {
+            return null;
+        }
    }
     
-    public ChiTietSanPham findByid(int MaCTSP) {
-       session.beginTransaction();
-       ChiTietSanPham ctsp = findByid(MaCTSP);
-       session.getTransaction().commit();
-       return ctsp;
+    public Boolean delete(ChiTietSanPham CTSP) {
+        try {
+            sf.getCurrentSession().beginTransaction();
+            sf.getCurrentSession().delete(CTSP);
+            sf.getCurrentSession().getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        } 
    }
     
-    
+    public Boolean update(ChiTietSanPham CTSP) {
+        try {
+            sf.getCurrentSession().beginTransaction();
+            sf.getCurrentSession().saveOrUpdate(CTSP);
+            sf.getCurrentSession().getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            sf.getCurrentSession().getTransaction().rollback();
+            return false;
+        } 
+   }
    
     
 

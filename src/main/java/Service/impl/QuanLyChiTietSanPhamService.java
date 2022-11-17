@@ -22,6 +22,6 @@ public interface QuanLyChiTietSanPhamService {
     ArrayList<KichThuoc> getListKichThuoc();
     
     String addCTSanPham(ChiTietSanPham ctsp);
-   
+    String deleteCTSanPham(ChiTietSanPham ctsp);
    
 }

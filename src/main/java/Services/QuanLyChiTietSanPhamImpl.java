@@ -60,6 +60,15 @@ public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
 
     }
 
+    @Override
+    public String deleteCTSanPham(ChiTietSanPham ctsp) {
+        if (chiTietsanPhamRepository.delete(ctsp)) {
+            return "Xóa thành công";
+        } else {
+            return "Xóa thất bại";
+        }
+    }
+
 }
    
 

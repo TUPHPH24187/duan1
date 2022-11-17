@@ -18,33 +18,31 @@ import Utilities.HibernateConfig;
 import java.util.List;
 import org.hibernate.Session;
 
-
-
 public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
+
     Session session = HibernateConfig.getFACTORY().openSession();
-    
+
     private KichThuocRepository kichThuocRepository = new KichThuocRepository();
     private XuatXuRepository xuatXuRepository = new XuatXuRepository();
     private ChatLieuRepository chatLieuRepository = new ChatLieuRepository();
-    
+
     private ChiTietSanPhamRepository chiTietsanPhamRepository = new ChiTietSanPhamRepository();
-    
 
     @Override
     public ArrayList<ChiTietSanPham> getListChiTietSanPham() {
         return chiTietsanPhamRepository.getList();
     }
-    
+
     @Override
     public ArrayList<ChatLieu> getListChatLieu() {
-       return chatLieuRepository.getList();
+        return chatLieuRepository.getList();
     }
 
     @Override
     public ArrayList<XuatXu> getListXuatXu() {
         return xuatXuRepository.getList();
     }
-    
+
     @Override
     public ArrayList<KichThuoc> getListKichThuoc() {
         return kichThuocRepository.getList();
@@ -60,32 +58,4 @@ public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
 
     }
 
-    
-    public String deleteCTSanPham(ChiTietSanPham ctsp) {
-        if (chiTietsanPhamRepository.delete(ctsp)) {
-            return "Xóa thành công";
-        } else {
-            return "Xóa thất bại";
-        }
-    }
-
-    
-    public String updateCTSanPham(ChiTietSanPham ctsp) {
-        if (chiTietsanPhamRepository.update(ctsp)) {
-            return "Xóa thành công";
-        } else {
-            return "Xóa thất bại";
-        }
-    }
-
 }
-   
-
-    
-
-    
-
-    
-    
-
-

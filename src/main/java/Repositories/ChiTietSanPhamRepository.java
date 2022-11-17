@@ -69,7 +69,7 @@ public class ChiTietSanPhamRepository {
     public Boolean update(ChiTietSanPham CTSP) {
         try {
             sf.getCurrentSession().beginTransaction();
-            sf.getCurrentSession().saveOrUpdate(CTSP);
+            sf.getCurrentSession().update(CTSP);
             sf.getCurrentSession().getTransaction().commit();
             return true;
         } catch (Exception e) {

@@ -32,12 +32,14 @@ import org.hibernate.Session;
 public class QLSanPham extends javax.swing.JPanel {
 
     private QuanLyChiTietSanPhamService quanLySanPhamService = new QuanLyChiTietSanPhamImpl();
+    
+    
     private DefaultTableModel defaultTableModel;
     private DefaultComboBoxModel defaultComboBoxModel;
 
     
     
-    private ChiTietSanPhamRepository sanPhamRepo;
+    private ChiTietSanPhamRepository spRepo = new ChiTietSanPhamRepository();
 
     /**
      * Creates new form QLSanPham
@@ -437,29 +439,34 @@ public class QLSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-     
+        int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa không","Xác nhận",JOptionPane.YES_NO_OPTION);
         
+        if(xacNhan == JOptionPane.YES_OPTION) {
+            String user = this.tbSanPham.getValueAt(this.tbSanPham.
+                getSelectedRow(), 0).toString();
+            if(this.spRepo.delete(spRepo.find(Integer.parseInt(user)))){
+                JOptionPane.showMessageDialog(null, "Xóa thành công");
+                loadTable(quanLySanPhamService.getListChiTietSanPham());
+            }else{
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
+            }
+            
+            
+        }
 
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tbSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSanPhamMouseClicked
-        int row = tbSanPham.getSelectedRow();
-
-        String maGiay = tbSanPham.getValueAt(row, 0).toString();
-        String tenGiay = tbSanPham.getValueAt(row, 1).toString();
-        String xuatXu = tbSanPham.getValueAt(row, 2).toString();
-
-        cbXuatXu.setSelectedItem(xuatXu);
-
-        String soLuong = tbSanPham.getValueAt(row, 5).toString();
-        String gia = tbSanPham.getValueAt(row, 6).toString();
-        String giamgia = tbSanPham.getValueAt(row, 7).toString();
-
-        txtMaGiay.setText(maGiay);
-        txtTenGiay.setText(tenGiay);
-        txtGia.setText(gia);
-        txtGiamGia.setText(giamgia);
-        txtSoLuong.setText(soLuong);
+        
+        String user = this.tbSanPham.getValueAt(this.tbSanPham.
+                getSelectedRow(), 0).toString();
+        
+        ChiTietSanPham ctsp = this.spRepo.find(Integer.parseInt(user));
+        this.txtTenGiay.setText(ctsp.getTenCTSP());
+        this.txtSoLuong.setText(String.valueOf(ctsp.getSoLuong()));
+        this.txtGia.setText(String.valueOf(ctsp.getGia()));
+        this.txtGiamGia.setText(String.valueOf(ctsp.getGiamGia()));        
+        
     }//GEN-LAST:event_tbSanPhamMouseClicked
 
     private void loadComboBoxXuatXu(ArrayList<XuatXu> list) {

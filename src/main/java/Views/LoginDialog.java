@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import DomainModels.ChucVu;
 import DomainModels.NguoiDung;
 import DomainModels.NhanVien;
 import Helpers.DataValidator;

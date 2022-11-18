@@ -16,6 +16,6 @@ import java.util.List;
 public interface QuanLyNhanVien {
     public List<QLNhanVien> layNhanViens() throws SQLException;
     
-    public boolean ThemNhanVien(QLNhanVien nhanVien) throws SQLException;
+    public String ThemNhanVien(QLNhanVien nhanVien) throws SQLException;
     
 }

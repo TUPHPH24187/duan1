@@ -27,13 +27,13 @@ public class NhanVienRepository {
         ResultSet rs = statement.executeQuery();
         while (rs.next()){
             Integer MaNV = rs.getInt(1);
-            String TenNV = rs.getString(1);
-            String NgaySinh = rs.getString(2);
-            Integer GioiTinh = rs.getInt(3);
-            String SDT = rs.getString(4);
-            String DiaChi = rs.getString(5);
-            String Email = rs.getString(6);
-            Integer TrangThai = rs.getInt(7);
+            String TenNV = rs.getString(2);
+            String NgaySinh = rs.getString(3);
+            Integer GioiTinh = rs.getInt(4);
+            String SDT = rs.getString(5);
+            String DiaChi = rs.getString(6);
+            String Email = rs.getString(7);
+            Integer TrangThai = rs.getInt(8);
             
             NhanVien nhanVien = new NhanVien( MaNV,TenNV, NgaySinh, GioiTinh, SDT, DiaChi, Email, TrangThai);
             nhanViens.add(nhanVien);

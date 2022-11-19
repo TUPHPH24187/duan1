@@ -66,14 +66,11 @@ public class LoginDialog extends javax.swing.JDialog {
         lblRegisterTitle.setForeground(new java.awt.Color(51, 102, 255));
         lblRegisterTitle.setText("HỆ THỐNG BÁN GIÀY");
 
-        lblUserName.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\user.png")); // NOI18N
         lblUserName.setText("Tên đăng nhập");
 
-        lblPassword1.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\padlock.png")); // NOI18N
         lblPassword1.setText("Mật khẩu");
 
         btnThoat.setForeground(new java.awt.Color(255, 153, 51));
-        btnThoat.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\power.png")); // NOI18N
         btnThoat.setText("Thoát");
         btnThoat.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -98,7 +95,6 @@ public class LoginDialog extends javax.swing.JDialog {
         });
 
         btnDangNhap.setForeground(new java.awt.Color(255, 153, 51));
-        btnDangNhap.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\login.png")); // NOI18N
         btnDangNhap.setText("Đăng Nhập");
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,28 +111,26 @@ public class LoginDialog extends javax.swing.JDialog {
                 .addGroup(pnlRegisterInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUserName)
                     .addComponent(lblPassword1))
+                .addGap(29, 29, 29)
                 .addGroup(pnlRegisterInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlRegisterInfoLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(lblRegisterTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlRegisterInfoLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(pnlRegisterInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlRegisterInfoLayout.createSequentialGroup()
-                                .addComponent(btnDangNhap)
-                                .addGap(5, 5, 5)
-                                .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
-                            .addComponent(txtuser)
-                            .addComponent(txtPasswork))
-                        .addGap(33, 33, 33))))
+                        .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                    .addComponent(txtuser)
+                    .addComponent(txtPasswork))
+                .addGap(33, 33, 33))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRegisterInfoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblRegisterTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(115, 115, 115))
         );
         pnlRegisterInfoLayout.setVerticalGroup(
             pnlRegisterInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRegisterInfoLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
                 .addComponent(lblRegisterTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(pnlRegisterInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUserName))
@@ -164,8 +158,8 @@ public class LoginDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlRegisterInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlRegisterInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();

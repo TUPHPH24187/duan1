@@ -1,22 +1,49 @@
+package DomainModels;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DomainModels;
 
+
+import ViewModels.ChiTietSanPham;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author concu
  */
-public class XuatXu implements Serializable {
 
+@Entity
+@Table(name = "XuatXu")
+public class XuatXu implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MaXuatXu")
     private Integer MaXuatXu;
-
+    
+    @Column(name = "TenXuatXu")
     private String TenXuatXu;
+    
+    @OneToMany(mappedBy = "xuatXu", fetch = FetchType.LAZY)
+    private List<ChiTietSanPham> listChiTietSanPham;
 
     public XuatXu() {
+    }
+
+    public XuatXu(Integer MaXuatXu, String TenXuatXu, List<ChiTietSanPham> listChiTietSanPham) {
+        this.MaXuatXu = MaXuatXu;
+        this.TenXuatXu = TenXuatXu;
+        this.listChiTietSanPham = listChiTietSanPham;
     }
 
     public Integer getMaXuatXu() {
@@ -27,11 +54,6 @@ public class XuatXu implements Serializable {
         this.MaXuatXu = MaXuatXu;
     }
 
-    public XuatXu(Integer MaXuatXu, String TenXuatXu) {
-        this.MaXuatXu = MaXuatXu;
-        this.TenXuatXu = TenXuatXu;
-    }
-
     public String getTenXuatXu() {
         return TenXuatXu;
     }
@@ -40,6 +62,17 @@ public class XuatXu implements Serializable {
         this.TenXuatXu = TenXuatXu;
     }
 
+    public List<ChiTietSanPham> getListChiTietSanPham() {
+        return listChiTietSanPham;
+    }
+
+    public void setListChiTietSanPham(List<ChiTietSanPham> listChiTietSanPham) {
+        this.listChiTietSanPham = listChiTietSanPham;
+    }
+    
+    
+    
+    
     @Override
     public String toString() {
         return TenXuatXu;

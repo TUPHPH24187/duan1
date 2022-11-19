@@ -1,22 +1,51 @@
+package DomainModels;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DomainModels;
 
+
+import ViewModels.ChiTietSanPham;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author concu
  */
-public class ChatLieu implements Serializable {
-
+@Entity
+@Table(name = "ChatLieu")
+public class ChatLieu implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MaChatLieu")
     private Integer MaChatLieu;
-
+    
+    @Column(name = "TenChatLieu")
     private String TenChatLieu;
+    
+    @OneToMany(mappedBy = "chatLieu", fetch = FetchType.LAZY)
+    private List<ChiTietSanPham> listChiTietSanPham;
 
     public ChatLieu() {
+    }
+
+    public ChatLieu(Integer MaChatLieu, String TenChatLieu, List<ChiTietSanPham> listChiTietSanPham) {
+        this.MaChatLieu = MaChatLieu;
+        this.TenChatLieu = TenChatLieu;
+        this.listChiTietSanPham = listChiTietSanPham;
     }
 
     public Integer getMaChatLieu() {
@@ -35,14 +64,22 @@ public class ChatLieu implements Serializable {
         this.TenChatLieu = TenChatLieu;
     }
 
-    public ChatLieu(Integer MaChatLieu, String TenChatLieu) {
-        this.MaChatLieu = MaChatLieu;
-        this.TenChatLieu = TenChatLieu;
+    public List<ChiTietSanPham> getListChiTietSanPham() {
+        return listChiTietSanPham;
     }
 
+    public void setListChiTietSanPham(List<ChiTietSanPham> listChiTietSanPham) {
+        this.listChiTietSanPham = listChiTietSanPham;
+    }
+
+    
+
+    
     @Override
     public String toString() {
         return TenChatLieu;
     }
-
+    
+    
+    
 }

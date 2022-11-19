@@ -1,9 +1,16 @@
+package Service.impl;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Service.impl;
 
+
+import java.util.ArrayList;
+import ViewModels.ChiTietSanPham;
+import DomainModels.KichThuoc;
+import DomainModels.ChatLieu;
+import DomainModels.XuatXu;
 
 /**
  *
@@ -11,6 +18,11 @@ package Service.impl;
  */
 public interface QuanLyChiTietSanPhamService {
 
+    ArrayList<ChiTietSanPham> getListChiTietSanPham();
+    ArrayList<ChatLieu> getListChatLieu();   
+    ArrayList<XuatXu> getListXuatXu();  
+    ArrayList<KichThuoc> getListKichThuoc();
     
+    String addCTSanPham(ChiTietSanPham ctsp);
     
 }

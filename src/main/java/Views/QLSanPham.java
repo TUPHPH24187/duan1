@@ -1,8 +1,10 @@
+package Views;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Views;
+
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,10 +18,15 @@ import DomainModels.XuatXu;
 import Helpers.DataValidator;
 import Helpers.MessageDialogHelper;
 import Repositories.ChiTietSanPhamRepository;
+import Service.impl.QuanLyChiTietSanPhamService;
+import Services.QuanLyChiTietSanPhamImpl;
 
-
-
-
+import Utilities.HibernateConfig;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.hibernate.Session;
 
 /**
  *
@@ -27,7 +34,8 @@ import Repositories.ChiTietSanPhamRepository;
  */
 public class QLSanPham extends javax.swing.JPanel {
 
-    
+    private QuanLyChiTietSanPhamService quanLySanPhamService = new QuanLyChiTietSanPhamImpl();
+
     private DefaultTableModel defaultTableModel;
     private DefaultComboBoxModel defaultComboBoxModel;
 
@@ -39,7 +47,11 @@ public class QLSanPham extends javax.swing.JPanel {
     public QLSanPham() {
         initComponents();
 
-        
+        loadComboBoxXuatXu(quanLySanPhamService.getListXuatXu());
+        loadComboBoxChatLieu(quanLySanPhamService.getListChatLieu());
+        loadComboBoxKichThuoc(quanLySanPhamService.getListKichThuoc());
+
+        loadTable(quanLySanPhamService.getListChiTietSanPham());
     }
 
     /**
@@ -298,7 +310,78 @@ public class QLSanPham extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        
+        StringBuilder sb = new StringBuilder();
+
+        DataValidator.vailidateEmpty(txtTenGiay, sb, "Tên giày không được để trống");
+        DataValidator.vailidateEmpty(txtGia, sb, "Giá không được để trống");
+        DataValidator.vailidateEmpty(txtSoLuong, sb, "Số lượng không được để trống");
+        DataValidator.vailidateEmpty(txtGiamGia, sb, "Giảm giá không được để trống");
+        if (sb.length() > 0) {
+            MessageDialogHelper.showErrorDialog(this, sb.toString(), "Lỗi");
+            return;
+        }
+
+        ChiTietSanPham ctsp = new ChiTietSanPham();
+
+        String tenSP = txtTenGiay.getText();
+
+        String soLuong = txtSoLuong.getText();
+        Integer soLuongStr = Integer.parseInt(soLuong);
+
+        String gia = this.txtGia.getText();
+        Double giaS = Double.parseDouble(gia);
+        BigDecimal giaStr = BigDecimal.valueOf(giaS);
+
+        String giamGia = txtGiamGia.getText();
+        Double giamGiaS = Double.parseDouble(giamGia);
+        BigDecimal giamgiaStr = BigDecimal.valueOf(giamGiaS);
+
+        XuatXu xuatXu = (XuatXu) cbXuatXu.getSelectedItem();
+        ctsp.setXuatXu(xuatXu);
+
+        KichThuoc kichThuoc = (KichThuoc) cbSize.getSelectedItem();
+        ctsp.setKichThuoc(kichThuoc);
+
+        ChatLieu chatLieu = (ChatLieu) cbChatLieu.getSelectedItem();
+        ctsp.setChatLieu(chatLieu);
+
+        ctsp.setTrangThai(rbHoatDong.isSelected() ? 1 : 0);
+
+        ctsp.setTenCTSP(tenSP);
+        ctsp.setSoLuong(soLuongStr);
+        ctsp.setGia(giaStr);
+        ctsp.setGiamGia(giamgiaStr);
+
+        try {
+
+            if (Double.valueOf(gia) < 0) {
+                JOptionPane.showMessageDialog(this, "Không được được để âm");
+                this.txtGia.setText("");
+
+            } else if (Double.valueOf(soLuongStr) < 0) {
+                JOptionPane.showMessageDialog(this, "Không được được để âm");
+                this.txtSoLuong.setText("");
+
+            } else if (Double.valueOf(giamGia) < 0) {
+                JOptionPane.showMessageDialog(this, "Không được được để âm");
+                this.txtGiamGia.setText("");
+            } else {
+                int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn thêm không", "Xác nhận", JOptionPane.YES_NO_OPTION);
+
+                if (xacNhan == JOptionPane.YES_OPTION) {
+                    String result = quanLySanPhamService.addCTSanPham(ctsp);
+                    JOptionPane.showMessageDialog(this, result);
+                    loadTable(quanLySanPhamService.getListChiTietSanPham());
+                }
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Không đúng định dạng");
+            this.txtSoLuong.setText("");
+            this.txtGia.setText("");
+            this.txtGiamGia.setText("");
+            this.txtTenGiay.setText("");
+        }
 
 
     }//GEN-LAST:event_btnThemActionPerformed
@@ -310,7 +393,19 @@ public class QLSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-       
+        int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa không", "Xác nhận", JOptionPane.YES_NO_OPTION);
+
+        if (xacNhan == JOptionPane.YES_OPTION) {
+            String user = this.tbSanPham.getValueAt(this.tbSanPham.
+                    getSelectedRow(), 0).toString();
+            if (this.spRepo.delete(spRepo.find(Integer.parseInt(user)))) {
+                JOptionPane.showMessageDialog(null, "Xóa thành công");
+                loadTable(quanLySanPhamService.getListChiTietSanPham());
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
+            }
+
+        }
 
     }//GEN-LAST:event_btnXoaActionPerformed
 

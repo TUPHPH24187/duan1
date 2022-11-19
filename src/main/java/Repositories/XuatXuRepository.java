@@ -6,7 +6,7 @@ package Repositories;
  */
 
 
-import Utilities.HibernateConfig;
+import Utilities.DBConnection;
 import java.util.ArrayList;
 import DomainModels.XuatXu;
 import org.hibernate.Session;
@@ -17,7 +17,7 @@ import org.hibernate.query.Query;
  * @author concu
  */
 public class XuatXuRepository {
-    Session session = HibernateConfig.getFACTORY().openSession();
+    Session session = DBConnection.getFACTORY().openSession();
 
     public ArrayList<XuatXu> getList() {
         Query q = session.createQuery("From XuatXu");// truy vấn trên entity(HQL)

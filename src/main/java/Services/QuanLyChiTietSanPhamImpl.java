@@ -14,7 +14,7 @@ import Repositories.KichThuocRepository;
 import Repositories.XuatXuRepository;
 import Repositories.ChatLieuRepository;
 import Service.impl.QuanLyChiTietSanPhamService;
-import Utilities.HibernateConfig;
+import Utilities.DBConnection;
 import Views.QLSanPham;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,7 +22,7 @@ import org.hibernate.Session;
 
 public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
 
-    Session session = HibernateConfig.getFACTORY().openSession();
+    Session session = DBConnection.getFACTORY().openSession();
 
     private KichThuocRepository kichThuocRepository = new KichThuocRepository();
     private XuatXuRepository xuatXuRepository = new XuatXuRepository();

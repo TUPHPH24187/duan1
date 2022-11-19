@@ -4,22 +4,31 @@
  */
 package Utilities;
 
-
-
+import DomainModels.ChatLieu;
+import DomainModels.KichThuoc;
+import DomainModels.XuatXu;
+import ViewModels.ChiTietSanPham;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 import javax.swing.JOptionPane;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.Environment;
+import org.hibernate.service.ServiceRegistry;
+
 /**
  *
  * @author concu
  */
 public class DBConnection {
 
-    
-    
+    private static final SessionFactory FACTORY;
+
     private static String hostName = "localhost";
     private static String acc = "sa";
     private static String pass = "123456";
@@ -82,10 +91,32 @@ public class DBConnection {
             return null;
         }
     }
-    
-    
-    
- 
-    
-   
+
+    static {
+        Configuration conf = new Configuration();
+
+        Properties properties = new Properties();
+        properties.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");
+        properties.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=QLBG");
+        properties.put(Environment.USER, "sa");
+        properties.put(Environment.PASS, "123456");
+        properties.put(Environment.SHOW_SQL, "true");
+
+        conf.setProperties(properties);
+        conf.addAnnotatedClass(KichThuoc.class);
+        conf.addAnnotatedClass(XuatXu.class);
+        conf.addAnnotatedClass(ChatLieu.class);
+        conf.addAnnotatedClass(ChiTietSanPham.class);
+
+        ServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .applySettings(conf.getProperties()).build();
+        FACTORY = conf.buildSessionFactory(registry);
+
+    }
+
+    public static SessionFactory getFACTORY() {
+        return FACTORY;
+    }
+
 }

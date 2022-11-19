@@ -7,7 +7,7 @@ package Repositories;
 
 
 import Utilities.DBConnection;
-import Utilities.HibernateConfig;
+import Utilities.DBConnection;
 import java.util.ArrayList;
 import ViewModels.ChiTietSanPham;
 import java.math.BigDecimal;
@@ -28,7 +28,7 @@ import org.hibernate.query.Query;
  */
 public class ChiTietSanPhamRepository {
 
-     private final Session session = HibernateConfig.getFACTORY().openSession();
+     private final Session session = DBConnection.getFACTORY().openSession();
 
     public ArrayList<ChiTietSanPham> getList() {
         Query q = session.createQuery("From ChiTietSanPham");// truy vấn trên entity(HQL)
@@ -39,7 +39,7 @@ public class ChiTietSanPhamRepository {
     public Boolean add(ChiTietSanPham ctsp) {
         Transaction transaction = null;
         Integer check = 0;
-        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+        try ( Session session = DBConnection.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             check = (Integer) session.save(ctsp);
             transaction.commit();

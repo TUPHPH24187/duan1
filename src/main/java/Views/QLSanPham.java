@@ -19,7 +19,7 @@ import Repositories.ChiTietSanPhamRepository;
 import Service.impl.QuanLyChiTietSanPhamService;
 import Services.QuanLyChiTietSanPhamImpl;
 
-import Utilities.HibernateConfig;
+import Utilities.DBConnection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;

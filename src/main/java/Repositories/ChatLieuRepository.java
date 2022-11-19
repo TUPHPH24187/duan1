@@ -6,7 +6,7 @@ package Repositories;
  */
 
 
-import Utilities.HibernateConfig;
+import Utilities.DBConnection;
 import java.util.ArrayList;
 import DomainModels.ChatLieu;
 import org.hibernate.Session;
@@ -18,7 +18,7 @@ import org.hibernate.query.Query;
  * @author concu
  */
 public class ChatLieuRepository {
-    Session session = HibernateConfig.getFACTORY().openSession();
+    Session session = DBConnection.getFACTORY().openSession();
 
     public ArrayList<ChatLieu> getList() {
         Query q = session.createQuery("From ChatLieu");// truy vấn trên entity(HQL)

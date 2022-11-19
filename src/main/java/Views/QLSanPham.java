@@ -177,6 +177,11 @@ public class QLSanPham extends javax.swing.JPanel {
 
         jLabel8.setText("Mã giày:");
 
+        txtMaGiay.setBackground(new java.awt.Color(204, 204, 204));
+        txtMaGiay.setForeground(new java.awt.Color(255, 255, 255));
+        txtMaGiay.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtMaGiay.setText("0");
+        txtMaGiay.setDisabledTextColor(new java.awt.Color(255, 0, 102));
         txtMaGiay.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -309,6 +314,47 @@ public class QLSanPham extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void clear() {
+        txtMaGiay.setText("");
+        txtTenGiay.setText("");
+        txtSoLuong.setText("");
+        txtGia.setText("");
+        txtGiamGia.setText("");
+        rbHoatDong.setSelected(true);
+    }
+    
+    
+    public void fill() {
+        int index = tbSanPham.getSelectedRow();
+        String MaGiay = tbSanPham.getValueAt(index, 0).toString();
+        String TenGiay = tbSanPham.getValueAt(index, 1).toString();
+        String soLuong = tbSanPham.getValueAt(index, 5).toString();
+        String gia = tbSanPham.getValueAt(index, 6).toString();
+        String giamGia = tbSanPham.getValueAt(index, 7).toString();
+        String TrangThai = tbSanPham.getValueAt(index, 8).toString();
+        
+        String xuatXu = tbSanPham.getValueAt(index, 2).toString();
+        String kichThuoc = tbSanPham.getValueAt(index, 3).toString();
+        String ChatLieu = tbSanPham.getValueAt(index, 4).toString();
+        
+        
+        txtMaGiay.setText(MaGiay);
+        txtTenGiay.setText(TenGiay);
+        txtSoLuong.setText(soLuong);
+        txtGia.setText(gia);
+        txtGiamGia.setText(giamGia);
+        if (TrangThai == "1") {
+            rbHoatDong.isSelected();
+        } else {
+            rbKhongHoatDong.isSelected();
+        }
+        
+        
+        cbXuatXu.setSelectedItem(xuatXu);
+        cbSize.setSelectedItem(kichThuoc);
+        cbChatLieu.setSelectedItem(ChatLieu);
+    }
+    
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         StringBuilder sb = new StringBuilder();
 
@@ -410,11 +456,7 @@ public class QLSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tbSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSanPhamMouseClicked
-        int row = tbSanPham.getSelectedRow();
-        
-        String maGiay = tbSanPham.getValueAt(row, 0).toString();
-        
-        txtMaGiay.setText(maGiay);
+        fill();
 
     }//GEN-LAST:event_tbSanPhamMouseClicked
 

@@ -9,53 +9,41 @@ import DomainModels.KichThuoc;
 import DomainModels.XuatXu;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+
 
 /**
  *
  * @author concu
  */
-@Entity
-@Table(name = "ChiTietSanPham")
+
 public class ChiTietSanPham implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MaCTSP")
+    
     private Integer MaCTSP;
 
-    @Column(name = "TenCTSP")
+    
     private String TenCTSP;
 
-    @Column(name = "SoLuong")
+    
     private Integer SoLuong;
 
-    @Column(name = "Gia")
+   
     private BigDecimal Gia;
 
-    @Column(name = "GiamGia")
+    
     private BigDecimal GiamGia;
 
-    @Column(name = "TrangThai")
+    
     private int TrangThai;
 
-    @ManyToOne
-    @JoinColumn(name = "MaKichThuoc", nullable = false)
+    
     private KichThuoc kichThuoc;
 
-    @ManyToOne
-    @JoinColumn(name = "MaXuatXu", nullable = false)
+    
     private XuatXu xuatXu;
 
-    @ManyToOne
-    @JoinColumn(name = "MaChatLieu", nullable = false)
+    
     private ChatLieu chatLieu;
 
     public ChiTietSanPham() {

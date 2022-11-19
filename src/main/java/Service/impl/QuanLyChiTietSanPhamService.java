@@ -4,11 +4,6 @@
  */
 package Service.impl;
 
-import java.util.ArrayList;
-import ViewModels.ChiTietSanPham;
-import DomainModels.KichThuoc;
-import DomainModels.ChatLieu;
-import DomainModels.XuatXu;
 
 /**
  *
@@ -16,11 +11,6 @@ import DomainModels.XuatXu;
  */
 public interface QuanLyChiTietSanPhamService {
 
-    ArrayList<ChiTietSanPham> getListChiTietSanPham();
-    ArrayList<ChatLieu> getListChatLieu();   
-    ArrayList<XuatXu> getListXuatXu();  
-    ArrayList<KichThuoc> getListKichThuoc();
     
-    String addCTSanPham(ChiTietSanPham ctsp);
     
 }

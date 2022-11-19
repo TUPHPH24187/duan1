@@ -60,6 +60,16 @@ public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
 
     }
 
+    @Override
+    public String updateCTSanPham(ChiTietSanPham ctsp) {
+        if (chiTietsanPhamRepository.update(ctsp)) {
+            return "Thêm thành công";
+        } else {
+            return "Thêm thất bại";
+        }
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public QuanLyChiTietSanPhamImpl() {
         chiTietsanPhamRepository = new ChiTietSanPhamRepository();
     }

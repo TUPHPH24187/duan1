@@ -30,4 +30,5 @@ public interface QuanLyChiTietSanPhamService {
     
     String addCTSanPham(ChiTietSanPham ctsp);
     public boolean XoaSanPham(Integer maCTSP) throws SQLException;
+    String updateCTSanPham(ChiTietSanPham ctsp);
 }

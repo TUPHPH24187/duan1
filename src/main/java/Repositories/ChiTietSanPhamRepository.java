@@ -11,6 +11,7 @@ import Utilities.DBConnection;
 import java.util.ArrayList;
 import ViewModels.ChiTietSanPham;
 import java.math.BigDecimal;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,7 +51,20 @@ public class ChiTietSanPhamRepository {
         return null;
     }
 
-    ////////////////////////////////////////////
+    public Boolean update(ChiTietSanPham ctsp) {
+        Transaction transaction = null;
+        Integer check = 0;
+        try ( Session session = DBConnection.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            check = (Integer) session.save(ctsp);
+            transaction.commit();
+            return check > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    /////////////////////////////////////////////////////////////////////
     
     
     
@@ -86,11 +100,9 @@ public class ChiTietSanPhamRepository {
     }
    
     
+    
+    
+    
 
     
-            
-   
-    
-   
-   
 }

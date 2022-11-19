@@ -6,9 +6,15 @@ package Repositories;
  */
 
 
+import Utilities.DBConnection;
 import Utilities.HibernateConfig;
 import java.util.ArrayList;
 import ViewModels.ChiTietSanPham;
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -47,39 +53,37 @@ public class ChiTietSanPhamRepository {
     ////////////////////////////////////////////
     
     
-    private final SessionFactory sf = HibernateConfig.getFACTORY();
-    public ChiTietSanPham find(Integer MaCTSP) {
-        try {
-            sf.getCurrentSession().beginTransaction();
-            return (ChiTietSanPham) sf.getCurrentSession().get(ChiTietSanPham.class, MaCTSP);
-        } catch (Exception e) {
-            return null;
+    
+    public List<ChiTietSanPham> layDSSP() throws SQLException {
+        List<ChiTietSanPham> chiTietSanPhams = new ArrayList<>();
+        Connection connection = DBConnection.openDbConnection();
+        String sql = "Select * from chiTietSanPham where MaCTSP = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            Integer MaCTSP = rs.getInt(1);
+            
+
+            ChiTietSanPham chiTietSanPham = new ChiTietSanPham(MaCTSP);
+            chiTietSanPhams.add(chiTietSanPham);
         }
-   }
+        return chiTietSanPhams;
+    }
     
-    public Boolean delete(ChiTietSanPham CTSP) {
-        try {
-            sf.getCurrentSession().beginTransaction();
-            sf.getCurrentSession().delete(CTSP);
-            sf.getCurrentSession().getTransaction().commit();
-            return true;
-        } catch (Exception e) {
-            return false;
-        } 
-        
-   }
     
-    public Boolean update(ChiTietSanPham CTSP) {
-        try {
-            sf.getCurrentSession().beginTransaction();
-            sf.getCurrentSession().update(CTSP);
-            sf.getCurrentSession().getTransaction().commit();
-            return true;
-        } catch (Exception e) {
-            sf.getCurrentSession().getTransaction().rollback();
+    public boolean XoaSanPham(Integer MaCTSP) throws SQLException{
+        Connection connection = DBConnection.openDbConnection();
+        String sql = "Delete from ChiTietSanPham where MaCTSP = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, MaCTSP);
+
+        int index = statement.executeUpdate();
+        if (index == 0) {
             return false;
-        } 
-   }
+        } else {
+            return true;
+        }
+    }
    
     
 

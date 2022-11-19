@@ -4,8 +4,6 @@ package Services;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
-
 import java.util.ArrayList;
 import ViewModels.ChiTietSanPham;
 import DomainModels.KichThuoc;
@@ -17,6 +15,8 @@ import Repositories.XuatXuRepository;
 import Repositories.ChatLieuRepository;
 import Service.impl.QuanLyChiTietSanPhamService;
 import Utilities.HibernateConfig;
+import Views.QLSanPham;
+import java.sql.SQLException;
 import java.util.List;
 import org.hibernate.Session;
 
@@ -58,6 +58,27 @@ public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
             return "Thêm thất bại";
         }
 
+    }
+
+    public QuanLyChiTietSanPhamImpl() {
+        chiTietsanPhamRepository = new ChiTietSanPhamRepository();
+    }
+
+    @Override
+    public List<ChiTietSanPham> layDSlayDSSP() throws SQLException {
+        java.util.List<ChiTietSanPham> chiTietSanPhams = chiTietsanPhamRepository.layDSSP();
+        java.util.List<ChiTietSanPham> qlChiTietSanPhams = new ArrayList<>();
+        for (ChiTietSanPham ctsp : chiTietSanPhams) {
+
+            qlChiTietSanPhams.add(new ChiTietSanPham(ctsp.getMaCTSP(), ctsp.getTenCTSP(), ctsp.getSoLuong(), ctsp.getGia(), ctsp.getGiamGia(), ctsp.getTrangThai(),
+                    ctsp.getKichThuoc(), ctsp.getXuatXu(), ctsp.getChatLieu()));
+        }
+        return qlChiTietSanPhams;
+    }
+
+    @Override
+    public boolean XoaSanPham(Integer maCTSP) throws SQLException {
+        return chiTietsanPhamRepository.XoaSanPham(maCTSP);
     }
 
 }

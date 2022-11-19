@@ -11,6 +11,9 @@ import ViewModels.ChiTietSanPham;
 import DomainModels.KichThuoc;
 import DomainModels.ChatLieu;
 import DomainModels.XuatXu;
+import Views.QLSanPham;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -23,6 +26,8 @@ public interface QuanLyChiTietSanPhamService {
     ArrayList<XuatXu> getListXuatXu();  
     ArrayList<KichThuoc> getListKichThuoc();
     
-    String addCTSanPham(ChiTietSanPham ctsp);
+    public java.util.List<ChiTietSanPham> layDSlayDSSP() throws SQLException;
     
+    String addCTSanPham(ChiTietSanPham ctsp);
+    public boolean XoaSanPham(Integer maCTSP) throws SQLException;
 }

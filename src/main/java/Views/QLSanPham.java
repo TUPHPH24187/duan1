@@ -4,8 +4,6 @@ package Views;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -322,22 +320,27 @@ public class QLSanPham extends javax.swing.JPanel {
         txtGiamGia.setText("");
         rbHoatDong.setSelected(true);
     }
-    
-    
+
     public void fill() {
         int index = tbSanPham.getSelectedRow();
         String MaGiay = tbSanPham.getValueAt(index, 0).toString();
+
         String TenGiay = tbSanPham.getValueAt(index, 1).toString();
-        String soLuong = tbSanPham.getValueAt(index, 5).toString();
-        String gia = tbSanPham.getValueAt(index, 6).toString();
-        String giamGia = tbSanPham.getValueAt(index, 7).toString();
-        String TrangThai = tbSanPham.getValueAt(index, 8).toString();
-        
+
         String xuatXu = tbSanPham.getValueAt(index, 2).toString();
+
         String kichThuoc = tbSanPham.getValueAt(index, 3).toString();
+
         String ChatLieu = tbSanPham.getValueAt(index, 4).toString();
-        
-        
+
+        String soLuong = tbSanPham.getValueAt(index, 5).toString();
+
+        String gia = tbSanPham.getValueAt(index, 6).toString();
+
+        String giamGia = tbSanPham.getValueAt(index, 7).toString();
+
+        String TrangThai = tbSanPham.getValueAt(index, 8).toString();
+
         txtMaGiay.setText(MaGiay);
         txtTenGiay.setText(TenGiay);
         txtSoLuong.setText(soLuong);
@@ -348,13 +351,12 @@ public class QLSanPham extends javax.swing.JPanel {
         } else {
             rbKhongHoatDong.isSelected();
         }
-        
-        
+
         cbXuatXu.setSelectedItem(xuatXu);
         cbSize.setSelectedItem(kichThuoc);
         cbChatLieu.setSelectedItem(ChatLieu);
     }
-    
+
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         StringBuilder sb = new StringBuilder();
 
@@ -439,19 +441,26 @@ public class QLSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa không", "Xác nhận", JOptionPane.YES_NO_OPTION);
 
-        if (xacNhan == JOptionPane.YES_OPTION) {
-            String user = this.tbSanPham.getValueAt(this.tbSanPham.
-                    getSelectedRow(), 0).toString();
-            if (this.spRepo.delete(spRepo.find(Integer.parseInt(user)))) {
-                JOptionPane.showMessageDialog(null, "Xóa thành công");
+        try {
+            int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa không", "Xác nhận", JOptionPane.YES_NO_OPTION);
+
+            if (xacNhan == JOptionPane.YES_OPTION) {
+                // TODO add your handling code here:
+                int index = tbSanPham.getSelectedRow();
+                String ma = tbSanPham.getValueAt(index, 0).toString();
+                quanLySanPhamService.XoaSanPham(Integer.parseInt(txtMaGiay.getText()));
+                JOptionPane.showMessageDialog(this, "Xóa thành công");
                 loadTable(quanLySanPhamService.getListChiTietSanPham());
+
             } else {
                 JOptionPane.showMessageDialog(null, "Xóa thất bại");
             }
 
+        } catch (SQLException ex) {
+            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
         }
+
 
     }//GEN-LAST:event_btnXoaActionPerformed
 

@@ -56,7 +56,7 @@ public class ChiTietSanPhamRepository {
         Integer check = 0;
         try ( Session session = DBConnection.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            check = (Integer) session.save(ctsp);
+            //check = (Integer) session.update(ctsp);
             transaction.commit();
             return check > 0;
         } catch (Exception e) {

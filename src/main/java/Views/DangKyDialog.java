@@ -372,7 +372,7 @@ public class DangKyDialog extends javax.swing.JDialog {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DangKyDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 

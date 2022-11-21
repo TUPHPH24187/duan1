@@ -172,6 +172,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
         lblLogin.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\user.png")); // NOI18N
 
         lblVaiTro.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
+        lblVaiTro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblVaiTro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -317,8 +318,10 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTraHangActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+        
         LoginDialog dialog = new LoginDialog(this, true);
         dialog.setVisible(true);
+        processLoginSucess();
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed

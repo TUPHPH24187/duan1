@@ -4,12 +4,14 @@
  */
 package Views;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author concu
  */
 public class QLTraHang extends javax.swing.JPanel {
-
+private DefaultTableModel defaultTableModel;
     /**
      * Creates new form QLTraHang
      */

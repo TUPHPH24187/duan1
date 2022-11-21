@@ -14,8 +14,6 @@ create table KhachHang (
 	SoDienThoai nvarchar(15) ,
 	DiaChi nvarchar(200) ,
 	TrangThai Smallint ,
-	
-
 )
 
 create table NguoiDung (
@@ -93,12 +91,9 @@ create table HoaDon (
 	MaKH int null foreign key references KhachHang(MaKH),
 	MaNV int null foreign key references NhanVien(MaNV),
 	MaHTTT int null foreign key references HinhThucThanhToan(MaHTTT),
-	NgayKhoiTao date ,
-	TienShip decimal,
+	NgayKhoiTao varchar(20) ,
 	GhiChu text ,
 	TrangThai Smallint ,
-
-	
 )
 
 
@@ -113,7 +108,6 @@ create table HoaDonChiTiet (
 	ThanhTien decimal not null,
 	GhiChu text,
 	TrangThai Smallint ,
-
 )
 
 

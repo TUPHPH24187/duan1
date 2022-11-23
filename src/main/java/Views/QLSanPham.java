@@ -49,7 +49,7 @@ public class QLSanPham extends javax.swing.JPanel {
         loadComboBoxChatLieu(quanLySanPhamService.getListChatLieu());
         loadComboBoxKichThuoc(quanLySanPhamService.getListKichThuoc());
 
-        loadTable(quanLySanPhamService.getListChiTietSanPham());
+        loadTable(listSanPham());
     }
 
     /**
@@ -392,6 +392,7 @@ public class QLSanPham extends javax.swing.JPanel {
 
     public void fill() {
         int index = tbSanPham.getSelectedRow();
+         ChiTietSanPham sp = listSanPham().get(index);
         String MaGiay = tbSanPham.getValueAt(index, 0).toString();
 
         String TenGiay = tbSanPham.getValueAt(index, 1).toString();
@@ -420,10 +421,10 @@ public class QLSanPham extends javax.swing.JPanel {
         } else {
             rbKhongHoatDong.isSelected();
         }
-
-        cbXuatXu.setSelectedItem(xuatXu);
-        cbSize.setSelectedItem(kichThuoc);
-        cbChatLieu.setSelectedItem(ChatLieu);
+        
+        cbXuatXu.setSelectedItem(sp.getXuatXu().getMaXuatXu());
+        cbSize.setSelectedItem(sp.getKichThuoc().getMaKichThuoc());
+        cbChatLieu.setSelectedItem(sp.getChatLieu().getMaChatLieu());
     }
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -617,7 +618,7 @@ public class QLSanPham extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng tìm sản phẩm theo mã hoặc tên sản phẩm");
             return;
         }
-       timKiem();
+       timKiem(listSanPham());
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnThemXuatXuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemXuatXuActionPerformed
@@ -632,11 +633,11 @@ public class QLSanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThemChatLieuActionPerformed
 
-    public List<ChiTietSanPham> listSanPham() {
+    public ArrayList<ChiTietSanPham> listSanPham() {
         return quanLySanPhamService.getListChiTietSanPham();
     }
     
-    public void timKiem() {
+    public void timKiem(ArrayList<ChiTietSanPham> list) {
         while(defaultTableModel.getRowCount() > 0) {
                 defaultTableModel.removeRow(0);
                 for (ChiTietSanPham x : listSanPham()) {

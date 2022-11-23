@@ -4,6 +4,7 @@
  */
 package ViewModels;
 
+import DomainModels.ChiTietSanPham;
 import DomainModels.HoaDon;
 import java.io.Serializable;
 import java.math.BigDecimal;

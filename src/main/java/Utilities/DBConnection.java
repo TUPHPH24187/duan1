@@ -7,7 +7,7 @@ package Utilities;
 import DomainModels.ChatLieu;
 import DomainModels.KichThuoc;
 import DomainModels.XuatXu;
-import ViewModels.ChiTietSanPham;
+import DomainModels.ChiTietSanPham;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

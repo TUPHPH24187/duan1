@@ -5,7 +5,7 @@ package Services;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import java.util.ArrayList;
-import ViewModels.ChiTietSanPham;
+import DomainModels.ChiTietSanPham;
 import DomainModels.KichThuoc;
 import DomainModels.ChatLieu;
 import DomainModels.XuatXu;

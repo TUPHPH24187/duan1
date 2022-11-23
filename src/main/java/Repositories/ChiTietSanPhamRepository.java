@@ -9,7 +9,7 @@ package Repositories;
 import Utilities.DBConnection;
 import Utilities.DBConnection;
 import java.util.ArrayList;
-import ViewModels.ChiTietSanPham;
+import DomainModels.ChiTietSanPham;
 import java.math.BigDecimal;
 import java.sql.Array;
 import java.sql.Connection;

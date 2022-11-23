@@ -4,6 +4,8 @@
  */
 package Views;
 
+import Helpers.DataValidator;
+import Helpers.MessageDialogHelper;
 import Services.QuanLyKhachHangSevice;
 import ViewModels.KhanhHangViewModel;
 import java.sql.SQLException;
@@ -320,6 +322,24 @@ public class QLKhachHang extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
+        
+              StringBuilder kh = new StringBuilder();
+
+        DataValidator.vailidateEmpty(txtMaKH, kh, "Mã KH không được để trống");
+        DataValidator.vailidateEmpty(txtTen, kh, "Tên không được để trống");
+        DataValidator.vailidateEmpty(txtNgaySinh, kh, "Ngày sinh không được để trống");
+        
+        DataValidator.vailidateEmpty(txtSDT, kh, "Số điện thoại không được để trống");
+        DataValidator.vailidateEmpty(txtDiaChi, kh, "Địa chỉ không được để trống");
+        
+        if (kh.length() > 0) {
+            MessageDialogHelper.showErrorDialog(this, kh.toString(), "Lỗi");
+            return;
+        }
+        
+        
+        
+        
         try {
             // TODO add your handling code here:
             KhanhHangViewModel khachHang = layTT();

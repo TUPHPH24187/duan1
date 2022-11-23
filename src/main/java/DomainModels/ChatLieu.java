@@ -44,6 +44,12 @@ public class ChatLieu implements Serializable{
     public ChatLieu() {
     }
 
+    public ChatLieu(Integer MaChatLieu, String TenChatLieu, int trangThai) {
+        this.MaChatLieu = MaChatLieu;
+        this.TenChatLieu = TenChatLieu;
+        this.trangThai = trangThai;
+    }
+
     public ChatLieu(Integer MaChatLieu, String TenChatLieu, int trangThai, List<ChiTietSanPham> listChiTietSanPham) {
         this.MaChatLieu = MaChatLieu;
         this.TenChatLieu = TenChatLieu;

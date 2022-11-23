@@ -56,4 +56,15 @@ public class KichThuocRepository {
         return "Thêm thành công nhé!";
     }
     
+    
+    public String maKichThuoc(String ten){
+        String name;
+        try ( Session ss = DBConnection.getFACTORY().openSession()) {
+            String sql = "select MaKichThuoc from KichThuoc where TenKichThuoc =: MaCTSP";
+            javax.persistence.Query qr = ss.createQuery(sql);
+            qr.setParameter("MaCTSP", ten);
+            name = String.valueOf(qr.getSingleResult());
+        }
+        return name;
+    }
 }

@@ -56,4 +56,15 @@ public class XuatXuRepository {
         return "Thêm thành công nhé!";
     }
     
+       public String maXuatXu(String ten){
+        String name;
+        try ( Session ss = DBConnection.getFACTORY().openSession()) {
+            String sql = "select MaXuatXu from XuatXu where TenXuatXu =: MaCTSP";
+            javax.persistence.Query qr = ss.createQuery(sql);
+            qr.setParameter("MaCTSP", ten);
+            name = String.valueOf(qr.getSingleResult());
+        }
+        return name;
+    }
+    
 }

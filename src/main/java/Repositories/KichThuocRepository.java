@@ -10,6 +10,7 @@ import Utilities.DBConnection;
 import java.util.ArrayList;
 import DomainModels.KichThuoc;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 /**
@@ -24,4 +25,35 @@ public class KichThuocRepository {
         ArrayList<KichThuoc> list = (ArrayList<KichThuoc>) q.getResultList();
         return list;
     }
+    
+    public String themKichThuoc(KichThuoc kt){
+          try ( Session ss = DBConnection.getFACTORY().openSession()) {
+            Transaction tran = ss.getTransaction();
+            tran.begin();
+            try {
+                ss.save(kt);
+                tran.commit();
+            } catch (Exception e) {
+                tran.rollback();
+                return "Thêm không thành công";
+            }
+        }
+        return "Thêm thành công nhé!";
+    }
+    
+    public String suaKichThuoc(KichThuoc kt){
+          try ( Session ss = DBConnection.getFACTORY().openSession()) {
+            Transaction tran = ss.getTransaction();
+            tran.begin();
+            try {
+                ss.update(kt);
+                tran.commit();
+            } catch (Exception e) {
+                tran.rollback();
+                return "Thêm không thành công";
+            }
+        }
+        return "Thêm thành công nhé!";
+    }
+    
 }

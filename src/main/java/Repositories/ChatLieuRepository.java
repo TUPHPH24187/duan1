@@ -26,6 +26,35 @@ public class ChatLieuRepository {
         return list;
     }
     
+    public String themChatLieu(ChatLieu cl){
+          try ( Session ss = DBConnection.getFACTORY().openSession()) {
+            Transaction tran = ss.getTransaction();
+            tran.begin();
+            try {
+                ss.save(cl);
+                tran.commit();
+            } catch (Exception e) {
+                tran.rollback();
+                return "Thêm không thành công";
+            }
+        }
+        return "Thêm thành công nhé!";
+    }
+    
+    public String suaChatLieu(ChatLieu cl){
+          try ( Session ss = DBConnection.getFACTORY().openSession()) {
+            Transaction tran = ss.getTransaction();
+            tran.begin();
+            try {
+                ss.update(cl);
+                tran.commit();
+            } catch (Exception e) {
+                tran.rollback();
+                return "Thêm không thành công";
+            }
+        }
+        return "Thêm thành công nhé!";
+    }
     
     
 }

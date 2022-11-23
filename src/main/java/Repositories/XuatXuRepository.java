@@ -10,6 +10,7 @@ import Utilities.DBConnection;
 import java.util.ArrayList;
 import DomainModels.XuatXu;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 /**
@@ -24,4 +25,35 @@ public class XuatXuRepository {
         ArrayList<XuatXu> list = (ArrayList<XuatXu>) q.getResultList();
         return list;
     }
+    
+    public String themXuatXu(XuatXu xx){
+          try ( Session ss = DBConnection.getFACTORY().openSession()) {
+            Transaction tran = ss.getTransaction();
+            tran.begin();
+            try {
+                ss.save(xx);
+                tran.commit();
+            } catch (Exception e) {
+                tran.rollback();
+                return "Thêm không thành công";
+            }
+        }
+        return "Thêm thành công nhé!";
+    }
+    
+    public String suaXuatXu(XuatXu xx){
+          try ( Session ss = DBConnection.getFACTORY().openSession()) {
+            Transaction tran = ss.getTransaction();
+            tran.begin();
+            try {
+                ss.update(xx);
+                tran.commit();
+            } catch (Exception e) {
+                tran.rollback();
+                return "Thêm không thành công";
+            }
+        }
+        return "Thêm thành công nhé!";
+    }
+    
 }

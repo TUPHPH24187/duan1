@@ -52,17 +52,18 @@ public class ChiTietSanPhamRepository {
     }
 
     public Boolean update(ChiTietSanPham ctsp) {
-        Transaction transaction = null;
-        Integer check = 0;
-        try ( Session session = DBConnection.getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
-            //check = (Integer) session.update(ctsp);
-            transaction.commit();
-            return check > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
+        try ( Session ss = DBConnection.getFACTORY().openSession()) {
+            Transaction tran = ss.getTransaction();
+            tran.begin();
+            try {
+                ss.update(ctsp);
+                tran.commit();
+            } catch (Exception e) {
+                tran.rollback();
+                return false;
+            }
         }
-        return null;
+        return true;
     }
     /////////////////////////////////////////////////////////////////////
     

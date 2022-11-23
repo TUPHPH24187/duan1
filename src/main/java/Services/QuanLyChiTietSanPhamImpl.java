@@ -63,9 +63,9 @@ public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
     @Override
     public String updateCTSanPham(ChiTietSanPham ctsp) {
         if (chiTietsanPhamRepository.update(ctsp)) {
-            return "Thêm thành công";
+            return "Sửa thành công";
         } else {
-            return "Thêm thất bại";
+            return "Sửa thất bại";
         }
     }
 

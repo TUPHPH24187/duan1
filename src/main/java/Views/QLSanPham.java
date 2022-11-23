@@ -296,12 +296,13 @@ public class QLSanPham extends javax.swing.JPanel {
                             .addComponent(btnThemSize)
                             .addComponent(btnThemChatLieu))
                         .addGap(107, 107, 107)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnThem)
-                            .addComponent(btnSua)
-                            .addComponent(btnXoa)
-                            .addComponent(btnXem))
-                        .addGap(137, 137, 137))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnXem, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnXoa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addComponent(btnSua, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addComponent(btnThem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(149, 149, 149))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(35, 35, 35)
@@ -562,7 +563,7 @@ public class QLSanPham extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Không được được để âm");
                 this.txtGiamGia.setText("");
             } else {
-                int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn thêm không", "Xác nhận", JOptionPane.YES_NO_OPTION);
+                int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn sửa không", "Xác nhận", JOptionPane.YES_NO_OPTION);
 
                 if (xacNhan == JOptionPane.YES_OPTION) {
                     String result = quanLySanPhamService.updateCTSanPham(ctsp);

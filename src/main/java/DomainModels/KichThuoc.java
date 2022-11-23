@@ -33,6 +33,9 @@ public class KichThuoc implements Serializable {
 
     @Column(name = "TenKichThuoc")
     private String TenKichThuoc;
+    
+    @Column(name = "TrangThai")
+    private int trangThai;
 
     @OneToMany(mappedBy = "kichThuoc", fetch = FetchType.LAZY)
     private List<ChiTietSanPham> listChiTietSanPham;
@@ -40,11 +43,22 @@ public class KichThuoc implements Serializable {
     public KichThuoc() {
     }
 
-    public KichThuoc(Integer MaKichThuoc, String TenKichThuoc, List<ChiTietSanPham> listChiTietSanPham) {
+    public KichThuoc(Integer MaKichThuoc, String TenKichThuoc, int trangThai, List<ChiTietSanPham> listChiTietSanPham) {
         this.MaKichThuoc = MaKichThuoc;
         this.TenKichThuoc = TenKichThuoc;
+        this.trangThai = trangThai;
         this.listChiTietSanPham = listChiTietSanPham;
     }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    
 
     public Integer getMaKichThuoc() {
         return MaKichThuoc;

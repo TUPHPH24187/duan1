@@ -36,17 +36,31 @@ public class ChatLieu implements Serializable{
     @Column(name = "TenChatLieu")
     private String TenChatLieu;
     
+    @Column(name = "TrangThai")
+    private int trangThai;
+    
     @OneToMany(mappedBy = "chatLieu", fetch = FetchType.LAZY)
     private List<ChiTietSanPham> listChiTietSanPham;
 
     public ChatLieu() {
     }
 
-    public ChatLieu(Integer MaChatLieu, String TenChatLieu, List<ChiTietSanPham> listChiTietSanPham) {
+    public ChatLieu(Integer MaChatLieu, String TenChatLieu, int trangThai, List<ChiTietSanPham> listChiTietSanPham) {
         this.MaChatLieu = MaChatLieu;
         this.TenChatLieu = TenChatLieu;
+        this.trangThai = trangThai;
         this.listChiTietSanPham = listChiTietSanPham;
     }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    
 
     public Integer getMaChatLieu() {
         return MaChatLieu;

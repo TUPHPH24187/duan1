@@ -34,17 +34,31 @@ public class XuatXu implements Serializable{
     @Column(name = "TenXuatXu")
     private String TenXuatXu;
     
+    @Column(name = "TrangThai")
+    private int trangThai;
+    
     @OneToMany(mappedBy = "xuatXu", fetch = FetchType.LAZY)
     private List<ChiTietSanPham> listChiTietSanPham;
 
     public XuatXu() {
     }
 
-    public XuatXu(Integer MaXuatXu, String TenXuatXu, List<ChiTietSanPham> listChiTietSanPham) {
+    public XuatXu(Integer MaXuatXu, String TenXuatXu, int trangThai, List<ChiTietSanPham> listChiTietSanPham) {
         this.MaXuatXu = MaXuatXu;
         this.TenXuatXu = TenXuatXu;
+        this.trangThai = trangThai;
         this.listChiTietSanPham = listChiTietSanPham;
     }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
+   
 
     public Integer getMaXuatXu() {
         return MaXuatXu;

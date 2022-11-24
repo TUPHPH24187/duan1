@@ -7,7 +7,6 @@ package Services;
 import DomainModels.ChatLieu;
 import Repositories.ChatLieuRepository;
 import Utilities.DBConnection;
-import ViewModels.ChatLieuView;
 import java.sql.SQLException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

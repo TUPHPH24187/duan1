@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ViewModels;
+package DomainModels;
 
 import DomainModels.ChiTietSanPham;
 import DomainModels.HoaDon;
@@ -23,7 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "HoaDonChiTiet")
-public class HoaDonChiTiet implements Serializable{
+public class HDCT implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MaHDCT")
@@ -35,14 +35,8 @@ public class HoaDonChiTiet implements Serializable{
     @Column(name = "Gia")
     private BigDecimal Gia;
     
-    @Column(name = "GiamGia")
-    private BigDecimal GiamGia;
-    
     @Column(name = "ThanhTien")
-    private BigDecimal ThanhTien;
-    
-    @Column(name = "GhiChu")
-    private String GhiChu;
+    private BigDecimal ThanhTien;  
     
     @Column(name = "TrangThai")
     private Integer TrangThai;
@@ -56,16 +50,14 @@ public class HoaDonChiTiet implements Serializable{
     @JoinColumn(name = "MaCTSP", nullable = false)
     private ChiTietSanPham MaCTSP;
 
-    public HoaDonChiTiet() {
+    public HDCT() {
     }
 
-    public HoaDonChiTiet(Integer MaHDCT, Integer SoLuong, BigDecimal Gia, BigDecimal GiamGia, BigDecimal ThanhTien, String GhiChu, Integer TrangThai, HoaDon MaHD, ChiTietSanPham MaCTSP) {
+    public HDCT(Integer MaHDCT, Integer SoLuong, BigDecimal Gia, BigDecimal ThanhTien, Integer TrangThai, HoaDon MaHD, ChiTietSanPham MaCTSP) {
         this.MaHDCT = MaHDCT;
         this.SoLuong = SoLuong;
         this.Gia = Gia;
-        this.GiamGia = GiamGia;
         this.ThanhTien = ThanhTien;
-        this.GhiChu = GhiChu;
         this.TrangThai = TrangThai;
         this.MaHD = MaHD;
         this.MaCTSP = MaCTSP;
@@ -95,28 +87,12 @@ public class HoaDonChiTiet implements Serializable{
         this.Gia = Gia;
     }
 
-    public BigDecimal getGiamGia() {
-        return GiamGia;
-    }
-
-    public void setGiamGia(BigDecimal GiamGia) {
-        this.GiamGia = GiamGia;
-    }
-
     public BigDecimal getThanhTien() {
         return ThanhTien;
     }
 
     public void setThanhTien(BigDecimal ThanhTien) {
         this.ThanhTien = ThanhTien;
-    }
-
-    public String getGhiChu() {
-        return GhiChu;
-    }
-
-    public void setGhiChu(String GhiChu) {
-        this.GhiChu = GhiChu;
     }
 
     public Integer getTrangThai() {
@@ -143,9 +119,6 @@ public class HoaDonChiTiet implements Serializable{
         this.MaCTSP = MaCTSP;
     }
 
-    @Override
-    public String toString() {
-        return "HoaDonChiTiet{" + "MaHDCT=" + MaHDCT + ", SoLuong=" + SoLuong + ", Gia=" + Gia + ", GiamGia=" + GiamGia + ", ThanhTien=" + ThanhTien + ", GhiChu=" + GhiChu + ", TrangThai=" + TrangThai + ", MaHD=" + MaHD + ", MaCTSP=" + MaCTSP + '}';
-    }
+    
     
 }

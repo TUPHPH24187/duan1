@@ -392,7 +392,7 @@ public class QLSanPham extends javax.swing.JPanel {
 
     public void fill() {
         int index = tbSanPham.getSelectedRow();
-         ChiTietSanPham sp = listSanPham().get(index);
+        ChiTietSanPham sp = listSanPham().get(index);
         String MaGiay = tbSanPham.getValueAt(index, 0).toString();
 
         String TenGiay = tbSanPham.getValueAt(index, 1).toString();
@@ -421,7 +421,7 @@ public class QLSanPham extends javax.swing.JPanel {
         } else {
             rbKhongHoatDong.isSelected();
         }
-        
+
         cbXuatXu.setSelectedItem(sp.getXuatXu().getMaXuatXu());
         cbSize.setSelectedItem(sp.getKichThuoc().getMaKichThuoc());
         cbChatLieu.setSelectedItem(sp.getChatLieu().getMaChatLieu());
@@ -612,13 +612,14 @@ public class QLSanPham extends javax.swing.JPanel {
     private void btnXemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnXemActionPerformed
-
+    QuanLyChiTietSanPhamImpl iml;
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-       if (txtTimKiem.getText().isBlank()) {
-            JOptionPane.showMessageDialog(this, "Vui lòng tìm sản phẩm theo mã hoặc tên sản phẩm");
+        iml = new QuanLyChiTietSanPhamImpl();
+        if (txtTimKiem.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên sản phẩm");
             return;
         }
-       timKiem(listSanPham());
+        timKiem((ArrayList<ChiTietSanPham>) iml.timKiem(txtTimKiem.getText()));
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnThemXuatXuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemXuatXuActionPerformed
@@ -632,7 +633,7 @@ public class QLSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemSizeActionPerformed
 
     private void btnThemChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemChatLieuActionPerformed
-   
+
         ChatLieuJPanel cl = new ChatLieuJPanel();
         cl.setVisible(true);
     }//GEN-LAST:event_btnThemChatLieuActionPerformed
@@ -640,22 +641,31 @@ public class QLSanPham extends javax.swing.JPanel {
     public ArrayList<ChiTietSanPham> listSanPham() {
         return quanLySanPhamService.getListChiTietSanPham();
     }
-    
-    public void timKiem(ArrayList<ChiTietSanPham> list) {
-        while(defaultTableModel.getRowCount() > 0) {
-                defaultTableModel.removeRow(0);
-                for (ChiTietSanPham x : listSanPham()) {
-            if (x.getMaCTSP().equals(txtTimKiem.getText()) || x.getTenCTSP().equals(txtTimKiem.getText())) {
-                defaultTableModel.addRow(new Object[]{x.getMaCTSP(), x.getTenCTSP(),x.getXuatXu(),
-                    x.getKichThuoc(),x.getChatLieu(), x.getSoLuong(), x.getGia(), 
-                    x.getGiamGia(), x.getTrangThai()});
-            }
 
+    private void timKiem(ArrayList<ChiTietSanPham> list) {
+        defaultTableModel = (DefaultTableModel) tbSanPham.getModel();
+        defaultTableModel.setRowCount(0);
+        for (ChiTietSanPham ctsp : list) {
+            if (ctsp.getMaCTSP().equals(txtTimKiem.getText()) || ctsp.getTenCTSP().equals(txtTimKiem.getText())) {
+                defaultTableModel.addRow(new Object[]{
+                    ctsp.getMaCTSP(), ctsp.getTenCTSP(), ctsp.getXuatXu(), ctsp.getKichThuoc(),
+                    ctsp.getChatLieu(), ctsp.getSoLuong(), ctsp.getGia(), ctsp.getGiamGia(), ctsp.getTrangThai() == 1 ? "Hoạt động" : "Không hoạt động",});
+            }
         }
-        }
+
     }
-    
-    
+
+    private void loadTable(ArrayList<ChiTietSanPham> list) {
+        defaultTableModel = (DefaultTableModel) tbSanPham.getModel();
+        defaultTableModel.setRowCount(0);
+        for (ChiTietSanPham ctsp : list) {
+            defaultTableModel.addRow(new Object[]{
+                ctsp.getMaCTSP(), ctsp.getTenCTSP(), ctsp.getXuatXu(), ctsp.getKichThuoc(),
+                ctsp.getChatLieu(), ctsp.getSoLuong(), ctsp.getGia(), ctsp.getGiamGia(), ctsp.getTrangThai() == 1 ? "Hoạt động" : "Không hoạt động",});
+        }
+
+    }
+
     private void loadComboBoxXuatXu(ArrayList<XuatXu> list) {
         defaultComboBoxModel = (DefaultComboBoxModel) cbXuatXu.getModel();
         for (XuatXu xuatXu : list) {
@@ -679,17 +689,6 @@ public class QLSanPham extends javax.swing.JPanel {
         for (KichThuoc kichThuoc : list) {
             defaultComboBoxModel.addElement(kichThuoc);
 
-        }
-
-    }
-
-    private void loadTable(ArrayList<ChiTietSanPham> list) {
-        defaultTableModel = (DefaultTableModel) tbSanPham.getModel();
-        defaultTableModel.setRowCount(0);
-        for (ChiTietSanPham ctsp : list) {
-            defaultTableModel.addRow(new Object[]{
-                ctsp.getMaCTSP(), ctsp.getTenCTSP(), ctsp.getXuatXu(), ctsp.getKichThuoc(),
-                ctsp.getChatLieu(), ctsp.getSoLuong(), ctsp.getGia(), ctsp.getGiamGia(), ctsp.getTrangThai() == 1 ? "Hoạt động" : "Không hoạt động",});
         }
 
     }

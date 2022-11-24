@@ -128,7 +128,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
         });
 
         btnDangXuat.setBackground(new java.awt.Color(204, 255, 255));
-        btnDangXuat.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\Button-Log-Off-icon.png")); // NOI18N
+        btnDangXuat.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\OneDrive\\Tài liệu\\duan1\\src\\main\\resources\\META-INF\\dangxuat.png")); // NOI18N
         btnDangXuat.setText("ĐĂNG XUẤT");
         btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

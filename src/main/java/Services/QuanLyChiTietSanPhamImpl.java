@@ -90,5 +90,15 @@ public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
     public boolean XoaSanPham(Integer maCTSP) throws SQLException {
         return chiTietsanPhamRepository.XoaSanPham(maCTSP);
     }
+    
+    public List<ChiTietSanPham> timKiem(String ten){
+        List<ChiTietSanPham> spS = new ArrayList<>();
+        for (ChiTietSanPham x : chiTietsanPhamRepository.getList()) {
+            if(x.getTenCTSP().toLowerCase().contains(ten.toLowerCase())){
+                spS.add(x);
+            }
+        }
+        return spS;
+    }
 
 }

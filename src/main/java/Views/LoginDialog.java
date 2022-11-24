@@ -36,7 +36,7 @@ public class LoginDialog extends javax.swing.JDialog {
     public LoginDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        this.setTitle("QUẢN LÝ BÁN GIÀY");
         this.setLocationRelativeTo(null);
     }
 

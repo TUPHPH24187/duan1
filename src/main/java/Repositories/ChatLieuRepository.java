@@ -9,6 +9,11 @@ package Repositories;
 import Utilities.DBConnection;
 import java.util.ArrayList;
 import DomainModels.ChatLieu;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -38,6 +43,36 @@ public class ChatLieuRepository {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public List<ChatLieu> layChatLieu() throws SQLException {
+        List<ChatLieu> ChatLieus = new ArrayList<>();
+        Connection connection = DBConnection.openDbConnection();
+        String sql = "Select * from ChatLieu where MaChatLieu = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            Integer MaCL = rs.getInt(1);
+            
+            ChatLieu cl = new ChatLieu(MaCL);
+            ChatLieus.add(cl);
+        }
+        return ChatLieus;
+    }
+    
+    
+    public boolean XoaChatLieu(Integer MaChatLieu) throws SQLException{
+        Connection connection = DBConnection.openDbConnection();
+        String sql = "Delete from ChatLieu where MaChatLieu = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, MaChatLieu);
+
+        int index = statement.executeUpdate();
+        if (index == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
     
 }

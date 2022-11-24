@@ -33,7 +33,7 @@ import org.hibernate.Session;
 public class QLSanPham extends javax.swing.JPanel {
 
     private QuanLyChiTietSanPhamService quanLySanPhamService = new QuanLyChiTietSanPhamImpl();
-
+    private QuanLyChiTietSanPhamImpl iml;
     private DefaultTableModel defaultTableModel;
     private DefaultComboBoxModel defaultComboBoxModel;
 
@@ -612,7 +612,7 @@ public class QLSanPham extends javax.swing.JPanel {
     private void btnXemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnXemActionPerformed
-    QuanLyChiTietSanPhamImpl iml;
+    
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         iml = new QuanLyChiTietSanPhamImpl();
         if (txtTimKiem.getText().isBlank()) {

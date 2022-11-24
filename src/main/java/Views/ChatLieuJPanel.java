@@ -10,7 +10,10 @@ import Helpers.MessageDialogHelper;
 import Service.impl.QuanLyChiTietSanPhamService;
 import Services.ChatLieuService;
 import Services.QuanLyChiTietSanPhamImpl;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -62,6 +65,7 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
         btnThoat = new javax.swing.JButton();
         rbHoatdong = new javax.swing.JRadioButton();
         rbKhonghoatdong = new javax.swing.JRadioButton();
+        btnXoa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +111,13 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
 
         rbKhonghoatdong.setText("Không hoạt động");
 
+        btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,9 +142,10 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
                                 .addComponent(txtMaChatLieu, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                                 .addComponent(txtTenChatLieu)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnThem)
-                    .addComponent(btnThoat))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -155,7 +167,9 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnThem)
-                        .addGap(229, 229, 229)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnXoa)
+                        .addGap(194, 194, 194)
                         .addComponent(btnThoat))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -217,6 +231,28 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tbChatLieuMouseClicked
 
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        try {
+            int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa không", "Xác nhận", JOptionPane.YES_NO_OPTION);
+
+            if (xacNhan == JOptionPane.YES_OPTION) {
+                // TODO add your handling code here:
+                int index = tbChatLieu.getSelectedRow();
+                String ma = tbChatLieu.getValueAt(index, 0).toString();
+                clService.XoaChatLieu(Integer.parseInt(txtMaChatLieu.getText()));
+                JOptionPane.showMessageDialog(this, "Xóa thành công");
+                loadTable(quanLySanPhamService.getListChatLieu());
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChatLieuJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnXoaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -255,6 +291,7 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThoat;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

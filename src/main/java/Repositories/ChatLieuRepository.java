@@ -26,44 +26,18 @@ public class ChatLieuRepository {
         return list;
     }
     
-    public String themChatLieu(ChatLieu cl){
-          try ( Session ss = DBConnection.getFACTORY().openSession()) {
-            Transaction tran = ss.getTransaction();
-            tran.begin();
-            try {
-                ss.save(cl);
-                tran.commit();
-            } catch (Exception e) {
-                tran.rollback();
-                return "Thêm không thành công";
-            }
+    public Boolean add(ChatLieu cl) {
+        Transaction transaction = null;
+        Integer check = 0;
+        try ( Session session = DBConnection.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            check = (Integer) session.save(cl);
+            transaction.commit();
+            return check > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return "Thêm thành công nhé!";
+        return null;
     }
     
-    public String suaChatLieu(ChatLieu cl){
-          try ( Session ss = DBConnection.getFACTORY().openSession()) {
-            Transaction tran = ss.getTransaction();
-            tran.begin();
-            try {
-                ss.update(cl);
-                tran.commit();
-            } catch (Exception e) {
-                tran.rollback();
-                return "Thêm không thành công";
-            }
-        }
-        return "Thêm thành công nhé!";
-    }
-    
-    public String maChatLieu(String ten){
-        String name;
-        try ( Session ss = DBConnection.getFACTORY().openSession()) {
-            String sql = "select MaChatLieu from ChatLieu where TenChatLieu =: MaCTSP";
-            javax.persistence.Query qr = ss.createQuery(sql);
-            qr.setParameter("MaCTSP", ten);
-            name = String.valueOf(qr.getSingleResult());
-        }
-        return name;
-    }
 }

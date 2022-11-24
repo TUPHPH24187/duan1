@@ -26,45 +26,17 @@ public class KichThuocRepository {
         return list;
     }
     
-    public String themKichThuoc(KichThuoc kt){
-          try ( Session ss = DBConnection.getFACTORY().openSession()) {
-            Transaction tran = ss.getTransaction();
-            tran.begin();
-            try {
-                ss.save(kt);
-                tran.commit();
-            } catch (Exception e) {
-                tran.rollback();
-                return "Thêm không thành công";
-            }
+    public Boolean add(KichThuoc kt) {
+        Transaction transaction = null;
+        Integer check = 0;
+        try ( Session session = DBConnection.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            check = (Integer) session.save(kt);
+            transaction.commit();
+            return check > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return "Thêm thành công nhé!";
-    }
-    
-    public String suaKichThuoc(KichThuoc kt){
-          try ( Session ss = DBConnection.getFACTORY().openSession()) {
-            Transaction tran = ss.getTransaction();
-            tran.begin();
-            try {
-                ss.update(kt);
-                tran.commit();
-            } catch (Exception e) {
-                tran.rollback();
-                return "Thêm không thành công";
-            }
-        }
-        return "Thêm thành công nhé!";
-    }
-    
-    
-    public String maKichThuoc(String ten){
-        String name;
-        try ( Session ss = DBConnection.getFACTORY().openSession()) {
-            String sql = "select MaKichThuoc from KichThuoc where TenKichThuoc =: MaCTSP";
-            javax.persistence.Query qr = ss.createQuery(sql);
-            qr.setParameter("MaCTSP", ten);
-            name = String.valueOf(qr.getSingleResult());
-        }
-        return name;
+        return null;
     }
 }

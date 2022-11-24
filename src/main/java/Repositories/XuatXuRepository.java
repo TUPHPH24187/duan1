@@ -26,45 +26,18 @@ public class XuatXuRepository {
         return list;
     }
     
-    public String themXuatXu(XuatXu xx){
-          try ( Session ss = DBConnection.getFACTORY().openSession()) {
-            Transaction tran = ss.getTransaction();
-            tran.begin();
-            try {
-                ss.save(xx);
-                tran.commit();
-            } catch (Exception e) {
-                tran.rollback();
-                return "Thêm không thành công";
-            }
+    public Boolean add(XuatXu xx) {
+        Transaction transaction = null;
+        Integer check = 0;
+        try ( Session session = DBConnection.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            check = (Integer) session.save(xx);
+            transaction.commit();
+            return check > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return "Thêm thành công nhé!";
-    }
-    
-    public String suaXuatXu(XuatXu xx){
-          try ( Session ss = DBConnection.getFACTORY().openSession()) {
-            Transaction tran = ss.getTransaction();
-            tran.begin();
-            try {
-                ss.update(xx);
-                tran.commit();
-            } catch (Exception e) {
-                tran.rollback();
-                return "Thêm không thành công";
-            }
-        }
-        return "Thêm thành công nhé!";
-    }
-    
-       public String maXuatXu(String ten){
-        String name;
-        try ( Session ss = DBConnection.getFACTORY().openSession()) {
-            String sql = "select MaXuatXu from XuatXu where TenXuatXu =: MaCTSP";
-            javax.persistence.Query qr = ss.createQuery(sql);
-            qr.setParameter("MaCTSP", ten);
-            name = String.valueOf(qr.getSingleResult());
-        }
-        return name;
+        return null;
     }
     
 }

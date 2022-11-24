@@ -58,12 +58,13 @@ public class ChiTietSanPhamRepository {
             try {
                 ss.update(ctsp);
                 tran.commit();
+                return true;
             } catch (Exception e) {
                 tran.rollback();
                 return false;
             }
         }
-        return true;
+        
     }
     /////////////////////////////////////////////////////////////////////
     

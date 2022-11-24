@@ -622,11 +622,13 @@ public class QLSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnThemXuatXuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemXuatXuActionPerformed
-        // TODO add your handling code here:
+        XuatXuJpanel xx = new XuatXuJpanel();
+        xx.setVisible(true);
     }//GEN-LAST:event_btnThemXuatXuActionPerformed
 
     private void btnThemSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSizeActionPerformed
-        // TODO add your handling code here:
+        KichThuocJpanel kt = new KichThuocJpanel();
+        kt.setVisible(true);
     }//GEN-LAST:event_btnThemSizeActionPerformed
 
     private void btnThemChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemChatLieuActionPerformed

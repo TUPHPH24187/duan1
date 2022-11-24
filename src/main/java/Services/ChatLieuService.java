@@ -6,7 +6,10 @@ package Services;
 
 import DomainModels.ChatLieu;
 import Repositories.ChatLieuRepository;
+import Utilities.DBConnection;
 import ViewModels.ChatLieuView;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -15,7 +18,13 @@ import ViewModels.ChatLieuView;
 public class ChatLieuService {
     ChatLieuRepository CLRepo = new ChatLieuRepository();
     
-    
+    public String AddChatLieu(ChatLieu cl) {
+        if (CLRepo.add(cl)) {
+            return "Thêm thành công";
+        } else {
+            return "Thêm thất bại";
+        }
+    }
     
     
 }

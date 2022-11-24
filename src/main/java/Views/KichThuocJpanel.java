@@ -4,11 +4,11 @@
  */
 package Views;
 
-import DomainModels.ChatLieu;
+import DomainModels.KichThuoc;
 import Helpers.DataValidator;
 import Helpers.MessageDialogHelper;
 import Service.impl.QuanLyChiTietSanPhamService;
-import Services.ChatLieuService;
+import Services.KichThuocService;
 import Services.QuanLyChiTietSanPhamImpl;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -18,27 +18,25 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author concu
  */
-public class ChatLieuJPanel extends javax.swing.JFrame {
-
-    private ChatLieuService clService = new ChatLieuService();
+public class KichThuocJpanel extends javax.swing.JFrame {
+    private KichThuocService ktService = new KichThuocService();
     private DefaultTableModel defaultTableModel;
     private QuanLyChiTietSanPhamService quanLySanPhamService = new QuanLyChiTietSanPhamImpl();
-
     /**
-     * Creates new form ChatLieuJPanel
+     * Creates new form KichThuocJpanel
      */
-    public ChatLieuJPanel() {
+    public KichThuocJpanel() {
         initComponents();
-        loadTable(quanLySanPhamService.getListChatLieu());
+        loadTable(quanLySanPhamService.getListKichThuoc());
         this.setLocationRelativeTo(null);
     }
-
-    private void loadTable(ArrayList<ChatLieu> list) {
-        defaultTableModel = (DefaultTableModel) tbChatLieu.getModel();
+    
+    private void loadTable(ArrayList<KichThuoc> list) {
+        defaultTableModel = (DefaultTableModel) tbKichThuoc.getModel();
         defaultTableModel.setRowCount(0);
-        for (ChatLieu cl : list) {
+        for (KichThuoc kt : list) {
             defaultTableModel.addRow(new Object[]{
-                cl.getMaChatLieu(), cl.getTenChatLieu(), cl.getTrangThai() == 1 ? "Hoạt động" : "Không hoạt động",});
+                kt.getMaKichThuoc(), kt.getTenKichThuoc(), kt.getTrangThai() == 1 ? "Hoạt động" : "Không hoạt động",});
         }
 
     }
@@ -52,26 +50,20 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtMaChatLieu = new javax.swing.JTextField();
-        txtTenChatLieu = new javax.swing.JTextField();
+        txtTenKichThuoc = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbChatLieu = new javax.swing.JTable();
+        tbKichThuoc = new javax.swing.JTable();
         btnThem = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
         rbHoatdong = new javax.swing.JRadioButton();
         rbKhonghoatdong = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtMaKichThuoc = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Mã chất liệu:");
-
-        jLabel2.setText("Tên chất liêu:");
-
-        txtMaChatLieu.setEnabled(false);
-
-        tbChatLieu.setModel(new javax.swing.table.DefaultTableModel(
+        tbKichThuoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -79,15 +71,15 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Mã chất liệu", "Tên chất liệu", "Trạng thái"
+                "Mã kích thước", "Tên kích thước", "Trạng thái"
             }
         ));
-        tbChatLieu.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbKichThuoc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbChatLieuMouseClicked(evt);
+                tbKichThuocMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbChatLieu);
+        jScrollPane1.setViewportView(tbKichThuoc);
 
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +98,12 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
         rbHoatdong.setText("Hoạt động");
 
         rbKhonghoatdong.setText("Không hoạt động");
+
+        jLabel1.setText("Mã kích thước");
+
+        jLabel2.setText("Tên kích thước:");
+
+        txtMaKichThuoc.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,13 +126,13 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
                                 .addGap(59, 59, 59)
                                 .addComponent(rbKhonghoatdong))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtMaChatLieu, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                                .addComponent(txtTenChatLieu)))))
+                                .addComponent(txtMaKichThuoc, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                                .addComponent(txtTenKichThuoc)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnThem)
                     .addComponent(btnThoat))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,16 +140,16 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtMaChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaKichThuoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtTenChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTenKichThuoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbHoatdong)
                     .addComponent(rbKhonghoatdong))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnThem)
@@ -164,58 +162,54 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tbKichThuocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKichThuocMouseClicked
+        int selecRow = tbKichThuoc.getSelectedRow();
+
+        String maKT = tbKichThuoc.getValueAt(selecRow, 0).toString();
+        String tenKT = tbKichThuoc.getValueAt(selecRow, 1).toString();
+        String TrangThai = tbKichThuoc.getValueAt(selecRow, 2).toString();
+
+        txtMaKichThuoc.setText(maKT);
+        txtTenKichThuoc.setText(tenKT);
+    }//GEN-LAST:event_tbKichThuocMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         StringBuilder sb = new StringBuilder();
 
-        DataValidator.vailidateEmpty(txtTenChatLieu, sb, "Tên chất liệu không được để trống");
+        DataValidator.vailidateEmpty(txtTenKichThuoc, sb, "Tên kích thước không được để trống");
         if (sb.length() > 0) {
             MessageDialogHelper.showErrorDialog(this, sb.toString(), "Lỗi");
             return;
         }
 
-        ChatLieu cl = new ChatLieu();
+        KichThuoc kt = new KichThuoc();
 
-        String tenCL = txtTenChatLieu.getText();
+        String tenKT = txtTenKichThuoc.getText();
 
-        cl.setTenChatLieu(tenCL);
-        cl.setTrangThai(rbHoatdong.isSelected() ? 1 : 0);
+        kt.setTenKichThuoc(tenKT);
+        kt.setTrangThai(rbHoatdong.isSelected() ? 1 : 0);
         try {
 
             int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn thêm không", "Xác nhận", JOptionPane.YES_NO_OPTION);
 
             if (xacNhan == JOptionPane.YES_OPTION) {
-                String result = clService.AddChatLieu(cl);
+                String result = ktService.AddKichThuoc(kt);
                 JOptionPane.showMessageDialog(this, result);
-                loadTable(quanLySanPhamService.getListChatLieu());
-                this.txtMaChatLieu.setText("");
-                this.txtTenChatLieu.setText("");
+                loadTable(quanLySanPhamService.getListKichThuoc());
+                this.txtMaKichThuoc.setText("");
+                this.txtTenKichThuoc.setText("");
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Không đúng định dạng");
-            this.txtMaChatLieu.setText("");
-            this.txtTenChatLieu.setText("");
+            this.txtMaKichThuoc.setText("");
+            this.txtTenKichThuoc.setText("");
         }
-
-
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         dispose();
     }//GEN-LAST:event_btnThoatActionPerformed
-
-    private void tbChatLieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbChatLieuMouseClicked
-        int selecRow = tbChatLieu.getSelectedRow();
-
-        String maCL = tbChatLieu.getValueAt(selecRow, 0).toString();
-        String tenCL = tbChatLieu.getValueAt(selecRow, 1).toString();
-        String TrangThai = tbChatLieu.getValueAt(selecRow, 2).toString();
-
-        txtMaChatLieu.setText(maCL);
-        txtTenChatLieu.setText(tenCL);
-
-    }//GEN-LAST:event_tbChatLieuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -234,20 +228,20 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChatLieuJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KichThuocJpanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChatLieuJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KichThuocJpanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChatLieuJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KichThuocJpanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChatLieuJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KichThuocJpanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChatLieuJPanel().setVisible(true);
+                new KichThuocJpanel().setVisible(true);
             }
         });
     }
@@ -260,8 +254,8 @@ public class ChatLieuJPanel extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rbHoatdong;
     private javax.swing.JRadioButton rbKhonghoatdong;
-    private javax.swing.JTable tbChatLieu;
-    private javax.swing.JTextField txtMaChatLieu;
-    private javax.swing.JTextField txtTenChatLieu;
+    private javax.swing.JTable tbKichThuoc;
+    private javax.swing.JTextField txtMaKichThuoc;
+    private javax.swing.JTextField txtTenKichThuoc;
     // End of variables declaration//GEN-END:variables
 }

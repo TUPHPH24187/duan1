@@ -4,10 +4,21 @@
  */
 package Services;
 
+import DomainModels.XuatXu;
+import Repositories.XuatXuRepository;
+
 /**
  *
  * @author concu
  */
 public class XuatXuService {
+    XuatXuRepository xxRepo = new XuatXuRepository();
     
+    public String AddXuatXu(XuatXu xx) {
+        if (xxRepo.add(xx)) {
+            return "Thêm thành công";
+        } else {
+            return "Thêm thất bại";
+        }
+    }
 }

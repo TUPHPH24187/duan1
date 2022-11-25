@@ -41,17 +41,18 @@ create table NhanVien (
 create table XuatXu (
 	MaXuatXu int IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	TenXuatXu varchar(50),
-	
+	TrangThai Smallint ,
 )
 create table KichThuoc (
 	MaKichThuoc int IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	TenKichThuoc varchar(50),
-	
+	TrangThai Smallint ,
 )
 
 create table ChatLieu (
 	MaChatLieu int IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	TenChatLieu varchar(50),
+	TrangThai Smallint ,
 )
 
 

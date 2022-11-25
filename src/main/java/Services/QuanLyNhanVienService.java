@@ -30,12 +30,21 @@ public class QuanLyNhanVienService {
         }
         return qlNhanViens;
     }
-    public String ThemNhanVien(NhanVien nhanVien) throws SQLException {
+    public boolean ThemNhanVien(NhanVien nhanVien) throws SQLException {
         if(nhanVienRepository.ThemNhanVien(nhanVien)){
-            return "Them thanh cong";
+            return true;
         }else {
-            return "Them that bai";
+            return false;
         }
     }
+
+    public boolean SuaNhanVien(NhanVien nhanVien, Integer maNV) throws SQLException {
+
+
+        return nhanVienRepository.SuaNhanVien(nhanVien, maNV);
+    }
     
+    public boolean XoaNhanVien(Integer maNV) throws SQLException{
+        return nhanVienRepository.XoaNhanVien(maNV);
+    }
 }

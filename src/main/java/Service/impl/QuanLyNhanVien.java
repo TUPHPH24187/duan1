@@ -4,6 +4,7 @@
  */
 package Service.impl;
 
+import DomainModels.NhanVien;
 import Views.QLKhachHang;
 import Views.QLNhanVien;
 import java.sql.SQLException;
@@ -16,6 +17,10 @@ import java.util.List;
 public interface QuanLyNhanVien {
     public List<QLNhanVien> layNhanViens() throws SQLException;
     
-    public String ThemNhanVien(QLNhanVien nhanVien) throws SQLException;
+    public boolean ThemNhanVien(NhanVien nhanVien) throws SQLException;
+    
+    
+    public boolean XoaSanPham(Integer maNV) throws SQLException;
+    
     
 }

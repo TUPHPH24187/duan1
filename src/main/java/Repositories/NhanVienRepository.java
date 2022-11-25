@@ -67,5 +67,42 @@ public class NhanVienRepository {
             return true;
         }
     }
+     
+     public boolean SuaNhanVien(NhanVien nhanVien,Integer maNV) throws SQLException {
+        Connection connection = DBConnection.openDbConnection();
+        String sql = "Update NhanVien set TenNV = ? ,NgaySinh = ?,GioiTinh = ?  ,SoDienThoai = ? , DiaChi = ?,Email = ? ,TrangThai = ? where MaNV = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(8, nhanVien.getMaNV());
+        statement.setString(1, nhanVien.getTenNV());
+        statement.setString(2, nhanVien.getNgaySinh());
+        statement.setInt(3, nhanVien.getGioiTinh());
+        statement.setString(4, nhanVien.getSDT());
+        statement.setString(5, nhanVien.getDiaChi());
+        statement.setString(6, nhanVien.getEmail());
+        statement.setInt(7, nhanVien.getTrangThai());
+        
+
+        int index = statement.executeUpdate();
+        if (index == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+   
+     
+     
+    public boolean XoaNhanVien(Integer maNV) throws SQLException {
+         Connection connection = DBConnection.openDbConnection();
+        String sql = "Delete from NhanVien where MaNV = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, maNV);
+        int index = statement.executeUpdate();
+        if (index == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     
 }

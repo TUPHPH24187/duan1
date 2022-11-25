@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import DomainModels.NhanVien;
+import Repositories.NhanVienRepository;
 import Services.QuanLyNhanVienService;
 import Utilities.DBConnection;
 import ViewModels.KhanhHangViewModel;
@@ -24,52 +25,104 @@ import javax.swing.JOptionPane;
  *
  * @author concu
  */
-
-
 public class QLNhanVien extends javax.swing.JPanel {
+
     QuanLyNhanVienService quanLyNhanVienService;
-    
-    
+
     private DefaultComboBoxModel defaultComboBoxModel;
-   
 
     /**
      * Creates new form QLNhanVien
      */
     public QLNhanVien() {
         initComponents();
-        
-        
+
         quanLyNhanVienService = new QuanLyNhanVienService();
         hienTHi();
-        
+
     }
 
-    
-
-    
-
-    
     public void hienTHi() {
         try {
             DefaultTableModel model = (DefaultTableModel) tbNhanVien.getModel();
             model.setRowCount(0);
             List<NhanVien> nhanVien = quanLyNhanVienService.layNhanViens();
+            String gioiTinh = "";
             for (NhanVien nv : nhanVien) {
-                Object[] nds = new Object[] {
-                nv.getTenNV(),nv.getNgaySinh(),nv.getGioiTinh(),nv.getSDT(),nv.getDiaChi(),nv.getEmail(),nv.getTrangThai(),};
+                if (nv.getGioiTinh()==1) {
+                    gioiTinh = "Nam";
+                }
+                else{
+                    gioiTinh = "Nu";
+                }
+                Object[] nds = new Object[]{nv.getMaNV(),
+                    nv.getTenNV(), nv.getNgaySinh(), gioiTinh, nv.getSDT(), nv.getDiaChi(), nv.getEmail(), nv.getTrangThai(),};
                 model.addRow(nds);
-                
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-    
-    
-    
-   
+
+    public NhanVien layTT() {
+        Integer gioiTinh;
+        Integer maNV = Integer.parseInt(txtManv.getText());
+        String hoTen = txtTen.getText();
+        String ngaySinh = txtNgaySinh.getText();
+        if (rbNam.isSelected()) {
+            gioiTinh = 1;
+        } else {
+            gioiTinh = 2;
+        }
+        String SDT = txtSDT.getText();
+        String DiaChi = txtDiaChi.getText();
+        String Email = txtEmail.getText();
+        Integer tt;
+        if (rbHoatDong.isSelected()) {
+            tt = 1;
+
+        } else {
+            tt = 2;
+        }
+        NhanVien nv = new NhanVien(maNV, hoTen, ngaySinh, gioiTinh, SDT, DiaChi, Email, tt);
+        return nv;
+
+    }
+
+    public void fill() {
+        int index = tbNhanVien.getSelectedRow();
+
+        String ma = tbNhanVien.getValueAt(index, 0).toString();
+        String Ten = tbNhanVien.getValueAt(index, 1).toString();
+        String NgaySinh = tbNhanVien.getValueAt(index, 2).toString();
+        String GioiTinh = tbNhanVien.getValueAt(index, 3).toString();
+        String SDT = tbNhanVien.getValueAt(index, 4).toString();
+        String DiaChi = tbNhanVien.getValueAt(index, 5).toString();
+        String Email = tbNhanVien.getValueAt(index, 6).toString();
+        String TrangThai = tbNhanVien.getValueAt(index, 7).toString();
+//            txtid.setText(id);
+        txtManv.setText(ma);
+        txtTen.setText(Ten);
+        txtNgaySinh.setText(NgaySinh);
+        txtSDT.setText(SDT);
+        txtDiaChi.setText(DiaChi);
+        txtEmail.setText(Email);
+        if (GioiTinh.equalsIgnoreCase("Nam")) {
+            rbNam.setSelected(true);
+        }
+        else{
+            rbNu.setSelected(true);
+        }
+        if (TrangThai.equalsIgnoreCase("HoatDong")) {
+            rbHoatDong.setSelected(true);
+        }else{
+            rbKhonghoatDong.setSelected(true);
+        }
+        
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,6 +159,8 @@ public class QLNhanVien extends javax.swing.JPanel {
         rbNu = new javax.swing.JRadioButton();
         rbHoatDong = new javax.swing.JRadioButton();
         rbKhonghoatDong = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtManv = new javax.swing.JTextField();
 
         jLabel9.setText("Ngày sinh:");
 
@@ -127,15 +182,15 @@ public class QLNhanVien extends javax.swing.JPanel {
 
         tbNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tên NV", "Ngay Sinh", "Gioi Tinh", "So Dien Thoai", "Dia Chi", "SĐT", "Email"
+                "ma", "Tên NV", "Ngay Sinh", "Gioi Tinh", "So Dien Thoai", "Dia Chi", "Email", "TrangThai"
             }
         ));
         tbNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -157,12 +212,27 @@ public class QLNhanVien extends javax.swing.JPanel {
         jLabel4.setText("SĐT:");
 
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Giới tính:");
 
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnMoi.setText("Mới");
+        btnMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoiActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Trạng thái:");
 
@@ -183,6 +253,8 @@ public class QLNhanVien extends javax.swing.JPanel {
         buttonGroup3.add(rbKhonghoatDong);
         rbKhonghoatDong.setText("Khong hoat dong");
 
+        jLabel3.setText("Ma nv:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -202,18 +274,20 @@ public class QLNhanVien extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtNgaySinh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
-                                    .addComponent(txtTen, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(66, 66, 66)
                                 .addComponent(rbNam)
                                 .addGap(40, 40, 40)
-                                .addComponent(rbNu))))
+                                .addComponent(rbNu))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtNgaySinh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                                    .addComponent(txtTen, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtManv)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(btnThem)
@@ -250,7 +324,11 @@ public class QLNhanVien extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtManv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -288,40 +366,20 @@ public class QLNhanVien extends javax.swing.JPanel {
                                 .addComponent(jLabel11))
                             .addGap(18, 18, 18)
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-      
-        
-        NhanVien nv = new NhanVien();
-        
-            String Ten = txtTen.getText();
-            String NgaySinh = txtNgaySinh.getText();
-            String SDT = txtSDT.getText();
-            String DiaChi = txtDiaChi.getText();
-            String Email = txtEmail.getText();
-            
-            
-            nv.setGioiTinh(rbNam.isSelected() ? 1 : 0 );
-            nv.setTrangThai(rbHoatDong.isSelected() ? 1 : 0 );
-            
-            nv.setTenNV(Ten);
-            nv.setNgaySinh(NgaySinh);
-            nv.setEmail(Email);
-            nv.setDiaChi(DiaChi);
-            nv.setSDT(SDT);
-            
         try {
-            
-            String rs = quanLyNhanVienService.ThemNhanVien(nv);
-            
-            JOptionPane.showMessageDialog(this, rs);
+            // TODO add your handling code here:
+            NhanVien nhanVien = layTT();
+            if (quanLyNhanVienService.ThemNhanVien(nhanVien) == true) {
+                JOptionPane.showMessageDialog(this, "Them Thanh Cong");
                 hienTHi();
-            
-                
-            
+            } else {
+                JOptionPane.showMessageDialog(this, "Them that Bai");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -329,23 +387,7 @@ public class QLNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void tbNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbNhanVienMouseClicked
-        int index = tbNhanVien.getSelectedRow();
-            
-            String TenNV = tbNhanVien.getValueAt(index, 0).toString();
-            String NgaySinh = tbNhanVien.getValueAt(index, 1).toString();
-            String GioiTinh = tbNhanVien.getValueAt(index, 2).toString();
-            String SDT = tbNhanVien.getValueAt(index, 3).toString();
-            String DiaChi = tbNhanVien.getValueAt(index, 4).toString();
-            String Email = tbNhanVien.getValueAt(index, 5).toString();
-            String TrangThai = tbNhanVien.getValueAt(index, 6).toString();
-            
-//            txtid.setText(id);
-            
-            txtTen.setText(TenNV);
-            txtNgaySinh.setText(NgaySinh);
-            txtSDT.setText(SDT);
-            txtDiaChi.setText(DiaChi);
-            txtEmail.setText(Email);
+        fill();
 
     }//GEN-LAST:event_tbNhanVienMouseClicked
 
@@ -356,6 +398,59 @@ public class QLNhanVien extends javax.swing.JPanel {
     private void txtSDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSDTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSDTActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            NhanVien nhanVien = layTT();
+            int index = tbNhanVien.getSelectedRow();
+                    Integer Ma = Integer.parseInt( tbNhanVien.getValueAt(index, 0).toString());
+            if (quanLyNhanVienService.XoaNhanVien(Ma) == true) {
+                JOptionPane.showMessageDialog(this, "Xoa Thanh Cong");
+                hienTHi();
+            } else {
+                JOptionPane.showMessageDialog(this, "Xoa that Bai");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        
+         try {
+            // TODO add your handling code here:
+            NhanVien nhanVien = layTT();
+            int index = tbNhanVien.getSelectedRow();
+                    Integer Ma = Integer.parseInt( tbNhanVien.getValueAt(index, 0).toString());
+            if (quanLyNhanVienService.SuaNhanVien(nhanVien,Ma) == true) {
+                JOptionPane.showMessageDialog(this, "Sua Thanh Cong");
+                hienTHi();
+            } else {
+                JOptionPane.showMessageDialog(this, "Sua that Bai");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
+        // TODO add your handling code here:
+        
+        txtManv.setText("");
+        txtTen.setText("");
+        txtNgaySinh.setText("");
+        txtSDT.setText("");
+        txtDiaChi.setText("");
+        txtEmail.setText("");
+        
+        
+        
+    }//GEN-LAST:event_btnMoiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -371,6 +466,7 @@ public class QLNhanVien extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
@@ -383,6 +479,7 @@ public class QLNhanVien extends javax.swing.JPanel {
     private javax.swing.JTable tbNhanVien;
     private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtManv;
     private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTen;

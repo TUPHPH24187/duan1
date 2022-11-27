@@ -111,6 +111,12 @@ create table HoaDonChiTiet (
 	TrangThai Smallint ,
 )
 
+create table TraHang( 
+MaHD int null foreign key references HoaDon(MaHD),
+MaHDCT int null foreign key references HoaDonChiTiet(MaHDCT),
+
+)
+
 
 
 

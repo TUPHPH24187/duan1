@@ -12,6 +12,7 @@ import Views.ManHinhHeThongBanGiay;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
+import java.util.Date;
 
 /**
  *
@@ -50,7 +51,7 @@ public class NhanVienRepository {
             PreparedStatement statement = connection.prepareStatement(sql);
          
             statement.setString(1, nhanVien.getTenNV());
-            statement.setString(2, nhanVien.getNgaySinh());
+            statement.setString(2,  nhanVien.getNgaySinh());
             statement.setInt(3, nhanVien.getGioiTinh());
             statement.setString(4, nhanVien.getSDT());
             statement.setString(5, nhanVien.getDiaChi());

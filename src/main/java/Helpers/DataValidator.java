@@ -4,6 +4,7 @@
  */
 package Helpers;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -32,5 +33,9 @@ public class DataValidator {
         }else{
             field.setBackground(Color.white);
         }
+    }
+
+    public static void vailidateEmpty(JDateChooser JDNS, StringBuilder nv, String ngày_sinh_không_được_để_trống) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

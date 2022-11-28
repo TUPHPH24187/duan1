@@ -5,7 +5,7 @@
 package DomainModels;
 
 import java.io.Serializable;
-
+import java.util.Date;
 
 /**
  *
@@ -13,14 +13,14 @@ import java.io.Serializable;
  */
 public class NhanVien implements Serializable {
 
-   private Integer maNV;
-   private String TenNV;
-   private String NgaySinh;
-   private Integer GioiTinh;
-   private  String SDT;
-   private String DiaChi;
-   private  String Email;
-   private Integer TrangThai;
+    private Integer maNV;
+    private String TenNV;
+    private String NgaySinh;
+    private Integer GioiTinh;
+    private String SDT;
+    private String DiaChi;
+    private String Email;
+    private Integer TrangThai;
 
     public NhanVien() {
     }
@@ -43,10 +43,6 @@ public class NhanVien implements Serializable {
     public void setMaNV(Integer maNV) {
         this.maNV = maNV;
     }
-
-    
-
-   
 
     public String getTenNV() {
         return TenNV;
@@ -103,7 +99,5 @@ public class NhanVien implements Serializable {
     public void setTrangThai(Integer TrangThai) {
         this.TrangThai = TrangThai;
     }
-            
-   
-   
+
 }

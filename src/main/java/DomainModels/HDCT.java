@@ -33,10 +33,10 @@ public class HDCT implements Serializable{
     private Integer SoLuong;
     
     @Column(name = "Gia")
-    private BigDecimal Gia;
+    private float Gia;
     
     @Column(name = "ThanhTien")
-    private BigDecimal ThanhTien;  
+    private float ThanhTien;  
     
     @Column(name = "TrangThai")
     private Integer TrangThai;
@@ -53,7 +53,23 @@ public class HDCT implements Serializable{
     public HDCT() {
     }
 
-    public HDCT(Integer MaHDCT, Integer SoLuong, BigDecimal Gia, BigDecimal ThanhTien, Integer TrangThai, HoaDon MaHD, ChiTietSanPham MaCTSP) {
+    public float getGia() {
+        return Gia;
+    }
+
+    public void setGia(float Gia) {
+        this.Gia = Gia;
+    }
+
+    public float getThanhTien() {
+        return ThanhTien;
+    }
+
+    public void setThanhTien(float ThanhTien) {
+        this.ThanhTien = ThanhTien;
+    }
+
+    public HDCT(Integer MaHDCT, Integer SoLuong, float Gia, float ThanhTien, Integer TrangThai, HoaDon MaHD, ChiTietSanPham MaCTSP) {
         this.MaHDCT = MaHDCT;
         this.SoLuong = SoLuong;
         this.Gia = Gia;
@@ -62,6 +78,8 @@ public class HDCT implements Serializable{
         this.MaHD = MaHD;
         this.MaCTSP = MaCTSP;
     }
+
+    
 
     public Integer getMaHDCT() {
         return MaHDCT;
@@ -79,21 +97,7 @@ public class HDCT implements Serializable{
         this.SoLuong = SoLuong;
     }
 
-    public BigDecimal getGia() {
-        return Gia;
-    }
-
-    public void setGia(BigDecimal Gia) {
-        this.Gia = Gia;
-    }
-
-    public BigDecimal getThanhTien() {
-        return ThanhTien;
-    }
-
-    public void setThanhTien(BigDecimal ThanhTien) {
-        this.ThanhTien = ThanhTien;
-    }
+    
 
     public Integer getTrangThai() {
         return TrangThai;

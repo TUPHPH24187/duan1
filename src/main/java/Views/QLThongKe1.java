@@ -4,17 +4,77 @@
  */
 package Views;
 
+import DomainModels.HDCT;
+import DomainModels.HoaDon;
+import Repositories.HDCTRepositories;
+import Repositories.HoaDonRepository;
+import Services.HDCTServiec;
+import Services.HoaDonServiec;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DAO THANH QUYEN
  */
 public class QLThongKe1 extends javax.swing.JPanel {
 
+    List<HoaDon> listhd;
+    HoaDonServiec _HoaDonServiec;
+    HDCTRepositories repo_hdct;
+    DefaultTableModel model;
+    LocalDate _Date;
+    
+    HoaDonRepository hdRepo;
     /**
      * Creates new form QLThongKe
      */
     public QLThongKe1() {
         initComponents();
+        _Date = LocalDate.now();
+        model = (DefaultTableModel)tb_DoanhThu.getModel();
+        repo_hdct = new HDCTRepositories();
+        
+        Date max = new Date(_Date.getYear()-1900,_Date.getMonthValue()-1,_Date.getDayOfMonth());
+        txt_Date1.setMaxSelectableDate(max);
+        txt_Date1.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (txt_Date1.getDate()==null)return; {
+                
+                    LoadTable(txt_Date1.getDate());
+                }
+            }
+        });
+    }
+    public void LoadTable(Date date){
+        int stt = 1;
+        float tongtienngay = 0;
+        model.setRowCount(0);
+        for(HoaDon x : listhd){
+            Date dateHD = x.getNgayKhoiTao();
+            if (!(date.getYear()==dateHD.getYear() && date.getMonth()==dateHD.getMonth()&& date.getYear()==dateHD.getDate())) {
+                continue;
+            }
+            float tongtien = 0;
+            List<HDCT> listHDCT = repo_hdct.getList();
+            for (HDCT h : listHDCT) {
+                System.out.println(h.getMaHD().getMaHD()+"  "+x.getMaHD());
+                if(h.getMaHD().getMaHD()==x.getMaHD())continue;
+                tongtien +=h.getThanhTien();
+                tongtienngay +=h.getThanhTien();
+            }
+               model.addRow(new Object[]{stt ++ ,x.getNgayKhoiTao(),tongtien});
+        }
+                 for (int i = 0 ; i < model.getRowCount(); i++) {
+            model.setValueAt(i+1, i, 0);
+        }
+                 lbDoanhThuNgay.setText("Doanh Số Ngày : "+tongtienngay);
     }
 
     /**
@@ -107,9 +167,9 @@ public class QLThongKe1 extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbDoanhThuNgay)
-                    .addComponent(jLabel3))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(lbDoanhThuNgay))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -222,14 +282,12 @@ public class QLThongKe1 extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButton1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(90, 90, 90)
-                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(90, 90, 90)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(60, 60, 60))))
         );
         jPanel1Layout.setVerticalGroup(

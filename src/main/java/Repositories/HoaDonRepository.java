@@ -23,21 +23,21 @@ public class HoaDonRepository {
     public List<HoaDon> getList(){
         List<HoaDon> hoaDons;
         try(Session session = DBConnection.getFACTORY().openSession()){
-            TypedQuery<HoaDon> query = session.createQuery("from HoaDon where TrangThai = 0");
+            TypedQuery<HoaDon> query = session.createQuery("from HoaDon");
             hoaDons = query.getResultList();
         }
         return hoaDons;
     }
-    public List<HoaDon> getListThanhToan(){
-        //List<HoaDon> hoaDons;
-        //try(Session session = HibernateUltis.getSessionFactory().openSession()){
-//            TypedQuery<HoaDon> query = session.createQuery("from HoaDon where TrangThai = 1");
-//            hoaDons = query.getResultList();
-        //}
-        //return hoaDons;
-        System.out.println("chay ");
-        Query query = ss.createQuery("from HoaDon where TrangThai = 1");
-        System.out.println(query.list().get(0));
-        return query.list();
-    }
+//    public List<HoaDon> getListThanhToan(){
+////        List<HoaDon> hoaDons;
+////        try(Session session = DBConnection.getFACTORY().openSession()){
+////            TypedQuery<HoaDon> query = session.createQuery("from HoaDon");
+////            hoaDons = query.getResultList();
+////        }
+////        return hoaDons;
+//        System.out.println("chay ");
+//        Query query = ss.createQuery("from HoaDon where TrangThai = 1");
+//        System.out.println(query.list().get(0));
+//        return query.list();
+//    }
 }

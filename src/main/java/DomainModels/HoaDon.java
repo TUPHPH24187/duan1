@@ -6,6 +6,7 @@ package DomainModels;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +31,7 @@ public class HoaDon implements Serializable {
     private Integer MaHD;
 
     @Column(name = "NgayKhoiTao")
-    private String NgayKhoiTao;
+    private Date NgayKhoiTao;
 
     @Column(name = "trangThai")
     private int trangThai;
@@ -48,14 +49,7 @@ public class HoaDon implements Serializable {
 
     }
 
-    public HoaDon(Integer MaHD, String NgayKhoiTao, int trangThai, List<KhachHang> listKhachHang, List<NhanVien> listNhanVien, List<HinhThucThanhToan> listHinhThucThanhToan) {
-        this.MaHD = MaHD;
-        this.NgayKhoiTao = NgayKhoiTao;
-        this.trangThai = trangThai;
-        this.listKhachHang = listKhachHang;
-        this.listNhanVien = listNhanVien;
-        this.listHinhThucThanhToan = listHinhThucThanhToan;
-    }
+    
 
     public Integer getMaHD() {
         return MaHD;
@@ -65,13 +59,24 @@ public class HoaDon implements Serializable {
         this.MaHD = MaHD;
     }
 
-    public String getNgayKhoiTao() {
+    public Date getNgayKhoiTao() {
         return NgayKhoiTao;
     }
 
-    public void setNgayKhoiTao(String NgayKhoiTao) {
+    public void setNgayKhoiTao(Date NgayKhoiTao) {
         this.NgayKhoiTao = NgayKhoiTao;
     }
+
+    public HoaDon(Integer MaHD, Date NgayKhoiTao, int trangThai, List<KhachHang> listKhachHang, List<NhanVien> listNhanVien, List<HinhThucThanhToan> listHinhThucThanhToan) {
+        this.MaHD = MaHD;
+        this.NgayKhoiTao = NgayKhoiTao;
+        this.trangThai = trangThai;
+        this.listKhachHang = listKhachHang;
+        this.listNhanVien = listNhanVien;
+        this.listHinhThucThanhToan = listHinhThucThanhToan;
+    }
+
+    
 
     public int getTrangThai() {
         return trangThai;

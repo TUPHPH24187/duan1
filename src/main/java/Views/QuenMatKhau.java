@@ -36,7 +36,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
     
     public String sendEmail(String user, String email) throws AddressException, MessagingException, UnsupportedEncodingException {
         String pass = nvForm.passNhanVien(user, email);
-        if (pass.equals("Rỗng")) {
+        if (pass.equals(txtEmail.getText())) {
 
             return "Gửi mail thành công, vui lòng đăng nhập vào email để lấy lại tài khoản và mật khẩu";
         }

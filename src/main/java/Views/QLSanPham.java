@@ -390,42 +390,7 @@ public class QLSanPham extends javax.swing.JPanel {
         rbHoatDong.setSelected(true);
     }
 
-    public void fill() {
-        int index = tbSanPham.getSelectedRow();
-        ChiTietSanPham sp = listSanPham().get(index);
-        String MaGiay = tbSanPham.getValueAt(index, 0).toString();
-
-        String TenGiay = tbSanPham.getValueAt(index, 1).toString();
-
-        String xuatXu = tbSanPham.getValueAt(index, 2).toString();
-
-        String kichThuoc = tbSanPham.getValueAt(index, 3).toString();
-
-        String ChatLieu = tbSanPham.getValueAt(index, 4).toString();
-
-        String soLuong = tbSanPham.getValueAt(index, 5).toString();
-
-        String gia = tbSanPham.getValueAt(index, 6).toString();
-
-        String giamGia = tbSanPham.getValueAt(index, 7).toString();
-
-        String TrangThai = tbSanPham.getValueAt(index, 8).toString();
-
-        txtMaGiay.setText(MaGiay);
-        txtTenGiay.setText(TenGiay);
-        txtSoLuong.setText(soLuong);
-        txtGia.setText(gia);
-        txtGiamGia.setText(giamGia);
-        if (TrangThai == "1") {
-            rbHoatDong.isSelected();
-        } else {
-            rbKhongHoatDong.isSelected();
-        }
-
-        cbXuatXu.setSelectedItem(sp.getXuatXu().getMaXuatXu());
-        cbSize.setSelectedItem(sp.getKichThuoc().getMaKichThuoc());
-        cbChatLieu.setSelectedItem(sp.getChatLieu().getMaChatLieu());
-    }
+    
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         StringBuilder sb = new StringBuilder();
@@ -506,17 +471,6 @@ public class QLSanPham extends javax.swing.JPanel {
 
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        StringBuilder sb = new StringBuilder();
-
-        DataValidator.vailidateEmpty(txtTenGiay, sb, "Tên giày không được để trống");
-        DataValidator.vailidateEmpty(txtGia, sb, "Giá không được để trống");
-        DataValidator.vailidateEmpty(txtSoLuong, sb, "Số lượng không được để trống");
-        DataValidator.vailidateEmpty(txtGiamGia, sb, "Giảm giá không được để trống");
-        if (sb.length() > 0) {
-            MessageDialogHelper.showErrorDialog(this, sb.toString(), "Lỗi");
-            return;
-        }
-
         ChiTietSanPham ctsp = new ChiTietSanPham();
 
         String tenSP = txtTenGiay.getText();
@@ -547,37 +501,19 @@ public class QLSanPham extends javax.swing.JPanel {
         ctsp.setSoLuong(soLuongStr);
         ctsp.setGia(giaStr);
         ctsp.setGiamGia(giamgiaStr);
-
-        try {
-
-            if (Double.valueOf(gia) < 0) {
-                JOptionPane.showMessageDialog(this, "Không được được để âm");
-                this.txtGia.setText("");
-
-            } else if (Double.valueOf(soLuongStr) < 0) {
-                JOptionPane.showMessageDialog(this, "Không được được để âm");
-                this.txtSoLuong.setText("");
-
-            } else if (Double.valueOf(giamGia) < 0) {
-                JOptionPane.showMessageDialog(this, "Không được được để âm");
-                this.txtGiamGia.setText("");
-            } else {
-                int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn sửa không", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        
+        
+        
+        
+        
+        int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn sửa không", "Xác nhận", JOptionPane.YES_NO_OPTION);
 
                 if (xacNhan == JOptionPane.YES_OPTION) {
-                    String result = quanLySanPhamService.updateCTSanPham(ctsp);
-                    JOptionPane.showMessageDialog(this, result);
-                    loadTable(quanLySanPhamService.getListChiTietSanPham());
+                    spRepo.update(ctsp);
+                    JOptionPane.showMessageDialog(this, "Sửa thành công");
+                }else {
+                    JOptionPane.showMessageDialog(this, "Sửa thất bại");
                 }
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Không đúng định dạng");
-            this.txtSoLuong.setText("");
-            this.txtGia.setText("");
-            this.txtGiamGia.setText("");
-            this.txtTenGiay.setText("");
-        }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -605,12 +541,45 @@ public class QLSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tbSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSanPhamMouseClicked
-        fill();
+        int index = tbSanPham.getSelectedRow();
+        
+        String MaGiay = this.tbSanPham.getValueAt(index, 0).toString();
+       ChiTietSanPham sp = spRepo.find(Integer.parseInt(MaGiay));
+         
+
+        String TenGiay = tbSanPham.getValueAt(index, 1).toString();
+
+        String xuatXu = tbSanPham.getValueAt(index, 2).toString();
+
+        String kichThuoc = tbSanPham.getValueAt(index, 3).toString();
+
+        String ChatLieu = tbSanPham.getValueAt(index, 4).toString();
+
+        String soLuong = tbSanPham.getValueAt(index, 5).toString();
+
+        String gia = tbSanPham.getValueAt(index, 6).toString();
+
+        String giamGia = tbSanPham.getValueAt(index, 7).toString();
+
+        String TrangThai = tbSanPham.getValueAt(index, 8).toString();
+
+        txtMaGiay.setText(MaGiay);
+        txtTenGiay.setText(TenGiay);
+        txtSoLuong.setText(soLuong);
+        txtGia.setText(gia);
+        txtGiamGia.setText(giamGia);
+        if (TrangThai == "1") {
+            rbHoatDong.isSelected();
+        } else {
+            rbKhongHoatDong.isSelected();
+        }
+
+        
 
     }//GEN-LAST:event_tbSanPhamMouseClicked
 
     private void btnXemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemActionPerformed
-        // TODO add your handling code here:
+        loadTable(quanLySanPhamService.getListChiTietSanPham());
     }//GEN-LAST:event_btnXemActionPerformed
     
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
@@ -633,9 +602,8 @@ public class QLSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemSizeActionPerformed
 
     private void btnThemChatLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemChatLieuActionPerformed
-
-        ChatLieuJPanel cl = new ChatLieuJPanel();
-        cl.setVisible(true);
+        ChatLieuJPanel clj = new ChatLieuJPanel();
+        clj.setVisible(true);      
     }//GEN-LAST:event_btnThemChatLieuActionPerformed
 
     public ArrayList<ChiTietSanPham> listSanPham() {

@@ -16,11 +16,7 @@ create table KhachHang (
 	TrangThai Smallint ,
 )
 
-create table NguoiDung (
-	TenDangNhap  varchar(20) NOT NULL PRIMARY KEY,
-	MatKhau varchar(20) NOT NULL,	
-	VaiTro nvarchar(50) NOT NULL
-)
+
 
 
 create table NhanVien (
@@ -30,9 +26,10 @@ create table NhanVien (
 	GioiTinh Smallint ,
 	SoDienThoai nvarchar(15),
 	DiaChi nvarchar(200) ,
-	Email nvarchar(50) ,	
+	Email nvarchar(50) ,
+	MatKhau varchar(16),
+	ChucVu nvarchar(20) ,
 	TrangThai Smallint ,
-	
 	
 )
 
@@ -40,18 +37,18 @@ create table NhanVien (
 
 create table XuatXu (
 	MaXuatXu int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	TenXuatXu varchar(50),
+	TenXuatXu nvarchar(50),
 	TrangThai Smallint ,
 )
 create table KichThuoc (
 	MaKichThuoc int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	TenKichThuoc varchar(50),
+	TenKichThuoc nvarchar(50),
 	TrangThai Smallint ,
 )
 
 create table ChatLieu (
 	MaChatLieu int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	TenChatLieu varchar(50),
+	TenChatLieu nvarchar(50),
 	TrangThai Smallint ,
 )
 

@@ -4,10 +4,9 @@
  */
 package Views;
 
-import DomainModels.NguoiDung;
+
 import Helpers.DataValidator;
 import Helpers.MessageDialogHelper;
-import Services.QuanLyDangKyService;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DangKyDialog extends javax.swing.JDialog {
 
-    QuanLyDangKyService quanLyDangKyService;
+    
 
     /**
      * Creates new form DangKyDialog
@@ -32,29 +31,11 @@ public class DangKyDialog extends javax.swing.JDialog {
         initComponents();
 
         this.setLocationRelativeTo(null);
-        quanLyDangKyService = new QuanLyDangKyService();
-        loadTablle();
+        
 
     }
 
-    public void loadTablle() {
-        try {
-            DefaultTableModel model = (DefaultTableModel) tbDSTaiKhoan.getModel();
-            model.setRowCount(0);
-            List<NguoiDung> nguoiDung = quanLyDangKyService.layDSNguoiDung();
-            for (NguoiDung nd : nguoiDung) {
-                Object[] nds = new Object[]{
-                    nd.getTenDangNhap(),
-                    nd.getMatKhau() != null ? "******" : "123456",
-                    nd.getVaiTro(),};
-
-                model.addRow(nds);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DangKyDialog.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -247,133 +228,24 @@ public class DangKyDialog extends javax.swing.JDialog {
         txtVaiTro.setText("");
     }//GEN-LAST:event_btnMoiActionPerformed
 
-    public NguoiDung thongTinNguoiDung() {
-
-        String tenDangNhap = txtUser.getText();
-
-        String matKhau = new String(txtMatKhau.getPassword());
-
-        String vaiTro = txtVaiTro.getText();
-
-        NguoiDung nguoiDung = new NguoiDung(tenDangNhap, matKhau, vaiTro);
-        return nguoiDung;
-    }
+   
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        StringBuilder sb = new StringBuilder();
-        DataValidator.vailidateEmpty(txtUser, sb, "Tên đăng nhập không được để trống");
-        DataValidator.vailidateEmpty(txtMatKhau, sb, "Mật khẩu không được để trống");
-        DataValidator.vailidateEmpty(txtNhapLaiMatKhau, sb, "Nhập lại mật khẩu không được để trống");
-        DataValidator.vailidateEmpty(txtVaiTro, sb, "Vai trò không được để trống");
-
-        if (sb.length() > 0) {
-            MessageDialogHelper.showErrorDialog(this, sb.toString(), "Lỗi");
-            return;
-        }
-        String passwork = new String(txtMatKhau.getPassword());
-        String confirm = new String(txtNhapLaiMatKhau.getPassword());
-        NguoiDung nd = new NguoiDung();
-
-        try {
-            ArrayList<NguoiDung> list = (ArrayList<NguoiDung>) this.quanLyDangKyService.layDSNguoiDung();
-            nd = thongTinNguoiDung();
-            if (nd == null) {
-                return;
-            }
-            for (NguoiDung nguoiDung : list) {
-
-                if (txtUser.getText().equals(nguoiDung.getTenDangNhap() + "")) {
-                    JOptionPane.showMessageDialog(this, "Không dc de trung id");
-                    return;
-                }
-            }
-            if (!passwork.equals(confirm)) {
-                JOptionPane.showMessageDialog(this, "Mật khẩu chưa trùng khớp");
-
-            } else if (quanLyDangKyService.ThemNguoiDung(nd) == true) {
-                JOptionPane.showMessageDialog(this, "Thêm thành công");
-                loadTablle();
-            } else {
-                JOptionPane.showMessageDialog(this, "Thêm thất bại");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DangKyDialog.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void tbDSTaiKhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDSTaiKhoanMouseClicked
-        int selectRow = tbDSTaiKhoan.getSelectedRow();
-
-        String tenTaiKhoan = tbDSTaiKhoan.getValueAt(selectRow, 0).toString();
-        String matKhau = tbDSTaiKhoan.getValueAt(selectRow, 1).toString();
-        String vaiTro = tbDSTaiKhoan.getValueAt(selectRow, 2).toString();
-
-        txtUser.setText(tenTaiKhoan);
-        txtMatKhau.setText(matKhau);
-        txtVaiTro.setText(vaiTro);
-
+      
     }//GEN-LAST:event_tbDSTaiKhoanMouseClicked
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
 
-        StringBuilder sb = new StringBuilder();
-        DataValidator.vailidateEmpty(txtUser, sb, "Tên đăng nhập không được để trống");
-        DataValidator.vailidateEmpty(txtMatKhau, sb, "Mật khẩu không được để trống");
-        DataValidator.vailidateEmpty(txtNhapLaiMatKhau, sb, "Nhập lại mật khẩu không được để trống");
-        DataValidator.vailidateEmpty(txtVaiTro, sb, "Vai trò không được để trống");
-
-        if (sb.length() > 0) {
-            MessageDialogHelper.showErrorDialog(this, sb.toString(), "Lỗi");
-            return;
-        }
-        String passwork = new String(txtMatKhau.getPassword());
-        String confirm = new String(txtNhapLaiMatKhau.getPassword());
-        NguoiDung nd = new NguoiDung();
-
-        try {
-
-            nd = thongTinNguoiDung();
-            if (nd == null) {
-                return;
-            }
-
-            if (!passwork.equals(confirm)) {
-                JOptionPane.showMessageDialog(this, "Mật khẩu chưa trùng khớp");
-            } else if (quanLyDangKyService.SuaNguoiDung(nd)) {
-                JOptionPane.showMessageDialog(this, "Sửa thành công");
-                loadTablle();
-            } else {
-                JOptionPane.showMessageDialog(this, "Sửa thất bại");
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DangKyDialog.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        
 
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        try {
-            int xacNhan = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn xóa không");
-            if (xacNhan != JOptionPane.YES_OPTION) {//nếu không chắc
-                return; // không thực hiện đoạn code bên dưới
-            }
-            String tenTaiKhoan = txtUser.getText();
-
-            //lưu kết quả xóa sản phẩm vào biến xóa thành 
-            boolean xoaThanhCong = quanLyDangKyService.XoaNguoiDung(tenTaiKhoan);
-            if (xoaThanhCong) {
-                JOptionPane.showMessageDialog(this, "Xóa thành công");
-                loadTablle();
-
-            } else {
-                JOptionPane.showMessageDialog(this, "Xóa thất bại");
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DangKyDialog.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }//GEN-LAST:event_btnXoaActionPerformed
 
     /**

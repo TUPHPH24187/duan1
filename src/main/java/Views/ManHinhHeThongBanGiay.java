@@ -157,7 +157,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
 
         btnDangKy.setBackground(new java.awt.Color(204, 255, 255));
         btnDangKy.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\password.png")); // NOI18N
-        btnDangKy.setText("Đăng ký");
+        btnDangKy.setText("Quên mật khẩu");
         btnDangKy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangKyActionPerformed(evt);
@@ -344,8 +344,8 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
-        DangKyDialog dialog = new DangKyDialog(this, true);
-        dialog.setVisible(true);
+       
+      new QuenMatKhau().setVisible(true);
 
     }//GEN-LAST:event_btnDangKyActionPerformed
 
@@ -358,10 +358,10 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void processLoginSucess() {
-        lblLogin.setText(ShareData.nguoiDangNhap.getTenDangNhap());
-        lblVaiTro.setText(ShareData.nguoiDangNhap.getVaiTro());
+        lblLogin.setText(ShareData.nguoiDangNhap.getEmail());
+        lblVaiTro.setText(ShareData.nguoiDangNhap.getChucVu());
 
-        if (ShareData.nguoiDangNhap.getVaiTro().equals("Quản lý")) {
+        if (ShareData.nguoiDangNhap.getChucVu().equals("Quản lý")) {
             btnDangKy.setEnabled(true);
             btnGiaoDich.setEnabled(true);
             btnKhachHang.setEnabled(true);
@@ -371,7 +371,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
             btnNhanVien.setEnabled(true);
             btnThongKe.setEnabled(true);
 
-        } else if (ShareData.nguoiDangNhap.getVaiTro().equals("Nhân viên")) {
+        } else if (ShareData.nguoiDangNhap.getChucVu().equals("Nhân viên")) {
             btnDangKy.setEnabled(false);
             btnGiaoDich.setEnabled(true);
             btnKhachHang.setEnabled(true);

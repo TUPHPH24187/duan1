@@ -29,10 +29,10 @@ import org.hibernate.query.Query;
  */
 public class ChiTietSanPhamRepository {
 
-     private final Session session = DBConnection.getFACTORY().openSession();
-
+     private final Session ss = DBConnection.getFACTORY().openSession();
+     
     public ArrayList<ChiTietSanPham> getList() {
-        Query q = session.createQuery("From ChiTietSanPham");// truy vấn trên entity(HQL)
+        Query q = ss.createQuery("From ChiTietSanPham");// truy vấn trên entity(HQL)
         ArrayList<ChiTietSanPham> list = (ArrayList<ChiTietSanPham>) q.getResultList();
         return list;
     }
@@ -50,22 +50,34 @@ public class ChiTietSanPhamRepository {
         }
         return null;
     }
-
-    public Boolean update(ChiTietSanPham ctsp) {
-        try ( Session ss = DBConnection.getFACTORY().openSession()) {
-            Transaction tran = ss.getTransaction();
-            tran.begin();
-            try {
-                ss.update(ctsp);
-                tran.commit();
-                return true;
-            } catch (Exception e) {
-                tran.rollback();
-                return false;
-            }
-        }
+    
+     SessionFactory sf = DBConnection.getFACTORY();
+    
+     public ChiTietSanPham find(Integer MaCTSP) {
+         try {
+             sf.getCurrentSession().beginTransaction();
+         
+         return (ChiTietSanPham) sf.getCurrentSession().get(ChiTietSanPham.class, MaCTSP);
+         } catch (Exception e) {
+             return null;
+         }
+     }
+    
+     public Boolean update(ChiTietSanPham ctsp) {
         
+        try {
+            sf.getCurrentSession().beginTransaction();
+            sf.getCurrentSession().update(ctsp);
+            sf.getCurrentSession().getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            sf.getCurrentSession().getTransaction().rollback();
+            return false;
+        }
+       
     }
+     
+       
     /////////////////////////////////////////////////////////////////////
     
     
@@ -100,11 +112,6 @@ public class ChiTietSanPhamRepository {
             return true;
         }
     }
-   
     
-    
-    
-    
-
-    
+  
 }

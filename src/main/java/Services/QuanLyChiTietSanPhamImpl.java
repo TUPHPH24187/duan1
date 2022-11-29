@@ -15,6 +15,7 @@ import Repositories.XuatXuRepository;
 import Repositories.ChatLieuRepository;
 import Service.impl.QuanLyChiTietSanPhamService;
 import Utilities.DBConnection;
+import ViewModels.SanPhamView;
 import Views.QLSanPham;
 import java.sql.SQLException;
 import java.util.List;
@@ -60,14 +61,7 @@ public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
 
     }
 
-    @Override
-    public String updateCTSanPham(ChiTietSanPham ctsp) {
-        if (chiTietsanPhamRepository.update(ctsp)) {
-            return "Sửa thành công";
-        } else {
-            return "Sửa thất bại";
-        }
-    }
+    
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public QuanLyChiTietSanPhamImpl() {
@@ -101,4 +95,9 @@ public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
         return spS;
     }
 
+        
+
+    
+   
+    
 }

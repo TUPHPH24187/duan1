@@ -8,6 +8,7 @@ import DomainModels.ChatLieu;
 import DomainModels.KichThuoc;
 import DomainModels.XuatXu;
 import DomainModels.ChiTietSanPham;
+import com.fasterxml.classmate.AnnotationConfiguration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -112,11 +113,16 @@ public class DBConnection {
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
         FACTORY = conf.buildSessionFactory(registry);
-
+        
+        
     }
 
     public static SessionFactory getFACTORY() {
         return FACTORY;
     }
 
+   
+    
+    
+    
 }

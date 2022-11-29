@@ -12,12 +12,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import DomainModels.NguoiDung;
 import DomainModels.NhanVien;
 import Helpers.DataValidator;
 import Helpers.MessageDialogHelper;
 import Helpers.ShareData;
-import Repositories.NguoiDungRepository;
 import org.jboss.jandex.Main;
 
 
@@ -233,14 +231,14 @@ public class LoginDialog extends javax.swing.JDialog {
             return;
         }
         
-        NguoiDungRepository ndRepo = new NguoiDungRepository();
+        NhanVienRepository ndRepo = new NhanVienRepository();
         
         try {
-            NguoiDung nd  = ndRepo.checkLogin(txtuser.getText(), new String(txtPasswork.getPassword()));
-            if(nd == null) {
+            NhanVien nv  = ndRepo.checkLogin(txtuser.getText(), new String(txtPasswork.getPassword()));
+            if(nv == null) {
             MessageDialogHelper.showErrorDialog(this, "Tên đăng nhập hay mật khẩu sai", "Lỗi");
         }else{
-            ShareData.nguoiDangNhap = nd;
+            ShareData.nguoiDangNhap = nv;
             this.dispose();
         }
         } catch (Exception e) {
@@ -252,7 +250,8 @@ public class LoginDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void lbQuenMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQuenMKMouseClicked
-        this.setVisible(false);
+        
+      
         
     }//GEN-LAST:event_lbQuenMKMouseClicked
 

@@ -14,10 +14,10 @@ import java.util.ArrayList;
  *
  * @author ADMIN
  */
-public class QuanLyNhanVienService {
+public class NhanVienService {
     
     NhanVienRepository nhanVienRepository;
-    public  QuanLyNhanVienService(){
+    public  NhanVienService(){
         nhanVienRepository = new NhanVienRepository();
     }
     public java.util.List<NhanVien> layNhanViens() throws SQLException {
@@ -26,7 +26,7 @@ public class QuanLyNhanVienService {
         for (NhanVien nhanVien : nhanViens) {
 
             qlNhanViens.add(new NhanVien(nhanVien.getMaNV(), nhanVien.getTenNV(), nhanVien.getNgaySinh(), nhanVien.getGioiTinh(),
-                    nhanVien.getSDT(), nhanVien.getDiaChi(),nhanVien.getEmail(), nhanVien.getTrangThai()));
+                    nhanVien.getSDT(), nhanVien.getDiaChi(),nhanVien.getEmail(),nhanVien.getMatKhau(),nhanVien.getChucVu(), nhanVien.getTrangThai()));
         }
         return qlNhanViens;
     }
@@ -46,5 +46,9 @@ public class QuanLyNhanVienService {
     
     public boolean XoaNhanVien(Integer maNV) throws SQLException{
         return nhanVienRepository.XoaNhanVien(maNV);
+    }
+    
+    public String passNhanVien(String username,String email){
+        return nhanVienRepository.passNhanVien(username, email);
     }
 }

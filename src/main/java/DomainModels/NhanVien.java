@@ -20,12 +20,14 @@ public class NhanVien implements Serializable {
     private String SDT;
     private String DiaChi;
     private String Email;
+    private String MatKhau;
+    private String ChucVu;
     private Integer TrangThai;
 
     public NhanVien() {
     }
 
-    public NhanVien(Integer maNV, String TenNV, String NgaySinh, Integer GioiTinh, String SDT, String DiaChi, String Email, Integer TrangThai) {
+    public NhanVien(Integer maNV, String TenNV, String NgaySinh, Integer GioiTinh, String SDT, String DiaChi, String Email, String MatKhau, String ChucVu, Integer TrangThai) {
         this.maNV = maNV;
         this.TenNV = TenNV;
         this.NgaySinh = NgaySinh;
@@ -33,8 +35,28 @@ public class NhanVien implements Serializable {
         this.SDT = SDT;
         this.DiaChi = DiaChi;
         this.Email = Email;
+        this.MatKhau = MatKhau;
+        this.ChucVu = ChucVu;
         this.TrangThai = TrangThai;
     }
+
+    public String getMatKhau() {
+        return MatKhau;
+    }
+
+    public void setMatKhau(String MatKhau) {
+        this.MatKhau = MatKhau;
+    }
+
+    public String getChucVu() {
+        return ChucVu;
+    }
+
+    public void setChucVu(String ChucVu) {
+        this.ChucVu = ChucVu;
+    }
+
+    
 
     public Integer getMaNV() {
         return maNV;

@@ -4,12 +4,13 @@
  */
 package Helpers;
 
-import DomainModels.NguoiDung;
+
+import DomainModels.NhanVien;
 
 /**
  *
  * @author concu
  */
 public class ShareData {
-    public static NguoiDung nguoiDangNhap;
+    public static NhanVien nguoiDangNhap;
 }

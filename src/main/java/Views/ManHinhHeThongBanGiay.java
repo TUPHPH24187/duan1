@@ -58,7 +58,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
         btnDangXuat = new javax.swing.JButton();
         btnKhuyenMai = new javax.swing.JButton();
         btnClock = new javax.swing.JButton();
-        btnDangKy = new javax.swing.JButton();
+        btnQuenMatKhau = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblLogin = new javax.swing.JLabel();
         lblVaiTro = new javax.swing.JLabel();
@@ -155,12 +155,12 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
             }
         });
 
-        btnDangKy.setBackground(new java.awt.Color(204, 255, 255));
-        btnDangKy.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\password.png")); // NOI18N
-        btnDangKy.setText("Quên mật khẩu");
-        btnDangKy.addActionListener(new java.awt.event.ActionListener() {
+        btnQuenMatKhau.setBackground(new java.awt.Color(204, 255, 255));
+        btnQuenMatKhau.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\password.png")); // NOI18N
+        btnQuenMatKhau.setText("Quên mật khẩu");
+        btnQuenMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDangKyActionPerformed(evt);
+                btnQuenMatKhauActionPerformed(evt);
             }
         });
 
@@ -214,7 +214,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
                     .addComponent(btnKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(btnClock, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnKhuyenMai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDangKy, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQuenMatKhau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -242,7 +242,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnQuenMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -343,11 +343,11 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
         processLoginSucess();
     }//GEN-LAST:event_formWindowOpened
 
-    private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
+    private void btnQuenMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuenMatKhauActionPerformed
        
       new QuenMatKhau().setVisible(true);
 
-    }//GEN-LAST:event_btnDangKyActionPerformed
+    }//GEN-LAST:event_btnQuenMatKhauActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
        if (qLThongke1 == null) {
@@ -362,7 +362,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
         lblVaiTro.setText(ShareData.nguoiDangNhap.getChucVu());
 
         if (ShareData.nguoiDangNhap.getChucVu().equals("Quản lý")) {
-            btnDangKy.setEnabled(true);
+            btnQuenMatKhau.setEnabled(true);
             btnGiaoDich.setEnabled(true);
             btnKhachHang.setEnabled(true);
             btnKhuyenMai.setEnabled(true);
@@ -372,7 +372,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
             btnThongKe.setEnabled(true);
 
         } else if (ShareData.nguoiDangNhap.getChucVu().equals("Nhân viên")) {
-            btnDangKy.setEnabled(false);
+            btnQuenMatKhau.setEnabled(false);
             btnGiaoDich.setEnabled(true);
             btnKhachHang.setEnabled(true);
             btnKhuyenMai.setEnabled(true);
@@ -421,12 +421,12 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClock;
-    private javax.swing.JButton btnDangKy;
     private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnGiaoDich;
     private javax.swing.JButton btnKhachHang;
     private javax.swing.JButton btnKhuyenMai;
     private javax.swing.JButton btnNhanVien;
+    private javax.swing.JButton btnQuenMatKhau;
     private javax.swing.JButton btnSanPham;
     private javax.swing.JButton btnThongKe;
     private javax.swing.JButton btnTraHang;

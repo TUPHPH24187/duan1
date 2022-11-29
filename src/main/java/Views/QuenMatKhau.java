@@ -31,6 +31,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
     public QuenMatKhau() {
         initComponents();
         this.setTitle("QUÊN MẬT KHẨU");
+        this.setLocationRelativeTo(null);
     }
     
     public String sendEmail(String user, String email) throws AddressException, MessagingException, UnsupportedEncodingException {

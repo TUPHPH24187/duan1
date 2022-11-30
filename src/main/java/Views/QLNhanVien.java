@@ -61,7 +61,7 @@ public class QLNhanVien extends javax.swing.JPanel {
                     gioiTinh = "Nu";
                 }
                 Object[] nds = new Object[]{nv.getMaNV(),
-                    nv.getTenNV(), nv.getNgaySinh(), gioiTinh, nv.getSDT(), nv.getDiaChi(), nv.getEmail(), nv.getTrangThai(),};
+                    nv.getTenNV(), nv.getNgaySinh(), gioiTinh, nv.getSDT(), nv.getDiaChi(), nv.getEmail(),nv.getMatKhau(),nv.getChucVu(), nv.getTrangThai(),};
                 model.addRow(nds);
 
             }
@@ -99,7 +99,6 @@ public class QLNhanVien extends javax.swing.JPanel {
     }
 
     public void fill() {
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         int index = tbNhanVien.getSelectedRow();
 
         String ma = tbNhanVien.getValueAt(index, 0).toString();
@@ -109,9 +108,9 @@ public class QLNhanVien extends javax.swing.JPanel {
         String SDT = tbNhanVien.getValueAt(index, 4).toString();
         String DiaChi = tbNhanVien.getValueAt(index, 5).toString();
         String Email = tbNhanVien.getValueAt(index, 6).toString();
-        String matKhau = tbNhanVien.getValueAt(index, 7).toString();
+        String matKhau = tbNhanVien.getValueAt(index, 9).toString();
         String ChucVu = tbNhanVien.getValueAt(index, 8).toString();
-        String TrangThai = tbNhanVien.getValueAt(index, 9).toString();
+        String TrangThai = tbNhanVien.getValueAt(index, 7).toString();
 //            txtid.setText(id);
         txtManv.setText(ma);
         txtTen.setText(Ten);
@@ -203,15 +202,15 @@ public class QLNhanVien extends javax.swing.JPanel {
 
         tbNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ma", "Tên NV", "Ngay Sinh", "Gioi Tinh", "So Dien Thoai", "Dia Chi", "Email", "TrangThai"
+                "ma", "Tên NV", "Ngay Sinh", "Gioi Tinh", "So Dien Thoai", "Dia Chi", "Email", "Mat Khau", "Chuc Vu", "TrangThai"
             }
         ));
         tbNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {

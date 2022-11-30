@@ -39,9 +39,12 @@ public class ChiTietSanPham implements Serializable {
     @Column(name = "SoLuong")
     private Integer SoLuong;
 
-    @Column(name = "Gia")
-    private BigDecimal Gia;
+    @Column(name = "GiaBan")
+    private BigDecimal GiaBan;
 
+    @Column(name = "GiaNhap")
+    private BigDecimal GiaNhap;
+    
     @Column(name = "GiamGia")
     private BigDecimal GiamGia;
 
@@ -67,19 +70,37 @@ public class ChiTietSanPham implements Serializable {
         this.MaCTSP = MaCTSP;
     }
 
-    
-    public ChiTietSanPham(Integer MaCTSP, String TenCTSP, Integer SoLuong, BigDecimal Gia, BigDecimal GiamGia, int TrangThai, KichThuoc kichThuoc, XuatXu xuatXu, ChatLieu chatLieu) {
-
+    public ChiTietSanPham(Integer MaCTSP, String TenCTSP, Integer SoLuong, BigDecimal GiaBan, BigDecimal GiaNhap, BigDecimal GiamGia, int TrangThai, KichThuoc kichThuoc, XuatXu xuatXu, ChatLieu chatLieu) {
         this.MaCTSP = MaCTSP;
         this.TenCTSP = TenCTSP;
         this.SoLuong = SoLuong;
-        this.Gia = Gia;
+        this.GiaBan = GiaBan;
+        this.GiaNhap = GiaNhap;
         this.GiamGia = GiamGia;
         this.TrangThai = TrangThai;
         this.kichThuoc = kichThuoc;
         this.xuatXu = xuatXu;
         this.chatLieu = chatLieu;
     }
+
+    public BigDecimal getGiaBan() {
+        return GiaBan;
+    }
+
+    public void setGiaBan(BigDecimal GiaBan) {
+        this.GiaBan = GiaBan;
+    }
+
+    public BigDecimal getGiaNhap() {
+        return GiaNhap;
+    }
+
+    public void setGiaNhap(BigDecimal GiaNhap) {
+        this.GiaNhap = GiaNhap;
+    }
+
+    
+    
 
     public Integer getMaCTSP() {
         return MaCTSP;
@@ -105,14 +126,7 @@ public class ChiTietSanPham implements Serializable {
         this.SoLuong = SoLuong;
     }
 
-    public BigDecimal getGia() {
-        return Gia;
-    }
-
-    public void setGia(BigDecimal Gia) {
-        this.Gia = Gia;
-    }
-
+    
     public BigDecimal getGiamGia() {
         return GiamGia;
     }
@@ -153,9 +167,6 @@ public class ChiTietSanPham implements Serializable {
         this.chatLieu = chatLieu;
     }
 
-    @Override
-    public String toString() {
-        return "ChiTietSanPham{" + "MaCTSP=" + MaCTSP + ", TenCTSP=" + TenCTSP + ", SoLuong=" + SoLuong + ", Gia=" + Gia + ", GiamGia=" + GiamGia + ", TrangThai=" + TrangThai + ", kichThuoc=" + kichThuoc + ", xuatXu=" + xuatXu + ", chatLieu=" + chatLieu + '}';
-    }
+    
 
 }

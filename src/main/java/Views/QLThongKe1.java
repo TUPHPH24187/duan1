@@ -4,12 +4,7 @@
  */
 package Views;
 
-import DomainModels.HDCT;
-import DomainModels.HoaDon;
-import Repositories.HDCTRepositories;
-import Repositories.HoaDonRepository;
-import Services.HDCTServiec;
-import Services.HoaDonServiec;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
@@ -24,58 +19,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QLThongKe1 extends javax.swing.JPanel {
 
-    List<HoaDon> listhd;
-    HoaDonServiec _HoaDonServiec;
-    HDCTRepositories repo_hdct;
-    DefaultTableModel model;
-    LocalDate _Date;
     
-    HoaDonRepository hdRepo;
     /**
      * Creates new form QLThongKe
      */
     public QLThongKe1() {
         initComponents();
-        _Date = LocalDate.now();
-        model = (DefaultTableModel)tb_DoanhThu.getModel();
-        repo_hdct = new HDCTRepositories();
         
-        Date max = new Date(_Date.getYear()-1900,_Date.getMonthValue()-1,_Date.getDayOfMonth());
-        txt_Date1.setMaxSelectableDate(max);
-        txt_Date1.addPropertyChangeListener(new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                if (txt_Date1.getDate()==null)return; {
-                
-                    LoadTable(txt_Date1.getDate());
-                }
-            }
-        });
     }
-    public void LoadTable(Date date){
-        int stt = 1;
-        float tongtienngay = 0;
-        model.setRowCount(0);
-        for(HoaDon x : listhd){
-            Date dateHD = x.getNgayKhoiTao();
-            if (!(date.getYear()==dateHD.getYear() && date.getMonth()==dateHD.getMonth()&& date.getYear()==dateHD.getDate())) {
-                continue;
-            }
-            float tongtien = 0;
-            List<HDCT> listHDCT = repo_hdct.getList();
-            for (HDCT h : listHDCT) {
-                System.out.println(h.getMaHD().getMaHD()+"  "+x.getMaHD());
-                if(h.getMaHD().getMaHD()==x.getMaHD())continue;
-                tongtien +=h.getThanhTien();
-                tongtienngay +=h.getThanhTien();
-            }
-               model.addRow(new Object[]{stt ++ ,x.getNgayKhoiTao(),tongtien});
-        }
-                 for (int i = 0 ; i < model.getRowCount(); i++) {
-            model.setValueAt(i+1, i, 0);
-        }
-                 lbDoanhThuNgay.setText("Doanh Số Ngày : "+tongtienngay);
-    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.

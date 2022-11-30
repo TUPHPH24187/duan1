@@ -60,19 +60,20 @@ create table ChiTietSanPham (
 	MaXuatXu int null foreign key references XuatXu(MaXuatXu),
 	MaKichThuoc int null foreign key references KichThuoc(MaKichThuoc),
 	SoLuong int ,
-	Gia decimal ,
+	GiaNhap decimal ,
+	GiaBan decimal,
 	GiamGia decimal ,
 	TrangThai Smallint ,
 )
 
 create table KhuyenMai (
 	MaKhuyenMai int IDENTITY(1,1) not null PRIMARY KEY,
-	TenKhuyenMai varchar(30) ,
+	TenKhuyenMai Nvarchar(30) ,
 	NgayBatDau nchar(10),
 	NgayKetThuc nchar(10),
 	GiamGia int,
 	TrangThai Smallint ,
-	MaCTSP int null foreign key references ChiTietSanPham(MaCTSP),
+	
 )
 
 
@@ -80,7 +81,7 @@ create table KhuyenMai (
 
 create table HinhThucThanhToan (
 	MaHTTT int IDENTITY(1,1) not null PRIMARY KEY,
-	TenHTTT varchar(50),
+	TenHTTT Nvarchar(50),
 	
 )
 
@@ -101,11 +102,10 @@ create table HoaDonChiTiet (
 	MaHD int null foreign key references HoaDon(MaHD),
 	MaCTSP int foreign key references ChiTietSanPham(MaCTSP),
 	SoLuong int not null,
-	Gia decimal not null,
-	GiamGia decimal not null,
-	ThanhTien decimal not null,
+	
 	GhiChu text,
 	TrangThai Smallint ,
+	MaKhuyenMai int foreign key references KhuyenMai(MaKhuyenMai)
 )
 
 

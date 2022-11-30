@@ -16,23 +16,23 @@ import java.util.logging.Logger;
  *
  * @author Admin
  */
-public class TraHangService implements TraHangImpl{
-private TraHangRepositori trahangRepository = new TraHangRepositori();
-
-    @Override
-    public List<TraHang> getList() {
-    try {
-        return trahangRepository.listTraHang();
-    } catch (SQLException ex) {
-        Logger.getLogger(TraHangService.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    return null;
-    }
-
-    @Override
-    public boolean traHang(TraHang traHang) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-   
+public class TraHangService{
+//private TraHangRepositori trahangRepository = new TraHangRepositori();
+//
+//    @Override
+//    public List<TraHang> getList() {
+//    try {
+//        return trahangRepository.listTraHang();
+//    } catch (SQLException ex) {
+//        Logger.getLogger(TraHangService.class.getName()).log(Level.SEVERE, null, ex);
+//    }
+//    return null;
+//    }
+//
+//    @Override
+//    public boolean traHang(TraHang traHang) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
+//   
 
 }

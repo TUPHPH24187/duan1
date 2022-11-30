@@ -74,7 +74,7 @@ public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
         java.util.List<ChiTietSanPham> qlChiTietSanPhams = new ArrayList<>();
         for (ChiTietSanPham ctsp : chiTietSanPhams) {
 
-            qlChiTietSanPhams.add(new ChiTietSanPham(ctsp.getMaCTSP(), ctsp.getTenCTSP(), ctsp.getSoLuong(), ctsp.getGia(), ctsp.getGiamGia(), ctsp.getTrangThai(),
+            qlChiTietSanPhams.add(new ChiTietSanPham(ctsp.getMaCTSP(), ctsp.getTenCTSP(), ctsp.getSoLuong(), ctsp.getGiaBan(),ctsp.getGiaNhap(), ctsp.getGiamGia(), ctsp.getTrangThai(),
                     ctsp.getKichThuoc(), ctsp.getXuatXu(), ctsp.getChatLieu()));
         }
         return qlChiTietSanPhams;

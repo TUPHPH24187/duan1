@@ -111,6 +111,7 @@ create table HoaDonChiTiet (
 
 create table TraHang(
 MaHD int null foreign key references HoaDon(MaHD),
+
 TenKH nvarchar(50) ,
 TienDTT decimal not null,
 NgayTH varchar(20),

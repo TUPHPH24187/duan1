@@ -4,10 +4,14 @@
  */
 package Service.impl;
 
+import DomainModels.TraHang;
+import java.util.List;
+
 /**
  *
  * @author Admin
  */
 public interface TraHangImpl {
-    
+   List<TraHang> getList();
+   public boolean traHang(TraHang traHang);
 }

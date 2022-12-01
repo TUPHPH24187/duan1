@@ -37,13 +37,13 @@ create table NhanVien (
 
 create table XuatXu (
 	MaXuatXu int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	TenXuatXu nvarchar(50),
-	TrangThai Smallint ,
+	TenXuatXu nvarchar(50) not null,
+	TrangThai Smallint not null,
 )
 create table KichThuoc (
 	MaKichThuoc int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	TenKichThuoc nvarchar(50),
-	TrangThai Smallint ,
+	TenKichThuoc nvarchar(50) not null,
+	TrangThai Smallint not null,
 )
 
 create table ChatLieu (
@@ -55,15 +55,15 @@ create table ChatLieu (
 
 create table ChiTietSanPham (
 	MaCTSP int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	TenCTSP nvarchar(50),
+	TenCTSP nvarchar(50) not null,
 	MaChatLieu int null foreign key references ChatLieu(MaChatLieu),
 	MaXuatXu int null foreign key references XuatXu(MaXuatXu),
 	MaKichThuoc int null foreign key references KichThuoc(MaKichThuoc),
-	SoLuong int ,
-	GiaNhap decimal ,
-	GiaBan decimal,
-	GiamGia decimal ,
-	TrangThai Smallint ,
+	SoLuong int not null, 
+	GiaNhap decimal not null,
+	GiaBan decimal not null,
+	GiamGia decimal not null,
+	TrangThai Smallint not null,
 )
 
 create table KhuyenMai (

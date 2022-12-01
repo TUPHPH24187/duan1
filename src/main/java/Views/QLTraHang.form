@@ -3,7 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="66" green="ff" red="33" type="rgb"/>
+      <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -63,7 +63,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jPanel2" max="32767" attributes="0"/>
-                  <Component id="jPanel1" pref="0" max="32767" attributes="0"/>
+                  <Component id="jPanel1" pref="328" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
@@ -77,10 +77,10 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Quan Ly Tra Hang"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="24" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Quan Ly Tra Hang"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -230,10 +230,10 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Hoa Don"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Hoa Don"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel2">
@@ -346,16 +346,16 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Hoa Don Chi Tiet"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Hoa Don Chi Tiet"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel5">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="ff" red="0" type="rgb"/>
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
 
@@ -529,10 +529,10 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Hoan Tra"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Hoan Tra"/>
       </Properties>
     </Component>
   </SubComponents>

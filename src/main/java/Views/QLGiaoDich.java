@@ -715,8 +715,7 @@ public class QLGiaoDich extends javax.swing.JPanel {
 
     private void kkkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kkkActionPerformed
         // TODO add your handling code here:
-        int chon = JOptionPane.showConfirmDialog(this, "Bạn muốn tìm kiếm khách hàng", "Thông báo", JOptionPane.YES_NO_OPTION);
-        if (chon == JOptionPane.YES_OPTION) {
+        
             if (txtTimKH.getText().isBlank()) {
                 JOptionPane.showMessageDialog(this, "Bạn phải nhập số điện thoại");
                 return;
@@ -730,7 +729,7 @@ public class QLGiaoDich extends javax.swing.JPanel {
                         return; // kết thúc luôn
                     }
                     if (KH.isEmpty()) {
-                        JOptionPane.showMessageDialog(this, "Không tìm thấy khách hanngf");
+                        JOptionPane.showMessageDialog(this, "Không tìm thấy khách hàng");
                         return; // kết thúc luôn
 
                     }
@@ -755,13 +754,12 @@ public class QLGiaoDich extends javax.swing.JPanel {
                 }
 
             }
-        }
+        
     }//GEN-LAST:event_kkkActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int chon = JOptionPane.showConfirmDialog(this, "Bạn muốn tìm kiếm sản phẩm", "Thông báo", JOptionPane.YES_NO_OPTION);
-        if (chon == JOptionPane.YES_OPTION) {
+        
             if (txtSP.getText().isBlank()) {
                 JOptionPane.showMessageDialog(this, "Bạn phải nhập mã sản phẩm");
                 return;
@@ -775,7 +773,7 @@ public class QLGiaoDich extends javax.swing.JPanel {
                         return; // kết thúc luôn
                     }
                     if (SP.isEmpty()) {
-                        JOptionPane.showMessageDialog(this, "Không tìm thấy khách hanngf");
+                        JOptionPane.showMessageDialog(this, "Không tìm thấy khách hàng");
                         return; // kết thúc luôn
 
                     }
@@ -801,7 +799,7 @@ public class QLGiaoDich extends javax.swing.JPanel {
                 }
 
             }
-        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tblSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMouseClicked
@@ -820,8 +818,7 @@ public class QLGiaoDich extends javax.swing.JPanel {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
 
-        int chon = JOptionPane.showConfirmDialog(this, "Bạn muốn tìm kiếm hóa đơn theo mã Hóa Đơn", "Thông báo", JOptionPane.YES_NO_OPTION);
-        if (chon == JOptionPane.YES_OPTION) {
+        
             if (txtMaHD_HD.getText().isBlank()) {
                 JOptionPane.showMessageDialog(this, "Bạn phải nhập số mã Hóa Đơn");
                 return;
@@ -861,7 +858,7 @@ public class QLGiaoDich extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Hiển thị thất bại");
                 }
 
-            }
+            
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -869,8 +866,7 @@ public class QLGiaoDich extends javax.swing.JPanel {
         // TODO add your handling code here:
         HoaDonChiTietModel HDCT = new HoaDonChiTietModel();
 
-        int chon = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm vào giỏ hàng? ", "Thông báo", JOptionPane.YES_NO_OPTION);
-        if (chon == JOptionPane.YES_OPTION) {
+        
 
             if (txtMHD_GH.getText().isBlank() || txtSP_GH.getText().isBlank() || txtSoLuong_GH.getText().isBlank() || txtGG_GH.getText().isBlank()) {
                 JOptionPane.showMessageDialog(this, "Bạn phải nhập đầy đủ thông tin");
@@ -928,7 +924,7 @@ public class QLGiaoDich extends javax.swing.JPanel {
                         return; // kết thúc luôn
                     }
                     if (GH.isEmpty()) {
-                        JOptionPane.showMessageDialog(this, "Không tìm thấy khách hanngf");
+                        JOptionPane.showMessageDialog(this, "Không tìm thấy khách hàng");
                         return; // kết thúc luôn
 
                     }
@@ -956,7 +952,7 @@ public class QLGiaoDich extends javax.swing.JPanel {
 
             }
 
-        }
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed

@@ -20,7 +20,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
     private QLKhachHang qlkhachhang;
     private QLKhuyenMai qlkhuyenmai;
     private QLTraHang qLTraHang;
-    private QLThongKe1 qLThongke1;
+    private QLThongKe qLThongke1;
 
     /**
      * Creates new form ManHinhHeThongBanGiay
@@ -351,7 +351,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
        if (qLThongke1 == null) {
-            qLThongke1 = new QLThongKe1();
+            qLThongke1 = new QLThongKe();
             tbMain.addTab("Quản lý thống kê", qLThongke1);
         }
         tbMain.setSelectedComponent(qLThongke1);

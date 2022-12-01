@@ -309,7 +309,7 @@ public class QLSanPham extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(rbHoatDong)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                                 .addComponent(rbKhongHoatDong))
                             .addComponent(cbXuatXu, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbChatLieu, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -321,7 +321,7 @@ public class QLSanPham extends javax.swing.JPanel {
                             .addComponent(btnThemChatLieu))
                         .addGap(107, 107, 107)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                            .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                             .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnXem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -612,32 +612,7 @@ public class QLSanPham extends javax.swing.JPanel {
             rbHoatDong.setSelected(false);
         }
         
-//        int i = 0;
-//        while (true) {   
-//            String size = cbSize.getItemAt(i).toString();  
-//            if(size.equalsIgnoreCase(kichThuoc)){
-//                cbSize.setSelectedIndex(i);
-//                break;
-//            }
-//            i++;
-//        }
-//        while (true) {   
-//            String xuatxu = cbXuatXu.getItemAt(i).toString();  
-//            if(xuatxu.equalsIgnoreCase(xuatXu)){
-//                cbXuatXu.setSelectedIndex(i);
-//                break;
-//            }
-//            i++;
-//        }
-//        while (true) {   
-//            String chatlieu = cbChatLieu.getItemAt(i).toString();  
-//            if(chatlieu.equalsIgnoreCase(chatlieu)){
-//                cbChatLieu.setSelectedIndex(i);
-//                break;
-//            }
-//            i++;
-//        }
-        
+                
 
     }//GEN-LAST:event_tbSanPhamMouseClicked
 

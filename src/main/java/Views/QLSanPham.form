@@ -113,7 +113,7 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="rbHoatDong" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="82" max="32767" attributes="0"/>
+                              <EmptySpace pref="180" max="32767" attributes="0"/>
                               <Component id="rbKhongHoatDong" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="cbXuatXu" alignment="0" max="32767" attributes="0"/>
@@ -128,7 +128,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnThem" pref="83" max="32767" attributes="0"/>
+                          <Component id="btnThem" pref="181" max="32767" attributes="0"/>
                           <Component id="btnSua" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnXoa" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnXem" alignment="0" max="32767" attributes="0"/>

@@ -52,77 +52,11 @@ public class ChiTietSanPhamRepository {
         return null;
     }
     
-     SessionFactory sf = DBConnection.getFACTORY();
+     
+    ////////////////////////////////////////////////////////////////////////////////////
+   
+     
     
-     public ChiTietSanPham find(Integer MaCTSP) {
-         try {
-             sf.getCurrentSession().beginTransaction();
-         
-         return (ChiTietSanPham) sf.getCurrentSession().get(ChiTietSanPham.class, MaCTSP);
-         } catch (Exception e) {
-             return null;
-         }
-     }
-    
-     public Boolean update(ChiTietSanPham ctsp) {
-        
-        try {
-            sf.getCurrentSession().beginTransaction();
-            sf.getCurrentSession().update(ctsp);
-            sf.getCurrentSession().getTransaction().commit();
-            return true;
-        } catch (Exception e) {
-            sf.getCurrentSession().getTransaction().rollback();
-            return false;
-        }
-       
-    }
-     
-     
-     
-     public List<SanPhamModel> timKiemSP(String maSP) throws SQLException {
-        List<SanPhamModel> SP = new ArrayList();
-        String sql = "select MaCTSP, TenCTSP , TenChatLieu, TenKichThuoc,TenXuatXu, GiaBan,GiaNhap,GiamGia,soLuong,TrangThai from ChiTietSanPham join ChatLieu on ChiTietSanPham.MaChatLieu = ChatLieu.MaChatLieu\n"
-                + "											join XuatXu on ChiTietSanPham.MaXuatXu = XuatXu.MaXuatXu\n"
-                + "											join KichThuoc on ChiTietSanPham.MaKichThuoc = KichThuoc.MaKichThuoc\n"
-                + "											where MaCTSP = ?";
-        Connection con = DBConnection.openDbConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, maSP);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            String masp = rs.getString(1);
-            String tensp = rs.getString(2);
-            String chatLieu = rs.getString(3);
-            String kichThuoc = rs.getString(4);
-            String xuatXu = rs.getString(5);
-            double giaBan = rs.getDouble(6);
-            double giaNhap = rs.getDouble(7);
-            double giamGia = rs.getDouble(8);       
-            int soLuong = rs.getInt(9);
-            int trangThai = rs.getInt(10);
-            
-            SanPhamModel san = new SanPhamModel();
-            
-            san.setChatLieu(chatLieu);
-            san.setGiaBan(giaBan);
-            san.setKichThuoc(kichThuoc);
-            san.setMaSP(masp);
-            san.setTenSP(tensp);
-            san.setXuatXu(xuatXu);
-            san.setSoLuong(soLuong);
-            san.setGiaNhap(giaNhap);
-            san.setGiamGia(giamGia);
-            san.setTrangThai(trangThai);
-            SP.add(san);
-
-        }
-        rs.close();
-        ps.close();
-        con.close();
-        return SP;
-    }
-       
     /////////////////////////////////////////////////////////////////////
     
     

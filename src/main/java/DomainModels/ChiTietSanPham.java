@@ -4,8 +4,6 @@ package DomainModels;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
-
 import DomainModels.ChatLieu;
 import DomainModels.KichThuoc;
 import DomainModels.XuatXu;
@@ -40,13 +38,13 @@ public class ChiTietSanPham implements Serializable {
     private Integer SoLuong;
 
     @Column(name = "GiaBan")
-    private BigDecimal GiaBan;
+    private double GiaBan;
 
     @Column(name = "GiaNhap")
-    private BigDecimal GiaNhap;
-    
+    private double GiaNhap;
+
     @Column(name = "GiamGia")
-    private BigDecimal GiamGia;
+    private double GiamGia;
 
     @Column(name = "TrangThai")
     private int TrangThai;
@@ -70,7 +68,7 @@ public class ChiTietSanPham implements Serializable {
         this.MaCTSP = MaCTSP;
     }
 
-    public ChiTietSanPham(Integer MaCTSP, String TenCTSP, Integer SoLuong, BigDecimal GiaBan, BigDecimal GiaNhap, BigDecimal GiamGia, int TrangThai, KichThuoc kichThuoc, XuatXu xuatXu, ChatLieu chatLieu) {
+    public ChiTietSanPham(Integer MaCTSP, String TenCTSP, Integer SoLuong, double GiaBan, double GiaNhap, double GiamGia, int TrangThai, KichThuoc kichThuoc, XuatXu xuatXu, ChatLieu chatLieu) {
         this.MaCTSP = MaCTSP;
         this.TenCTSP = TenCTSP;
         this.SoLuong = SoLuong;
@@ -83,24 +81,21 @@ public class ChiTietSanPham implements Serializable {
         this.chatLieu = chatLieu;
     }
 
-    public BigDecimal getGiaBan() {
+    public double getGiaBan() {
         return GiaBan;
     }
 
-    public void setGiaBan(BigDecimal GiaBan) {
+    public void setGiaBan(double GiaBan) {
         this.GiaBan = GiaBan;
     }
 
-    public BigDecimal getGiaNhap() {
+    public double getGiaNhap() {
         return GiaNhap;
     }
 
-    public void setGiaNhap(BigDecimal GiaNhap) {
+    public void setGiaNhap(double GiaNhap) {
         this.GiaNhap = GiaNhap;
     }
-
-    
-    
 
     public Integer getMaCTSP() {
         return MaCTSP;
@@ -126,12 +121,11 @@ public class ChiTietSanPham implements Serializable {
         this.SoLuong = SoLuong;
     }
 
-    
-    public BigDecimal getGiamGia() {
+    public double getGiamGia() {
         return GiamGia;
     }
 
-    public void setGiamGia(BigDecimal GiamGia) {
+    public void setGiamGia(double GiamGia) {
         this.GiamGia = GiamGia;
     }
 
@@ -166,7 +160,5 @@ public class ChiTietSanPham implements Serializable {
     public void setChatLieu(ChatLieu chatLieu) {
         this.chatLieu = chatLieu;
     }
-
-    
 
 }

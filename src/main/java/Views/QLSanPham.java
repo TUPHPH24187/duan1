@@ -602,12 +602,41 @@ public class QLSanPham extends javax.swing.JPanel {
         txtGia.setText(giaBan);
         txtGiaNhap.setText(giaNhap);
         txtGiamGia.setText(giamGia);
-        if (TrangThai == "1") {
-            rbHoatDong.isSelected();
+        
+        if (TrangThai.equalsIgnoreCase("Hoạt động")) {
+            rbHoatDong.setSelected(true);
+            rbKhongHoatDong.setSelected(false);
         } else {
-            rbKhongHoatDong.isSelected();
+            
+            rbKhongHoatDong.setSelected(true);
+            rbHoatDong.setSelected(false);
         }
-
+        
+//        int i = 0;
+//        while (true) {   
+//            String size = cbSize.getItemAt(i).toString();  
+//            if(size.equalsIgnoreCase(kichThuoc)){
+//                cbSize.setSelectedIndex(i);
+//                break;
+//            }
+//            i++;
+//        }
+//        while (true) {   
+//            String xuatxu = cbXuatXu.getItemAt(i).toString();  
+//            if(xuatxu.equalsIgnoreCase(xuatXu)){
+//                cbXuatXu.setSelectedIndex(i);
+//                break;
+//            }
+//            i++;
+//        }
+//        while (true) {   
+//            String chatlieu = cbChatLieu.getItemAt(i).toString();  
+//            if(chatlieu.equalsIgnoreCase(chatlieu)){
+//                cbChatLieu.setSelectedIndex(i);
+//                break;
+//            }
+//            i++;
+//        }
         
 
     }//GEN-LAST:event_tbSanPhamMouseClicked

@@ -17,7 +17,7 @@ import java.sql.*;
  * @author ADM
  */
 public class KhachHangRepository {
-ăăă
+
     public List<KhachHang> layDSKH() throws SQLException {
         List<KhachHang> khachHangs = new ArrayList<>();
         Connection connection = DBConnection.openDbConnection();

@@ -21,7 +21,12 @@ private TraHangRepositori trahangRepository = new TraHangRepositori();
 
     @Override
     public List<TraHang> getList() {
-        return trahangRepository.listTraHang();
+    try {
+        return trahangRepository.layDSKH();
+    } catch (SQLException ex) {
+        Logger.getLogger(TraHangService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return null;
     }
 
     @Override

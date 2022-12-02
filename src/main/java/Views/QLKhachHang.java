@@ -9,6 +9,7 @@ import Helpers.MessageDialogHelper;
 import Services.QuanLyKhachHangSevice;
 import ViewModels.KhanhHangViewModel;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -325,13 +326,19 @@ public class QLKhachHang extends javax.swing.JPanel {
         
               StringBuilder kh = new StringBuilder();
 
-        DataValidator.vailidateEmpty(txtMaKH, kh, "Mã KH không được để trống");
+      DataValidator.vailidateEmpty(txtMaKH, kh, "Mã KH không được để trống");
         DataValidator.vailidateEmpty(txtTen, kh, "Tên không được để trống");
         DataValidator.vailidateEmpty(txtNgaySinh, kh, "Ngày sinh không được để trống");
-        
         DataValidator.vailidateEmpty(txtSDT, kh, "Số điện thoại không được để trống");
         DataValidator.vailidateEmpty(txtDiaChi, kh, "Địa chỉ không được để trống");
         
+        DataValidator.vailidatePhoneNumber(txtSDT, kh);
+
+        try {
+            DataValidator.checkVailidateDate(txtNgaySinh, kh);
+        } catch (ParseException ex) {
+            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (kh.length() > 0) {
             MessageDialogHelper.showErrorDialog(this, kh.toString(), "Lỗi");
             return;

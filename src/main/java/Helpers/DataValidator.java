@@ -30,6 +30,19 @@ public class DataValidator {
         }
     }
     
+     public static void vailidateMucGiam(JTextField field, StringBuilder sb) {
+        if (field.getText().startsWith("")) {
+            if (field.getText().length() >0) {
+                field.setBackground(Color.white);
+
+            } else {
+                sb.append("Mức giảm giá lớn hơn 0").append("\n");
+                field.setBackground(Color.red);
+                field.requestFocus();
+            }
+        } 
+    }
+    
     public static void vailidatePhoneNumber(JTextField field, StringBuilder sb) {
         if (field.getText().startsWith("03") || field.getText().startsWith("09")) {
             if (field.getText().length() == 10) {
@@ -47,6 +60,8 @@ public class DataValidator {
         }
     }
 
+    
+    
     public static boolean vailidateDate(JTextField field, StringBuilder sb) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         sdf.setLenient(false);

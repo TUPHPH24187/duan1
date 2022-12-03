@@ -5,6 +5,8 @@
 package Views;
 
 import DomainModels.ChiTietSanPham;
+import Helpers.DataValidator;
+import Helpers.MessageDialogHelper;
 import Service.impl.QuanLyChiTietSanPhamService;
 import Services.KhuyenMaiService;
 import Services.QuanLyChiTietSanPhamImpl;
@@ -12,6 +14,7 @@ import ViewModels.KhanhHangViewModel;
 import ViewModels.KhuyenMaiViewModel;
 import ViewModels.SanPhamView;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -410,6 +413,39 @@ public class QLKhuyenMai extends javax.swing.JPanel {
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         // TODO add your handling code here:
+        StringBuilder km = new StringBuilder();
+
+      DataValidator.vailidateEmpty(txtMaKM, km, "Mã KM không được để trống");
+        DataValidator.vailidateEmpty(txtTenChuongTrinh, km, "Tên không được để trống");
+        DataValidator.vailidateEmpty(txtNgayBatDau, km, "Ngày bắt đầu không được để trống");
+        DataValidator.vailidateEmpty(txtNgayKetThuc, km, "Ngày kết thúc không được để trống");
+        DataValidator.vailidateEmpty(txtMucGiamGia, km, "Mức giảm giá không được để trống");
+        
+        DataValidator.vailidateMucGiam(txtMucGiamGia, km);
+        
+         try {
+            DataValidator.checkVailidateDate(txtNgayBatDau, km);
+        } catch (ParseException ex) {
+            Logger.getLogger(QLKhuyenMai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (km.length() > 0) {
+            MessageDialogHelper.showErrorDialog(this, km.toString(), "Lỗi");
+            return;
+        }
+        
+         try {
+            DataValidator.checkVailidateDate(txtNgayKetThuc, km);
+        } catch (ParseException ex) {
+            Logger.getLogger(QLKhuyenMai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (km.length() > 0) {
+            MessageDialogHelper.showErrorDialog(this, km.toString(), "Lỗi");
+            return;
+        }
+         
+        
+        
+        
           try {
             // TODO add your handling code here:
             KhuyenMaiViewModel khuyenMai = layTT();
@@ -461,6 +497,10 @@ public class QLKhuyenMai extends javax.swing.JPanel {
         // TODO add your handling code here:
         hienTHi();
         hienTHiSanPham();
+        
+        
+        
+        
         
     }//GEN-LAST:event_btnCapNhatActionPerformed
 

@@ -2,25 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DomainModels;
+package ViewModels;
 
 /**
  *
- * @author concu
+ * @author nva20
  */
-public class KhuyenMai {
-
-    private Integer MaKhuyenMai;
+public class KhuyenMaiViewModel {
+     private Integer MaKhuyenMai;
     private String TenKhuyenMai;
     private String NgayBatDau;
     private String NgayKetThuc;
     private Integer GiamGia;
     private Integer TrangThai;
 
-    public KhuyenMai() {
+    public KhuyenMaiViewModel() {
     }
 
-    public KhuyenMai(Integer MaKhuyenMai, String TenKhuyenMai, String NgayBatDau, String NgayKetThuc, Integer GiamGia, Integer TrangThai) {
+    public KhuyenMaiViewModel(Integer MaKhuyenMai, String TenKhuyenMai, String NgayBatDau, String NgayKetThuc, Integer GiamGia, Integer TrangThai) {
         this.MaKhuyenMai = MaKhuyenMai;
         this.TenKhuyenMai = TenKhuyenMai;
         this.NgayBatDau = NgayBatDau;
@@ -77,4 +76,5 @@ public class KhuyenMai {
         this.TrangThai = TrangThai;
     }
 
+    
 }

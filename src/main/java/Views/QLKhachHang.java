@@ -43,10 +43,10 @@ public class QLKhachHang extends javax.swing.JPanel {
                     kh.getMaKH(),
                     kh.getHoTen(),
                     kh.getNgaySinh(),
-                    kh.getGioiTinh(),
+                    kh.getGioiTinh().contains("1") ? "Nam" : "Nữ",
                     kh.getsDT(),
                     kh.getDiaChi(),
-                    kh.getTrangThai(),};
+                    kh.getTrangThai().contains("1") ? "Hoạt động" : "Không hoạt động",};
                 model.addRow(khs);
             }
         } catch (SQLException ex) {
@@ -86,11 +86,13 @@ public class QLKhachHang extends javax.swing.JPanel {
         txtMaKH.setText(maKH);
         txtTen.setText(hoTen);
         txtNgaySinh.setText(ngaySinh);
-        if (gioiTinh == "1") {
-            rbNam.isSelected();
+        if (gioiTinh.contains("1")) {
+            rbNam.setSelected(true);
+                        rbNu.setSelected(false);
         } else {
+            rbNam.setSelected(false);
+            rbNu.setSelected(true);
 
-            rbNu.isSelected();
         }
         txtSDT.setText(sDt);
         txtDiaChi.setText(diaChi);

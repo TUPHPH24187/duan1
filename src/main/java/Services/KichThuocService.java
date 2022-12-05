@@ -6,6 +6,7 @@ package Services;
 
 import DomainModels.KichThuoc;
 import Repositories.KichThuocRepository;
+import java.sql.SQLException;
 
 /**
  *
@@ -20,5 +21,9 @@ public class KichThuocService {
         } else {
             return "Thêm thất bại";
         }
+    }
+    
+    public boolean XoaKichThuoc(Integer maKT) throws SQLException {
+        return CLRepo.XoaKichThuoc(maKT);
     }
 }

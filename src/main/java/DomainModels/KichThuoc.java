@@ -57,6 +57,10 @@ public class KichThuoc implements Serializable {
         this.trangThai = trangThai;
     }
 
+    public KichThuoc(Integer MaKichThuoc) {
+        this.MaKichThuoc = MaKichThuoc;
+    }
+
     
 
     public Integer getMaKichThuoc() {

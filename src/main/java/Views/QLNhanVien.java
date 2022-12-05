@@ -61,7 +61,7 @@ public class QLNhanVien extends javax.swing.JPanel {
                     gioiTinh = "Nu";
                 }
                 Object[] nds = new Object[]{nv.getMaNV(),
-                    nv.getTenNV(), nv.getNgaySinh(), gioiTinh, nv.getSDT(), nv.getDiaChi(), nv.getEmail(),nv.getMatKhau(),nv.getChucVu(), nv.getTrangThai(),};
+                    nv.getTenNV(), nv.getNgaySinh(), gioiTinh, nv.getSDT(), nv.getDiaChi(), nv.getEmail(),nv.getMatKhau(),nv.getChucVu(), nv.getTrangThai() == 1 ? "Hoat dong":"Khong hoat dong",};
                 model.addRow(nds);
 
             }
@@ -125,7 +125,7 @@ public class QLNhanVien extends javax.swing.JPanel {
         } else {
             rbNu.setSelected(true);
         }
-        if (TrangThai.equalsIgnoreCase("HoatDong")) {
+        if (TrangThai.equalsIgnoreCase("Hoat dong")) {
             rbHoatDong.setSelected(true);
         } else {
             rbKhonghoatDong.setSelected(true);
@@ -193,7 +193,7 @@ public class QLNhanVien extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ma", "Tên NV", "Ngay Sinh", "Gioi Tinh", "So Dien Thoai", "Dia Chi", "Email", "Mat Khau", "Chuc Vu", "TrangThai"
+                "Ma", "Tên NV", "Ngay Sinh", "Gioi Tinh", "So Dien Thoai", "Dia Chi", "Email", "Mat Khau", "Chuc Vu", "TrangThai"
             }
         ));
         tbNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -529,8 +529,10 @@ public class QLNhanVien extends javax.swing.JPanel {
         txtns.setText("");
         txtSDT.setText("");
         txtDiaChi.setText("");
+        txtMatKhau.setText("");
         txtEmail.setText("");
-
+        txtChucVu.setText("");
+        
 
     }//GEN-LAST:event_btnMoiActionPerformed
 

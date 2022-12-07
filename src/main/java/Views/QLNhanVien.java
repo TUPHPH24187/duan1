@@ -527,7 +527,6 @@ public class QLNhanVien extends javax.swing.JPanel {
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         // TODO add your handling code here:
 
-        txtManv.setText("");
         txtTen.setText("");
         txtns.setText("");
         txtSDT.setText("");

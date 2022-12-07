@@ -15,6 +15,7 @@ import Repositories.NhanVienRepository;
 import Services.NhanVienService;
 import Utilities.DBConnection;
 import ViewModels.KhanhHangViewModel;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -254,6 +255,8 @@ public class QLNhanVien extends javax.swing.JPanel {
 
         jLabel3.setText("Ma nv:");
 
+        txtManv.setEnabled(false);
+
         jLabel9.setText("Ngày sinh:");
 
         txtTen.addActionListener(new java.awt.event.ActionListener() {
@@ -439,7 +442,7 @@ public class QLNhanVien extends javax.swing.JPanel {
 
         StringBuilder nv = new StringBuilder();
 
-        DataValidator.vailidateEmpty(txtManv, nv, "Mã KH không được để trống");
+       
         DataValidator.vailidateEmpty(txtTen, nv, "Tên không được để trống");
         DataValidator.vailidateEmpty(txtns, nv, "Ngày sinh không được để trống");
         DataValidator.vailidateEmpty(txtSDT, nv, "Số điện thoại không được để trống");
@@ -533,7 +536,14 @@ public class QLNhanVien extends javax.swing.JPanel {
         txtEmail.setText("");
         txtChucVu.setText("");
         
-
+        txtTen.setBackground(Color.white);
+        txtns.setBackground(Color.white);
+        txtSDT.setBackground(Color.white);
+        txtDiaChi.setBackground(Color.white);
+        txtMatKhau.setBackground(Color.white);
+        txtEmail.setBackground(Color.white);
+        txtChucVu.setBackground(Color.white);
+        
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void txtTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenActionPerformed

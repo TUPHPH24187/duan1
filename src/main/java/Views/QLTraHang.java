@@ -4,10 +4,14 @@
  */
 package Views;
 
+import DomainModels.Hienthigannhat;
+import DomainModels.KhachHangModel;
 import DomainModels.TraHang;
 import Service.impl.TraHangImpl;
 import Services.TraHangService;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,13 +21,56 @@ import javax.swing.table.DefaultTableModel;
 public class QLTraHang extends javax.swing.JPanel {
 private DefaultTableModel defaultTableModel;
 private TraHangImpl hangImpl = new TraHangService();
+private Services.KhachHangService service = new Services.KhachHangService();
+    DefaultTableModel model = new DefaultTableModel();
+    List<KhachHangModel> list = new ArrayList<>();
+    
+
     /**
      * Creates new form QLTraHang
      */
+
+
+
+
     public QLTraHang() {
         initComponents();
         loatTabel();
+        loadtabe();
     }
+    
+    void loadtabe() {
+    List<Hienthigannhat> HTDS = service.HienThiHD();
+
+        //Kiểm tra danh sách
+        if (HTDS == null) {
+            JOptionPane.showMessageDialog(this, "Lỗi");
+            return; // kết thúc luôn
+        }
+        if (HTDS.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Rỗng");
+            return; // kết thúc luôn
+
+        }
+        //đổ dữ liệu vào bảng
+        DefaultTableModel model = (DefaultTableModel) tb_bangHoaDon.getModel();
+        model.setColumnCount(0); // xóa cột
+        model.addColumn("Mã hóa đơn");
+        model.addColumn("Mã nhân viên");
+        model.addColumn("Tên Khách Hàng");
+        model.addColumn("Thanh toán");
+        model.addColumn("Ngày tạo");
+
+        model.addColumn("Ghi chú");
+        model.addColumn("Trạng thái");
+
+        model.setRowCount(0);
+        for (Hienthigannhat ht : HTDS) {
+            Object[] row = new Object[]{ht.getMaHD(), ht.getMaNV(), ht.getTenKH(), ht.getTenHTTT(), ht.getNgayTao(),
+                ht.getGhiChu(), ht.TrangThaiHDGH()};
+            model.addRow(row);
+        }
+}
 public void loatTabel(){
         defaultTableModel = (DefaultTableModel) tb_bangHoanTra.getModel();
         defaultTableModel.setRowCount(0);

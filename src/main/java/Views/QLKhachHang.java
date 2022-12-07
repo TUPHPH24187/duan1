@@ -98,6 +98,72 @@ public class QLKhachHang extends javax.swing.JPanel {
         txtDiaChi.setText(diaChi);
         cbbTrangThai.setSelectedItem(trangThai);
     }
+    
+     public void hienTHi1() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) JBang.getModel();
+            model.setRowCount(0);
+            List<KhanhHangViewModel> khachHang = quanLyKhachHangSevice.layDSKH();
+            for (KhanhHangViewModel kh : khachHang) {
+                Object[] khs = new Object[]{
+                    kh.getMaKH(),
+                    kh.getHoTen(),
+                    kh.getNgaySinh(),
+                    kh.getGioiTinh().contains("1") ? "Nam" : "Nữ",
+                    kh.getsDT(),
+                    kh.getDiaChi(),
+                    kh.getTrangThai().contains("1") ? "Hoạt động" : "Không hoạt động",};
+                model.addRow(khs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public KhanhHangViewModel layTT1() {
+        String gioiTinh;
+        String maKH = txtMaKH.getText();
+        String hoTen = txtTen.getText();
+        String ngaySinh = txtNgaySinh.getText();
+        if (rbNam.isSelected()) {
+            gioiTinh = "1";
+        } else {
+            gioiTinh = "2";
+        }
+        String sDt = txtSDT.getText();
+        String diaChi = txtDiaChi.getText();
+        String trangThai = cbbTrangThai.getSelectedItem().toString();
+
+        KhanhHangViewModel khanhHang = new KhanhHangViewModel(maKH, hoTen, ngaySinh, gioiTinh, sDt, diaChi, trangThai);
+        return khanhHang;
+    }
+
+    public void fill1() {
+        int index = JBang.getSelectedRow();
+        String maKH = JBang.getValueAt(index, 0).toString();
+        String hoTen = JBang.getValueAt(index, 1).toString();
+        String ngaySinh = JBang.getValueAt(index, 2).toString();
+        String gioiTinh = JBang.getValueAt(index, 3).toString();
+        String sDt = JBang.getValueAt(index, 4).toString();
+        String diaChi = JBang.getValueAt(index, 5).toString();
+        String trangThai = JBang.getValueAt(index, 6).toString();
+
+        txtMaKH.setText(maKH);
+        txtTen.setText(hoTen);
+        txtNgaySinh.setText(ngaySinh);
+        if (gioiTinh.contains("1")) {
+            rbNam.setSelected(true);
+                        rbNu.setSelected(false);
+        } else {
+            rbNam.setSelected(false);
+            rbNu.setSelected(true);
+
+        }
+        txtSDT.setText(sDt);
+        txtDiaChi.setText(diaChi);
+        cbbTrangThai.setSelectedItem(trangThai);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

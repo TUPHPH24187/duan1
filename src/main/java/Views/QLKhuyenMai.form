@@ -187,12 +187,12 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="6" rowCount="5">
-                    <Column editable="true" title="Ma" type="java.lang.Object"/>
-                    <Column editable="true" title="Ten km" type="java.lang.Object"/>
-                    <Column editable="true" title="Ngay bat dau" type="java.lang.Object"/>
-                    <Column editable="true" title="Ngay ket thuc" type="java.lang.Object"/>
-                    <Column editable="true" title="Giam gia" type="java.lang.Object"/>
-                    <Column editable="true" title="Trang thai" type="java.lang.Object"/>
+                    <Column editable="true" title="M&#xe3;" type="java.lang.Object"/>
+                    <Column editable="true" title="T&#xea;n Khuy&#x1ebf;n M&#xe3;i" type="java.lang.Object"/>
+                    <Column editable="true" title="Ng&#xe0;y B&#x1eaf;t &#x110;&#x1ea7;u" type="java.lang.Object"/>
+                    <Column editable="true" title="Ng&#xe0;y K&#x1ebf;t Th&#xfa;c" type="java.lang.Object"/>
+                    <Column editable="true" title="Gi&#x1ea3;m Gi&#xe1;" type="java.lang.Object"/>
+                    <Column editable="true" title="Tr&#x1ea1;ng Th&#xe1;i" type="java.lang.Object"/>
                   </Table>
                 </Property>
               </Properties>
@@ -389,7 +389,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCapNhat">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cap Nhat"/>
+            <Property name="text" type="java.lang.String" value="Load..."/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhatActionPerformed"/>
@@ -400,11 +400,10 @@
     <Component class="javax.swing.JComboBox" name="TrangThai">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="3">
+            <StringItem index="0" value="Ho&#x1ea1;t &#x110;&#x1ed9;ng"/>
+            <StringItem index="1" value="Kh&#xf4;ng Ho&#x1ea1;t &#x110;&#x1ed9;ng"/>
+            <StringItem index="2" value=" "/>
           </StringArray>
         </Property>
       </Properties>

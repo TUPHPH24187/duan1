@@ -79,7 +79,28 @@ public class QLKhuyenMai extends javax.swing.JPanel {
         }
 
     }
+//--thêm
+     public void hienTHâi() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) JBang.getModel();
+            model.setRowCount(0);
+            List<KhuyenMaiViewModel> khuyenMai = khuyenMaiService.layDSKM();
+            for (KhuyenMaiViewModel km : khuyenMai) {
+                Object[] kms = new Object[]{
+                    km.getMaKhuyenMai(),
+                    km.getTenKhuyenMai(),
+                    km.getNgayBatDau(),
+                    km.getNgayKetThuc(),
+                    km.getGiamGia(),
+                    km.getTrangThai() == 1 ? "Hoạt động" : "Không hoạt động",};
+                model.addRow(kms);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QLKhuyenMai.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
+    }
+    
     public KhuyenMaiViewModel layTT() {
         
         String maKM = txtMaKM.getText();
@@ -193,7 +214,7 @@ public class QLKhuyenMai extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Ma", "Ten km", "Ngay bat dau", "Ngay ket thuc", "Giam gia", "Trang thai"
+                "Mã", "Tên Khuyến Mãi", "Ngày Bắt Đầu", "Ngày Kết Thúc", "Giảm Giá", "Trạng Thái"
             }
         ));
         JBang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -268,7 +289,7 @@ public class QLKhuyenMai extends javax.swing.JPanel {
 
         txtMaKM.setEnabled(false);
 
-        btnCapNhat.setText("Cap Nhat");
+        btnCapNhat.setText("Load...");
         btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCapNhatActionPerformed(evt);
@@ -345,7 +366,7 @@ public class QLKhuyenMai extends javax.swing.JPanel {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        TrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        TrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoạt Động", "Không Hoạt Động", " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

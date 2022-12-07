@@ -266,6 +266,8 @@ public class QLKhuyenMai extends javax.swing.JPanel {
 
         jLabel8.setText("Mã khuyến mãi");
 
+        txtMaKM.setEnabled(false);
+
         btnCapNhat.setText("Cap Nhat");
         btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -415,7 +417,7 @@ public class QLKhuyenMai extends javax.swing.JPanel {
         // TODO add your handling code here:
         StringBuilder km = new StringBuilder();
 
-      DataValidator.vailidateEmpty(txtMaKM, km, "Mã KM không được để trống");
+     
         DataValidator.vailidateEmpty(txtTenChuongTrinh, km, "Tên không được để trống");
         DataValidator.vailidateEmpty(txtNgayBatDau, km, "Ngày bắt đầu không được để trống");
         DataValidator.vailidateEmpty(txtNgayKetThuc, km, "Ngày kết thúc không được để trống");

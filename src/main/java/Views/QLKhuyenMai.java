@@ -100,8 +100,41 @@ public class QLKhuyenMai extends javax.swing.JPanel {
         }
 
     }
-    
+    //--thêm
+     public void hienTHâ2i() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) JBang.getModel();
+            model.setRowCount(0);
+            List<KhuyenMaiViewModel> khuyenMai = khuyenMaiService.layDSKM();
+            for (KhuyenMaiViewModel km : khuyenMai) {
+                Object[] kms = new Object[]{
+                    km.getMaKhuyenMai(),
+                    km.getTenKhuyenMai(),
+                    km.getNgayBatDau(),
+                    km.getNgayKetThuc(),
+                    km.getGiamGia(),
+                    km.getTrangThai() == 1 ? "Hoạt động" : "Không hoạt động",};
+                model.addRow(kms);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QLKhuyenMai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
     public KhuyenMaiViewModel layTT() {
+        
+        String maKM = txtMaKM.getText();
+        String tenCT = txtTenChuongTrinh.getText();
+        String maGG = txtMucGiamGia.getText();
+        String ngayBD = txtNgayBatDau.getText();
+        String ngayKT = txtNgayKetThuc.getText();
+      
+
+        KhuyenMaiViewModel khuyenMai = new KhuyenMaiViewModel(Integer.parseInt(maKM), tenCT, ngayBD, ngayKT, Integer.parseInt(maGG), 1);
+        return khuyenMai;
+    }
+    
+    public KhuyenMaiViewModel layTT234() {
         
         String maKM = txtMaKM.getText();
         String tenCT = txtTenChuongTrinh.getText();
@@ -115,6 +148,26 @@ public class QLKhuyenMai extends javax.swing.JPanel {
     }
 
     public void fill() {
+        int index = JBang.getSelectedRow();
+        String maKM = JBang.getValueAt(index, 0).toString();
+        String tenKM = JBang.getValueAt(index, 1).toString();
+        String ngayBD = JBang.getValueAt(index, 2).toString();
+        String ngayKT = JBang.getValueAt(index, 3).toString();
+        String giamGia = JBang.getValueAt(index, 4).toString();
+        
+        
+
+        txtMaKM.setText(maKM);
+        txtTenChuongTrinh.setText(tenKM);
+        
+        txtNgayBatDau.setText(ngayBD);
+        txtNgayKetThuc.setText(ngayKT);
+        txtMucGiamGia.setText(giamGia);
+       
+    }
+    
+    
+    public void fill123() {
         int index = JBang.getSelectedRow();
         String maKM = JBang.getValueAt(index, 0).toString();
         String tenKM = JBang.getValueAt(index, 1).toString();

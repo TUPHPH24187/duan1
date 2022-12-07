@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface TraHangImpl {
    List<TraHang> getList();
-   public boolean traHang(TraHang traHang);
+   public boolean traHang(TraHang traHang,String MaHD);
 }

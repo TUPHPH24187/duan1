@@ -30,8 +30,8 @@ private TraHangRepositori trahangRepository = new TraHangRepositori();
     }
 
     @Override
-    public boolean traHang(TraHang traHang) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean traHang(TraHang traHang, String MaHD) {
+       return trahangRepository.Sua(traHang, MaHD);
     }
 
 }

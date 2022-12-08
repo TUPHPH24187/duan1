@@ -9,6 +9,7 @@ import DomainModels.KhachHangModel;
 import DomainModels.TraHang;
 import Service.impl.TraHangImpl;
 import Services.TraHangService;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -53,7 +54,7 @@ private Services.KhachHangService service = new Services.KhachHangService();
 
         }
         //đổ dữ liệu vào bảng
-        DefaultTableModel model = (DefaultTableModel) tb_bangHoaDon.getModel();
+        DefaultTableModel model = (DefaultTableModel) tb_bangHT.getModel();
         model.setColumnCount(0); // xóa cột
         model.addColumn("Mã hóa đơn");
         model.addColumn("Mã nhân viên");
@@ -72,7 +73,7 @@ private Services.KhachHangService service = new Services.KhachHangService();
         }
 }
 public void loatTabel(){
-        defaultTableModel = (DefaultTableModel) tb_bangHoanTra.getModel();
+        defaultTableModel = (DefaultTableModel) tb_bangHT.getModel();
         defaultTableModel.setRowCount(0);
         List<TraHang> ms = hangImpl.getList();
         for (TraHang m : ms) {
@@ -81,6 +82,24 @@ public void loatTabel(){
         });
     }
     }
+public void loatThangDauTien(){
+        int index = 0;
+        txt_khachHang.setText(tb_bangHT.getValueAt(index, 0).toString());
+        txt_maHD.setText(tb_bangHT.getValueAt(index, 1).toString());
+        txt_TDTT.setText(tb_bangHT.getValueAt(index, 2).toString());
+    }
+public TraHang laydulieu (){
+       
+       String maHD = txt_maHD.getText();
+       String khachHang = txt_khachHang.getText();
+       
+        
+        
+        
+        return new TraHang(khachHang, WIDTH, BigDecimal.TEN, khachHang, khachHang);
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,28 +112,28 @@ public void loatTabel(){
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb_bangHoaDon = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        txt_timkiem = new javax.swing.JTextField();
-        cbb_nam = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tb_bangHDCT = new javax.swing.JTable();
+        jTable4 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tb_bangHoanTra = new javax.swing.JTable();
+        tb_bangHT = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btn_hoanTra = new javax.swing.JButton();
-        txt_khachhang = new javax.swing.JTextField();
+        txt_khachHang = new javax.swing.JTextField();
         txt_maHD = new javax.swing.JTextField();
         txt_TDTT = new javax.swing.JTextField();
-        txt_NTH = new javax.swing.JTextField();
+        txt_NTh = new javax.swing.JTextField();
         txt_TTHT = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
 
@@ -125,7 +144,7 @@ public void loatTabel(){
 
         jPanel1.setBackground(new java.awt.Color(51, 255, 204));
 
-        tb_bangHoaDon.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -136,17 +155,17 @@ public void loatTabel(){
                 "Ma HD", "Ma KH", "Ma NV", "Ma HTTT", "NgayKhoiTao", "TienShip	TienShip", "GhiChu", "TrangThai"
             }
         ));
-        jScrollPane1.setViewportView(tb_bangHoaDon);
+        jScrollPane1.setViewportView(jTable1);
 
         jLabel2.setText("Tim Kiem");
 
-        txt_timkiem.addActionListener(new java.awt.event.ActionListener() {
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_timkiemActionPerformed(evt);
+                jTextField1ActionPerformed(evt);
             }
         });
 
-        cbb_nam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -158,9 +177,9 @@ public void loatTabel(){
                         .addGap(19, 19, 19)
                         .addComponent(jLabel2)
                         .addGap(33, 33, 33)
-                        .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(136, 136, 136)
-                        .addComponent(cbb_nam, 0, 132, Short.MAX_VALUE))
+                        .addComponent(jComboBox1, 0, 132, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1)))
@@ -171,9 +190,9 @@ public void loatTabel(){
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(cbb_nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(117, 117, 117))
@@ -184,7 +203,7 @@ public void loatTabel(){
 
         jPanel2.setBackground(new java.awt.Color(51, 255, 204));
 
-        tb_bangHDCT.setModel(new javax.swing.table.DefaultTableModel(
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -195,7 +214,7 @@ public void loatTabel(){
                 "Ma HDCT", "Ma HD", "Ma CTSP", "So Luong", "Gia", "Giam Gia", "Thanh Tien", "Ghi Chu", "Trang Thai"
             }
         ));
-        jScrollPane4.setViewportView(tb_bangHDCT);
+        jScrollPane4.setViewportView(jTable4);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -219,7 +238,7 @@ public void loatTabel(){
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        tb_bangHoanTra.setModel(new javax.swing.table.DefaultTableModel(
+        tb_bangHT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -230,7 +249,16 @@ public void loatTabel(){
                 "Khach Hang", "Ma HD", "Tien Da Thanh Toan", "Ngay Tra Hang", "Tong Tien Hoan Tra"
             }
         ));
-        jScrollPane3.setViewportView(tb_bangHoanTra);
+        tb_bangHT.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tb_bangHTAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane3.setViewportView(tb_bangHT);
 
         jLabel5.setText("Khach Hang");
 
@@ -243,6 +271,11 @@ public void loatTabel(){
         jLabel9.setText("Tông tien hoan tra");
 
         btn_hoanTra.setText("Hoan Tra");
+        btn_hoanTra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_hoanTraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -263,10 +296,10 @@ public void loatTabel(){
                 .addGap(33, 33, 33)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txt_TTHT)
-                    .addComponent(txt_NTH)
+                    .addComponent(txt_NTh)
                     .addComponent(txt_TDTT, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
                     .addComponent(txt_maHD)
-                    .addComponent(txt_khachhang))
+                    .addComponent(txt_khachHang))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74))
@@ -277,7 +310,7 @@ public void loatTabel(){
                 .addGap(28, 28, 28)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txt_khachhang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_khachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -289,7 +322,7 @@ public void loatTabel(){
                 .addGap(23, 23, 23)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txt_NTH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_NTh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -361,10 +394,31 @@ public void loatTabel(){
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    private void tb_bangHTAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tb_bangHTAncestorAdded
+        // TODO add your handling code here:
+        int index = tb_bangHT.getRowCount();
+        txt_khachHang.setText(tb_bangHT.getValueAt(index, 0).toString());
+        txt_maHD.setText(tb_bangHT.getValueAt(index, 1).toString());
+        txt_TDTT.setText(tb_bangHT.getValueAt(index, 2).toString());
+        txt_NTh.setText(tb_bangHT.getValueAt(index, 3).toString());
+        txt_TTHT.setText(tb_bangHT.getValueAt(index, 4).toString());
+        
+        
+    }//GEN-LAST:event_tb_bangHTAncestorAdded
+
+    private void btn_hoanTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hoanTraActionPerformed
+        // TODO add your handling code here:
+        TraHang th = laydulieu();
+        
+        hangImpl.equals(th);
+        loatTabel();
+        
+    }//GEN-LAST:event_btn_hoanTraActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_hoanTra;
-    private javax.swing.JComboBox<String> cbb_nam;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -381,14 +435,14 @@ public void loatTabel(){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable tb_bangHDCT;
-    private javax.swing.JTable tb_bangHoaDon;
-    private javax.swing.JTable tb_bangHoanTra;
-    private javax.swing.JTextField txt_NTH;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tb_bangHT;
+    private javax.swing.JTextField txt_NTh;
     private javax.swing.JTextField txt_TDTT;
     private javax.swing.JTextField txt_TTHT;
-    private javax.swing.JTextField txt_khachhang;
+    private javax.swing.JTextField txt_khachHang;
     private javax.swing.JTextField txt_maHD;
-    private javax.swing.JTextField txt_timkiem;
     // End of variables declaration//GEN-END:variables
 }

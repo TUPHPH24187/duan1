@@ -248,9 +248,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tbMain.setBackground(new java.awt.Color(153, 255, 153));
         tbMain.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tbMain.setForeground(new java.awt.Color(153, 255, 153));
         tbMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -310,11 +308,11 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnKhachHangActionPerformed
 
     private void btnTraHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraHangActionPerformed
-        if (qLTraHang == null) {
-            qLTraHang = new QLTraHang();
-            tbMain.addTab("Quản lý trả hàng", qLTraHang);
-        }
-        tbMain.setSelectedComponent(qLTraHang);
+//        if (qLTraHang == null) {
+//            qLTraHang = new QLTraHang();
+//            tbMain.addTab("Quản lý trả hàng", qLTraHang);
+//        }
+//        tbMain.setSelectedComponent(qLTraHang);
     }//GEN-LAST:event_btnTraHangActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed

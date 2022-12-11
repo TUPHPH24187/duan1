@@ -4,6 +4,12 @@
  */
 package Views;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import DomainModels.GioHangModel;
 import DomainModels.Hienthigannhat;
 import DomainModels.HoaDonChiTietModel;
@@ -11,12 +17,7 @@ import DomainModels.HoaDonMode;
 import DomainModels.KhachHangModel;
 import DomainModels.SanPhamModel;
 import DomainModels.giamGiamodel;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-
+import Services.KhachHangService;
 
 /**
  *
@@ -24,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HoaDon extends javax.swing.JFrame {
 
-    private Services.KhachHangService service = new Services.KhachHangService();
+    private KhachHangService service = new KhachHangService();
     DefaultTableModel model = new DefaultTableModel();
     List<KhachHangModel> list = new ArrayList<>();
 
@@ -751,16 +752,16 @@ public class HoaDon extends javax.swing.JFrame {
             if (txtMaKH_HD.getText().isBlank() || txtMaNV_HD.getText().isBlank()) {
                 JOptionPane.showMessageDialog(this, "Bạn phải nhập đầy đủ thông tin");
 
-//            } else if (date.getDate().isAfter(LocalDate.now())) {
-//                JOptionPane.showMessageDialog(this, "Ngày tạo phải nhỏ hơn hoặc bằng ngày hiện tại");
-//                return;
+            } else if (date.getDate().isAfter(LocalDate.now())) {
+                JOptionPane.showMessageDialog(this, "Ngày tạo phải nhỏ hơn hoặc bằng ngày hiện tại");
+                return;
             } else {
                 HD.setMaNV(txtMaNV_HD.getText());
                 if (txt_ghiChu.getText().isBlank()) {
                     HD.setGhiChu("null");
                 }
                 HD.setGhiChu(txt_ghiChu.getText());
-                HD.setNgayTao(String.valueOf(LocalDate.now()));
+                HD.setNgayTao(date.getDateStringOrEmptyString());
                 HD.setmKH(txtMaKH_HD.getText());
 
                 if (rdo_tienMat.isSelected()) {

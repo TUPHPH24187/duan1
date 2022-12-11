@@ -308,11 +308,11 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnKhachHangActionPerformed
 
     private void btnTraHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraHangActionPerformed
-//        if (qLTraHang == null) {
-//            qLTraHang = new QLTraHang();
-//            tbMain.addTab("Quản lý trả hàng", qLTraHang);
-//        }
-//        tbMain.setSelectedComponent(qLTraHang);
+        if (qLTraHang == null) {
+            qLTraHang = new QLTraHang();
+            tbMain.addTab("Quản lý trả hàng", qLTraHang);
+        }
+        tbMain.setSelectedComponent(qLTraHang);
     }//GEN-LAST:event_btnTraHangActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed

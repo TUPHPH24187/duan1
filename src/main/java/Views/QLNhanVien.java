@@ -255,8 +255,6 @@ public class QLNhanVien extends javax.swing.JPanel {
 
         jLabel3.setText("Ma nv:");
 
-        txtManv.setEnabled(false);
-
         jLabel9.setText("Ngày sinh:");
 
         txtTen.addActionListener(new java.awt.event.ActionListener() {

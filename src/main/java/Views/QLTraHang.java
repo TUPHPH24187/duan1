@@ -15,25 +15,28 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author concu
  */
 public class QLTraHang extends javax.swing.JPanel {
+
     private DefaultTableModel defaultTableModel;
-private TraHangImpl hangImpl = new TraHangService();
-private Services.KhachHangService service = new Services.KhachHangService();
+    private TraHangImpl hangImpl = new TraHangService();
+    private Services.KhachHangService service = new Services.KhachHangService();
     DefaultTableModel model = new DefaultTableModel();
     List<KhachHangModel> list = new ArrayList<>();
+
     /**
      * Creates new form QLTraHang1
      */
     public QLTraHang() {
         initComponents();
+        loadtabe();
     }
-void loadtabe() {
-    List<Hienthigannhat> HTDS = service.HienThiHD();
+
+    void loadtabe() {
+        List<Hienthigannhat> HTDS = service.HienThiHD();
 
         //Kiểm tra danh sách
         if (HTDS == null) {
@@ -46,7 +49,7 @@ void loadtabe() {
 
         }
         //đổ dữ liệu vào bảng
-        DefaultTableModel model = (DefaultTableModel) tb_HDCT.getModel();
+        DefaultTableModel model = (DefaultTableModel) tb_bangHT.getModel();
         model.setColumnCount(0); // xóa cột
         model.addColumn("Mã hóa đơn");
         model.addColumn("Mã nhân viên");
@@ -63,34 +66,35 @@ void loadtabe() {
                 ht.getGhiChu(), ht.TrangThaiHDGH()};
             model.addRow(row);
         }
-}
-public void loatTabel(){
+    }
+
+    public void loatTabel() {
         defaultTableModel = (DefaultTableModel) tb_HDCT.getModel();
         defaultTableModel.setRowCount(0);
         List<TraHang> ms = hangImpl.getList();
         for (TraHang m : ms) {
-        defaultTableModel.addRow(new Object[]{
-            m.getTenkhachhang(),m.getMaHD(),m.getNgayTraHang(),m.getTienDaThanhToan(),m.getTongTien()
-        });
+            defaultTableModel.addRow(new Object[]{
+                m.getTenkhachhang(), m.getMaHD(), m.getNgayTraHang(), m.getTienDaThanhToan(), m.getTongTien()
+            });
+        }
     }
-    }
-public void loatThangDauTien(){
+
+    public void loatThangDauTien() {
         int index = 0;
         txt_khachHang.setText(tb_HDCT.getValueAt(index, 0).toString());
         txt_maHD.setText(tb_HDCT.getValueAt(index, 1).toString());
         txt_TDTT.setText(tb_HDCT.getValueAt(index, 2).toString());
     }
-public TraHang laydulieu (){
-       
-       String maHD = txt_maHD.getText();
-       String khachHang = txt_khachHang.getText();
-       
-        
-        
-        
+
+    public TraHang laydulieu() {
+
+        String maHD = txt_maHD.getText();
+        String khachHang = txt_khachHang.getText();
+
         return new TraHang(khachHang, WIDTH, BigDecimal.TEN, khachHang, khachHang);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

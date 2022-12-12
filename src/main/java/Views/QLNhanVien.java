@@ -524,7 +524,7 @@ public class QLNhanVien extends javax.swing.JPanel {
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         // TODO add your handling code here:
-
+        txtManv.setText("");
         txtTen.setText("");
         txtns.setText("");
         txtSDT.setText("");
@@ -533,6 +533,7 @@ public class QLNhanVien extends javax.swing.JPanel {
         txtEmail.setText("");
         txtChucVu.setText("");
         
+        txtManv.setBackground(Color.white);
         txtTen.setBackground(Color.white);
         txtns.setBackground(Color.white);
         txtSDT.setBackground(Color.white);

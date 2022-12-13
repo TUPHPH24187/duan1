@@ -11,6 +11,7 @@ import DomainModels.HoaDonMode;
 import DomainModels.KhachHangModel;
 import DomainModels.SanPhamModel;
 import DomainModels.giamGiamodel;
+import DomainModels.yeuCaumodel;
 import Repositories.KhachHang_repo;
 import java.sql.SQLException;
 import java.util.List;
@@ -111,8 +112,7 @@ public class KhachHangService {
             return null;
         }
     }
-    
-    
+
     public List<GioHangModel> listGioHang(String maHDtim) {
         try {
             return repo.listGioHang(maHDtim);
@@ -121,12 +121,11 @@ public class KhachHangService {
             return null;
         }
     }
-    
-    public void deleteHDCT(String maHDCT)throws SQLException{
-       repo.deleteHDCT(maHDCT);
+
+    public void deleteHDCT(String maHDCT) throws SQLException {
+        repo.deleteHDCT(maHDCT);
     }
-    
-    
+
     public List<GioHangModel> tinhTong(String maHDtim) {
         try {
             return repo.tinhTong(maHDtim);
@@ -135,13 +134,26 @@ public class KhachHangService {
             return null;
         }
     }
-    
-    
-     public void thanhtoanthanhcong(String maHD) throws SQLException {
+
+    public void thanhtoanthanhcong(String maHD) throws SQLException {
         repo.thanhToanthanhcong(maHD);
     }
- public void suaSLSP(String maHD,String maSP)throws SQLException{
-       repo.suaSlSP(maHD, maSP);
+
+    public void suaSLSP(int soLuongXoa, String maSP) throws SQLException {
+        repo.suaSlSP(soLuongXoa, maSP);
+    }
+
+    public void themSLSP(int soLuongThem, String maSP) throws SQLException {
+        repo.ThemSlSP(soLuongThem, maSP);
+    }
+
+    public List<yeuCaumodel> yeuCau(String taiKhoan, String MatKhau) {
+        try {
+            return repo.yeuCau(taiKhoan, MatKhau);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
  
 }

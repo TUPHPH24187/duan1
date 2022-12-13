@@ -11,6 +11,7 @@ import DomainModels.HoaDonMode;
 import DomainModels.KhachHangModel;
 import DomainModels.SanPhamModel;
 import DomainModels.giamGiamodel;
+import DomainModels.yeuCaumodel;
 import Utilities.DBConnection;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.math.BigDecimal;
@@ -315,7 +316,7 @@ public class KhachHang_repo {
 
     public List<giamGiamodel> listGiamGia() throws SQLException {
         List<giamGiamodel> GG = new ArrayList();
-        String sql = "select makhuyenmai, tenkhuyenmai, mucgiamgia from khuyenmai";
+        String sql = "select makhuyenmai, tenkhuyenmai, Mucgiamgia from khuyenmai";
         Connection con = DBConnection.openDbConnection();
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -340,7 +341,7 @@ public class KhachHang_repo {
 
     public List<GioHangModel> listGioHang(String maHDtim) throws SQLException {
         List<GioHangModel> GH = new ArrayList();
-        String sql = "select HoaDonchitiet.MaHD,Chitietsanpham.tenCTSP,HoaDonChiTiet.SoLuong, tenkichthuoc,giaban,tenkhuyenmai, (giaban*(100-mucgiamgia))/100 as 'Giadagiam',maHDCT  from hoadonchitiet join chitietsanpham on hoadonchitiet.maCTSP = chitietsanpham.MaCTSP\n"
+        String sql = "select HoaDonchitiet.MaHD,Chitietsanpham.tenCTSP,HoaDonChiTiet.SoLuong, tenkichthuoc,giaban,tenkhuyenmai, (giaban*(100- khuyenmai.Mucgiamgia))/100 as 'Giadagiam',maHDCT,ChiTietSanPham.maCTSP  from hoadonchitiet join chitietsanpham on hoadonchitiet.maCTSP = chitietsanpham.MaCTSP\n"
                 + "							join khuyenmai on hoadonchitiet.makhuyenmai = khuyenmai.makhuyenmai \n"
                 + "							join kichthuoc on chitietsanpham.makichthuoc = kichthuoc.makichthuoc where hoadonchitiet.maHD = ?";
         Connection con = DBConnection.openDbConnection();
@@ -356,6 +357,7 @@ public class KhachHang_repo {
             String tenKhuyenmai = rs.getString(6);
             double giaDaGiam = rs.getDouble(7);
             String maHDCT = rs.getString(8);
+            String maCTSP = rs.getString(9);
 
             GioHangModel gh = new GioHangModel();
             gh.setGiaBan(giaBan);
@@ -366,6 +368,7 @@ public class KhachHang_repo {
             gh.setTenkhuyemai(tenKhuyenmai);
             gh.setTenkichthuoc(tenKichThuoc);
             gh.setMaHDCT(maHDCT);
+            gh.setMaSP(maCTSP);
 
             GH.add(gh);
 
@@ -389,11 +392,11 @@ public class KhachHang_repo {
 
     public List<GioHangModel> tinhTong(String maHDtim) throws SQLException {
         List<GioHangModel> GH = new ArrayList();
-        String sql = " select HoaDonChiTiet.maHD,  sum( ((giaban*(100 - mucgiamgia))/100)*HoaDonChiTiet.SoLuong) from hoadonchitiet join chitietsanpham on hoadonchitiet.maCTSP = chitietsanpham.MaCTSP\n" +
-"                						join khuyenmai on hoadonchitiet.makhuyenmai = khuyenmai.makhuyenmai \n" +
-"                						join kichthuoc on chitietsanpham.makichthuoc = kichthuoc.makichthuoc  \n" +
-"										where HoaDonChiTiet.MaHD = ?\n" +
-"										group by HoaDonChiTiet.MaHD";
+        String sql = " select HoaDonChiTiet.maHD,  sum( ((giaban*(100 - khuyenmai.Mucgiamgia))/100)*HoaDonChiTiet.SoLuong) from hoadonchitiet join chitietsanpham on hoadonchitiet.maCTSP = chitietsanpham.MaCTSP\n"
+                + "                						join khuyenmai on hoadonchitiet.makhuyenmai = khuyenmai.makhuyenmai \n"
+                + "                						join kichthuoc on chitietsanpham.makichthuoc = kichthuoc.makichthuoc  \n"
+                + "										where HoaDonChiTiet.MaHD = ?\n"
+                + "										group by HoaDonChiTiet.MaHD";
         Connection con = DBConnection.openDbConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, maHDtim);
@@ -428,19 +431,52 @@ public class KhachHang_repo {
 
     }
 
-    public void suaSlSP(String maHD, String maSp) throws SQLException {
-        String sql = "DECLARE @tongsp INT\n"
-                + "SET @tongsp = (select sum(SoLuong) from HoaDonChiTiet where MaHD = ? and MaCTSP = ? group by MaHD,SoLuong,MaCTSP)\n"
-                + "\n"
-                + "update ChiTietSanPham set SoLuong= SoLuong-@tongsp where maCTSP = ?";
+    public void suaSlSP(int soLuongXoa, String maSp) throws SQLException {
+        String sql = "update ChiTietSanPham set SoLuong= SoLuong- ? where maCTSP = ?";
         Connection con = DBConnection.openDbConnection();
         PreparedStatement pstmt = con.prepareStatement(sql);
-        pstmt.setString(1, maHD);
+        pstmt.setInt(1, soLuongXoa);
         pstmt.setString(2, maSp);
-        pstmt.setString(3, maSp);
+
         int aff = pstmt.executeUpdate();
         pstmt.close();
         con.close();
 
+    }
+
+    public void ThemSlSP(int soLuongthem, String maSp) throws SQLException {
+        String sql = "update ChiTietSanPham set SoLuong= SoLuong+ ? where maCTSP = ?";
+        Connection con = DBConnection.openDbConnection();
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setInt(1, soLuongthem);
+        pstmt.setString(2, maSp);
+
+        int aff = pstmt.executeUpdate();
+        pstmt.close();
+        con.close();
+
+    }
+
+    public List<yeuCaumodel> yeuCau(String Email, String MatKhau) throws SQLException {
+        List<yeuCaumodel> GG = new ArrayList();
+        String sql = "select ChucVu from NhanVien where Email like ? and MatKhau like ?";
+        Connection con = DBConnection.openDbConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, Email);
+        ps.setString(2, MatKhau);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+
+            int ChucVu = rs.getInt(1);
+            yeuCaumodel san = new yeuCaumodel();
+
+            san.setTrangThai(ChucVu);
+            GG.add(san);
+
+        }
+        rs.close();
+        ps.close();
+        con.close();
+        return GG;
     }
 }

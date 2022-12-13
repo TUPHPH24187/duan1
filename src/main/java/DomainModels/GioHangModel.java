@@ -9,7 +9,7 @@ package DomainModels;
  * @author DELL
  */
 public class GioHangModel {
-    private String maHDCT, maHD,tenSp, tenkichthuoc,tenkhuyemai;
+    private String maHDCT, maHD,tenSp, tenkichthuoc,tenkhuyemai,maSP;
     private double tongTien;
 
     public double getTongTien() {
@@ -22,6 +22,14 @@ public class GioHangModel {
 
     public GioHangModel(double tongTien) {
         this.tongTien = tongTien;
+    }
+
+    public String getMaSP() {
+        return maSP;
+    }
+
+    public void setMaSP(String maSP) {
+        this.maSP = maSP;
     }
 
     public GioHangModel(String maHDCT) {

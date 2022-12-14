@@ -113,7 +113,6 @@ public class QLSanPham extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbSanPham1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
 
         jLabel16.setForeground(new java.awt.Color(204, 0, 0));
         jLabel16.setText("(*)");
@@ -470,13 +469,6 @@ public class QLSanPham extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -494,9 +486,7 @@ public class QLSanPham extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1)
-                                        .addGap(70, 70, 70)))
+                                        .addGap(70, 365, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -524,18 +514,12 @@ public class QLSanPham extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(1, 1, 1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(1, 1, 1)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -734,7 +718,7 @@ public class QLSanPham extends javax.swing.JPanel {
                     return;
                 }
 
-                defaultTableModel = (DefaultTableModel) tbSanPham1.getModel();
+                defaultTableModel = (DefaultTableModel) tbSanPham.getModel();
                 defaultTableModel.setRowCount(0);
                 for (SanPhamModel ctsp : SP) {
                     defaultTableModel.addRow(new Object[]{
@@ -768,13 +752,6 @@ public class QLSanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbSanPham1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
    
     
     public ArrayList<ChiTietSanPham> listSanPham() {
@@ -782,7 +759,7 @@ public class QLSanPham extends javax.swing.JPanel {
     }
 
     private void timKiem(ArrayList<ChiTietSanPham> list) {
-        defaultTableModel = (DefaultTableModel) tbSanPham1.getModel();
+        defaultTableModel = (DefaultTableModel) tbSanPham.getModel();
         defaultTableModel.setRowCount(0);
         for (ChiTietSanPham ctsp : list) {
             if (ctsp.getMaCTSP().equals(txtSP.getText()) || ctsp.getTenCTSP().equals(txtSP.getText())) {
@@ -795,7 +772,7 @@ public class QLSanPham extends javax.swing.JPanel {
     }
 
     private void loadTable(ArrayList<ChiTietSanPham> list) {
-        defaultTableModel = (DefaultTableModel) tbSanPham.getModel();
+        defaultTableModel = (DefaultTableModel) tbSanPham1.getModel();
         defaultTableModel.setRowCount(0);
         for (ChiTietSanPham ctsp : list) {
             defaultTableModel.addRow(new Object[]{
@@ -846,7 +823,6 @@ public class QLSanPham extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbChatLieu;
     private javax.swing.JComboBox<String> cbSize;
     private javax.swing.JComboBox<String> cbXuatXu;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

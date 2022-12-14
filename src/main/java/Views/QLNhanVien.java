@@ -255,6 +255,8 @@ public class QLNhanVien extends javax.swing.JPanel {
 
         jLabel3.setText("Ma nv:");
 
+        txtManv.setEnabled(false);
+
         jLabel9.setText("Ngày sinh:");
 
         txtTen.addActionListener(new java.awt.event.ActionListener() {
@@ -311,9 +313,9 @@ public class QLNhanVien extends javax.swing.JPanel {
                                 .addComponent(rbNam)
                                 .addGap(40, 40, 40)
                                 .addComponent(rbNu))
-                            .addComponent(txtManv)
                             .addComponent(txtTen)
-                            .addComponent(txtns, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtns, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                            .addComponent(txtManv)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnThem)
                         .addGap(18, 18, 18)
@@ -438,17 +440,23 @@ public class QLNhanVien extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
 
-        StringBuilder nv = new StringBuilder();
+               StringBuilder nv = new StringBuilder();
 
-       
         DataValidator.vailidateEmpty(txtTen, nv, "Tên không được để trống");
         DataValidator.vailidateEmpty(txtns, nv, "Ngày sinh không được để trống");
         DataValidator.vailidateEmpty(txtSDT, nv, "Số điện thoại không được để trống");
         DataValidator.vailidateEmpty(txtDiaChi, nv, "Địa chỉ không được để trống");
-        DataValidator.vailidateEmpty(txtEmail, nv, "Email không được để trống");
-        DataValidator.vailidateEmpty(txtMatKhau, nv, "Mật khẩu không được để trống");
-        DataValidator.vailidateEmpty(txtChucVu, nv, "Chức vụ không được để trống");
-
+        DataValidator.vailidateEmpty(txtEmail, nv, "Email Không ĐƯƠC Đê Trông");
+        DataValidator.vailidateEmpty(txtMatKhau, nv, "Mât Khâu Không ĐƯƠC Đê Trông");
+        DataValidator.vailidateEmpty(txtChucVu, nv, "Chưc Vu Không ĐƯƠC Đê Trông");
+        
+        DataValidator.vailidatePhoneNumber(txtSDT, nv);
+        
+        try {
+            DataValidator.checkVailidateDate(txtns, nv);
+        } catch (ParseException ex) {
+            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (nv.length() > 0) {
             MessageDialogHelper.showErrorDialog(this, nv.toString(), "Lỗi");
             return;

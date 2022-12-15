@@ -42,6 +42,10 @@ public class XuatXu implements Serializable{
     public XuatXu() {
     }
 
+    public XuatXu(Integer MaXuatXu) {
+        this.MaXuatXu = MaXuatXu;
+    }
+    
     public XuatXu(Integer MaXuatXu, String TenXuatXu, int trangThai, List<ChiTietSanPham> listChiTietSanPham) {
         this.MaXuatXu = MaXuatXu;
         this.TenXuatXu = TenXuatXu;

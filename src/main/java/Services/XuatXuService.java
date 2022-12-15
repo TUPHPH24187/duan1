@@ -6,6 +6,7 @@ package Services;
 
 import DomainModels.XuatXu;
 import Repositories.XuatXuRepository;
+import java.sql.SQLException;
 
 /**
  *
@@ -20,5 +21,9 @@ public class XuatXuService {
         } else {
             return "Thêm thất bại";
         }
+    }
+    
+    public boolean XoaXuatXu(Integer maXX) throws SQLException {
+        return xxRepo.XoaXuatXu(maXX);
     }
 }

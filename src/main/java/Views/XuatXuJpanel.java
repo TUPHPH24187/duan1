@@ -10,7 +10,10 @@ import Helpers.MessageDialogHelper;
 import Service.impl.QuanLyChiTietSanPhamService;
 import Services.QuanLyChiTietSanPhamImpl;
 import Services.XuatXuService;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -61,6 +64,7 @@ public class XuatXuJpanel extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtMaXuatXu = new javax.swing.JTextField();
         txtTenXuatXu = new javax.swing.JTextField();
+        btnXoa3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,15 +110,19 @@ public class XuatXuJpanel extends javax.swing.JFrame {
 
         txtMaXuatXu.setEnabled(false);
 
+        btnXoa3.setText("Xóa");
+        btnXoa3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoa3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -128,11 +136,15 @@ public class XuatXuJpanel extends javax.swing.JFrame {
                                 .addComponent(rbKhonghoatdong))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtMaXuatXu, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                                .addComponent(txtTenXuatXu)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTenXuatXu))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnThem)
-                    .addComponent(btnThoat))
+                    .addComponent(btnThoat)
+                    .addComponent(btnXoa3)
+                    .addComponent(btnThem))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -150,14 +162,18 @@ public class XuatXuJpanel extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbHoatdong)
                     .addComponent(rbKhonghoatdong))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnThem)
-                        .addGap(229, 229, 229)
-                        .addComponent(btnThoat))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnXoa3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnThoat)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,6 +228,27 @@ public class XuatXuJpanel extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnThoatActionPerformed
 
+    private void btnXoa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa3ActionPerformed
+        try {
+            int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa không", "Xác nhận", JOptionPane.YES_NO_OPTION);
+
+            if (xacNhan == JOptionPane.YES_OPTION) {
+                // TODO add your handling code here:
+                int index = tbXuatXu.getSelectedRow();
+                String ma = tbXuatXu.getValueAt(index, 0).toString();
+                xxService.XoaXuatXu(Integer.parseInt(txtMaXuatXu.getText()));
+                JOptionPane.showMessageDialog(this, "Xóa thành công");
+                loadTable(quanLySanPhamService.getListXuatXu());
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChatLieuJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnXoa3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -251,6 +288,10 @@ public class XuatXuJpanel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThoat;
+    private javax.swing.JButton btnXoa;
+    private javax.swing.JButton btnXoa1;
+    private javax.swing.JButton btnXoa2;
+    private javax.swing.JButton btnXoa3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

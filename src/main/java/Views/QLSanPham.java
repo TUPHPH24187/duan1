@@ -587,39 +587,115 @@ public class QLSanPham extends javax.swing.JPanel {
             int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn thêm không", "Xác nhận", JOptionPane.YES_NO_OPTION);
 
             if (xacNhan == JOptionPane.YES_OPTION) {
-                if (Double.valueOf(giaBanS) <= 0) {
-                    JOptionPane.showMessageDialog(this, "Không được được để âm hoặc bằng 0");
+
+                // giá bán
+                try {
+                    if (Double.valueOf(giaBanS) < 0) {
+                        JOptionPane.showMessageDialog(this, "Không được được để âm");
+                        this.txtGiaBan.setText("");
+                        return;
+                    } else if (giaBanS < giaNhapS) {
+                        JOptionPane.showMessageDialog(this, "Giá bán không được nhỏ hơn giá nhập");
+                        return;
+
+                    } else if (Double.valueOf(giaBanS) < 1000) {
+                        JOptionPane.showMessageDialog(this, "Không được được để giá bán quá nhỏ");
+                        this.txtGiaBan.setText("");
+                        return;
+
+                    } else if (Double.valueOf(giaBanS) > 10000000) {
+                        JOptionPane.showMessageDialog(this, "Không được được để giá bán quá lớn");
+                        this.txtGiaBan.setText("");
+                        return;
+                    }
+                    if (!giaban.matches("\\d*+\\.\\d*||\\d*")) {
+                        JOptionPane.showMessageDialog(this, "Không được để khoảng trắng");
+                        this.txtGiaBan.setText("");
+                        return;
+                    }
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Không đúng định dạng");
                     this.txtGiaBan.setText("");
-                } else if (Double.valueOf(soLuongStr) <= 0) {
-                    JOptionPane.showMessageDialog(this, "Không được được để âm hoặc bằng 0");
+                    return;
+                }
+
+                // giá nhập
+                try {
+                    if (Double.valueOf(giaNhapS) < 0) {
+                        JOptionPane.showMessageDialog(this, "Không được được để âm");
+                        this.txtGiaNhap.setText("");
+                        return;
+                    } else if (Double.valueOf(giaNhapS) < 1000) {
+                        JOptionPane.showMessageDialog(this, "Không được được để giá nhập quá nhỏ");
+                        this.txtGiaNhap.setText("");
+                        return;
+                    } else if (Double.valueOf(giaNhapS) > 10000000) {
+                        JOptionPane.showMessageDialog(this, "Không được được để giá nhập quá lớn");
+                        this.txtGiaNhap.setText("");
+                        return;
+                    } else if (!giaNhap.matches("\\d*+\\.\\d*||\\d*")) {
+                        JOptionPane.showMessageDialog(this, "Không được để khoảng trắng");
+                        this.txtGiaNhap.setText("");
+                        return;
+                    }
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Không đúng định dạng");
+                    this.txtGiaNhap.setText("");
+                    return;
+                }
+                // số lượng
+                try {
+                    if (Double.valueOf(soLuongStr) < 0) {
+                        JOptionPane.showMessageDialog(this, "Không được để số lượng âm");
+                        this.txtSoLuong.setText("");
+                        return;
+                    } else if (Double.valueOf(soLuongStr) < 1000) {
+                        JOptionPane.showMessageDialog(this, "Không được được để số lượng quá nhỏ");
+                        this.txtSoLuong.setText("");
+                        return;
+                    } else if (Double.valueOf(soLuongStr) > 1000000) {
+                        JOptionPane.showMessageDialog(this, "Không được được để số lượng quá lớn");
+                        this.txtSoLuong.setText("");
+                        return;
+                    } else if (!giaban.matches("\\d*+\\.\\d*||\\d*")) {
+                        JOptionPane.showMessageDialog(this, "Không được để khoảng trắng");
+                        return;
+                    } else if (txtSoLuong.getText().matches(regex)) {
+                        JOptionPane.showMessageDialog(this, "Số lượng phải là số nguyên dương");
+                        this.txtSoLuong.setText("");
+                        return;
+
+                    }
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Không đúng định dạng");
                     this.txtSoLuong.setText("");
-                } else if (txtSoLuong.getText().matches(regex)) {
-                    JOptionPane.showMessageDialog(this, "Số lượng phải là số nguyên dương");
                     return;
-                } else if (giaBanS < giaNhapS) {
-                    JOptionPane.showMessageDialog(this, "Giá bán không được nhỏ hơn giá nhập");
-                    return;
-                } else if (Double.valueOf(giamGia) <= 0) {
+                }
+
+                // giảm giá
+                if (Double.valueOf(giamGia) <= 0) {
                     JOptionPane.showMessageDialog(this, "Không được được để âm hoặc bằng 0");
                     this.txtGiamGia.setText("");
 
-                } else {
-                    
-                    String result = quanLySanPhamService.addCTSanPham(ctsp);
-                    JOptionPane.showMessageDialog(this, result);
-                    Collections.sort(listSanPham(),(a,b)-> (int)(b.getMaCTSP()- a.getMaCTSP()));             
-                    loadTable(quanLySanPhamService.getListChiTietSanPham());
                 }
+
+                String result = quanLySanPhamService.addCTSanPham(ctsp);
+                JOptionPane.showMessageDialog(this, result);
+                Collections.sort(listSanPham(), (a, b) -> (int) (b.getMaCTSP() - a.getMaCTSP()));
+                loadTable(quanLySanPhamService.getListChiTietSanPham());
 
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Không đúng định dạng");
-            this.txtSoLuong.setText("");
-            this.txtGiaBan.setText("");
-            this.txtGiamGia.setText("");
-            this.txtTenGiay.setText("");
-            this.txtGiaNhap.setText("");
+//            this.txtSoLuong.setText("");
+//            this.txtGiaBan.setText("");
+//            this.txtGiamGia.setText("");
+//            this.txtTenGiay.setText("");
+//            this.txtGiaNhap.setText("");
         }
 
 
@@ -638,18 +714,20 @@ public class QLSanPham extends javax.swing.JPanel {
 
             if (xacNhan == JOptionPane.YES_OPTION) {
                 // TODO add your handling code here:
-                int index = tbSanPham.getSelectedRow();
-                String ma = tbSanPham.getValueAt(index, 0).toString();
+                int index = tbSanPham1.getSelectedRow();
+                String ma = tbSanPham1.getValueAt(index, 0).toString();
                 quanLySanPhamService.XoaSanPham(Integer.parseInt(txtMaGiay.getText()));
                 JOptionPane.showMessageDialog(this, "Xóa thành công");
                 loadTable(quanLySanPhamService.getListChiTietSanPham());
 
             } else {
                 JOptionPane.showMessageDialog(null, "Xóa thất bại");
+
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(QLSanPham.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QLSanPham.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
 
@@ -749,17 +827,51 @@ public class QLSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemChatLieuActionPerformed
 
     private void tbSanPham1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSanPham1MouseClicked
-        // TODO add your handling code here:
+        int index = tbSanPham1.getSelectedRow();
+
+        String MaGiay = this.tbSanPham1.getValueAt(index, 0).toString();
+
+        String TenGiay = tbSanPham1.getValueAt(index, 1).toString();
+
+        String xuatXu = tbSanPham1.getValueAt(index, 2).toString();
+
+        String kichThuoc = tbSanPham1.getValueAt(index, 3).toString();
+
+        String ChatLieu = tbSanPham1.getValueAt(index, 4).toString();
+
+        String soLuong = tbSanPham1.getValueAt(index, 5).toString();
+
+        String giaBan = tbSanPham1.getValueAt(index, 6).toString();
+
+        String giaNhap = tbSanPham1.getValueAt(index, 7).toString();
+
+        String giamGia = tbSanPham1.getValueAt(index, 8).toString();
+
+        String TrangThai = tbSanPham1.getValueAt(index, 9).toString();
+
+        txtMaGiay.setText(MaGiay);
+        txtTenGiay.setText(TenGiay);
+        txtSoLuong.setText(soLuong);
+        txtGiaBan.setText(giaBan);
+        txtGiaNhap.setText(giaNhap);
+        txtGiamGia.setText(giamGia);
+
+        if (TrangThai.equalsIgnoreCase("Hoạt động")) {
+            rbHoatDong.setSelected(true);
+            rbKhongHoatDong.setSelected(false);
+        } else {
+
+            rbKhongHoatDong.setSelected(true);
+            rbHoatDong.setSelected(false);
+        }
     }//GEN-LAST:event_tbSanPham1MouseClicked
 
-   
-    
     public ArrayList<ChiTietSanPham> listSanPham() {
         return quanLySanPhamService.getListChiTietSanPham();
     }
 
     private void timKiem(ArrayList<ChiTietSanPham> list) {
-        defaultTableModel = (DefaultTableModel) tbSanPham1.getModel();
+        defaultTableModel = (DefaultTableModel) tbSanPham.getModel();
         defaultTableModel.setRowCount(0);
         for (ChiTietSanPham ctsp : list) {
             if (ctsp.getMaCTSP().equals(txtSP.getText()) || ctsp.getTenCTSP().equals(txtSP.getText())) {
@@ -772,7 +884,7 @@ public class QLSanPham extends javax.swing.JPanel {
     }
 
     private void loadTable(ArrayList<ChiTietSanPham> list) {
-        defaultTableModel = (DefaultTableModel) tbSanPham.getModel();
+        defaultTableModel = (DefaultTableModel) tbSanPham1.getModel();
         defaultTableModel.setRowCount(0);
         for (ChiTietSanPham ctsp : list) {
             defaultTableModel.addRow(new Object[]{

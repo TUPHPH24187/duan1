@@ -1808,7 +1808,7 @@ public class QLGiaoDich extends javax.swing.JPanel {
     }//GEN-LAST:event_tblGiamGiaMouseClicked
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void txtTimKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKHActionPerformed

@@ -9,6 +9,11 @@ package Repositories;
 import Utilities.DBConnection;
 import java.util.ArrayList;
 import DomainModels.XuatXu;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -38,6 +43,36 @@ public class XuatXuRepository {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public List<XuatXu> layXuatXu() throws SQLException {
+        List<XuatXu> ChatLieus = new ArrayList<>();
+        Connection connection = DBConnection.openDbConnection();
+        String sql = "Select * from XuatXu where MaXuatXu = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            Integer MaXX = rs.getInt(1);
+            
+            XuatXu xx = new XuatXu(MaXX);
+            ChatLieus.add(xx);
+        }
+        return ChatLieus;
+    }
+    
+    
+    public boolean XoaXuatXu(Integer MaXuatXu) throws SQLException{
+        Connection connection = DBConnection.openDbConnection();
+        String sql = "Delete from XuatXu where MaXuatXu = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, MaXuatXu);
+
+        int index = statement.executeUpdate();
+        if (index == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
     
 }

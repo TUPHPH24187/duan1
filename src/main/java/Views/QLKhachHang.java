@@ -428,6 +428,7 @@ public class QLKhachHang extends javax.swing.JPanel {
                     hienTHi();
                 } else {
                     JOptionPane.showMessageDialog(this, "Thêm thất bại");
+                    hienTHi();
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
@@ -449,9 +450,14 @@ public class QLKhachHang extends javax.swing.JPanel {
                 // TODO add your handling code here:
                 int index = JBang.getSelectedRow();
                 String ma = JBang.getValueAt(index, 0).toString();
-                quanLyKhachHangSevice.XoaKhachHang(txtMaKH.getText());
+                if(quanLyKhachHangSevice.XoaKhachHang(txtMaKH.getText())){                 
                 JOptionPane.showMessageDialog(this, "Xóa thành công");
                 hienTHi();
+                }else{
+                     JOptionPane.showMessageDialog(this, "Vui Lòng CHọn Dữ Liệu Muốn Xóa");
+                     hienTHi();
+                }
+                
             } catch (SQLException ex) {
                 Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -475,7 +481,7 @@ public class QLKhachHang extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Sửa thành công");
                     hienTHi();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Sửa thất bại");
+                    JOptionPane.showMessageDialog(this, "Vui lòng chọn dữ liệu muốn sửa");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);

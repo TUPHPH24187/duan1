@@ -207,7 +207,7 @@ public class QLKhachHang extends javax.swing.JPanel {
         buttonGroup1.add(rbNu);
         rbNu.setText("Nữ");
 
-        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", " " }));
         cbbTrangThai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbTrangThaiActionPerformed(evt);

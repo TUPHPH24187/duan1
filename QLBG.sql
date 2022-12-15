@@ -28,7 +28,7 @@ create table NhanVien (
 	DiaChi nvarchar(200) ,
 	Email nvarchar(50) ,
 	MatKhau varchar(16),
-	ChucVu nvarchar(20) ,
+	ChucVu Smallint ,
 	TrangThai Smallint ,
 	
 )

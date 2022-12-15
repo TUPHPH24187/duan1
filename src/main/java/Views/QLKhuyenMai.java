@@ -127,8 +127,8 @@ public class QLKhuyenMai extends javax.swing.JPanel {
         String maKM = txtMaKM.getText();
         String tenCT = txtTen.getText();
         String maGG = txtMuc.getText();
-        String ngayBD = dateBD.getText();
-        String ngayKT = dateKT.getText();
+        String ngayBD = dateBD.getDateStringOrEmptyString();
+        String ngayKT = dateKT.getDateStringOrEmptyString();
       
 
         KhuyenMaiViewModel khuyenMai = new KhuyenMaiViewModel(Integer.parseInt(maKM), tenCT, ngayBD, ngayKT, Integer.parseInt(maGG), 1);

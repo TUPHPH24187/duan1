@@ -88,7 +88,7 @@ public class QLKhachHang extends javax.swing.JPanel {
         txtNgaySinh.setText(ngaySinh);
         if (gioiTinh.contains("1")) {
             rbNam.setSelected(true);
-                        rbNu.setSelected(false);
+            rbNu.setSelected(false);
         } else {
             rbNam.setSelected(false);
             rbNu.setSelected(true);
@@ -98,8 +98,8 @@ public class QLKhachHang extends javax.swing.JPanel {
         txtDiaChi.setText(diaChi);
         cbbTrangThai.setSelectedItem(trangThai);
     }
-    
-     public void hienTHi1() {
+
+    public void hienTHi1() {
         try {
             DefaultTableModel model = (DefaultTableModel) JBang.getModel();
             model.setRowCount(0);
@@ -154,7 +154,7 @@ public class QLKhachHang extends javax.swing.JPanel {
         txtNgaySinh.setText(ngaySinh);
         if (gioiTinh.contains("1")) {
             rbNam.setSelected(true);
-                        rbNu.setSelected(false);
+            rbNu.setSelected(false);
         } else {
             rbNam.setSelected(false);
             rbNu.setSelected(true);
@@ -198,6 +198,12 @@ public class QLKhachHang extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         txtTen = new javax.swing.JTextField();
         txtNgaySinh = new javax.swing.JTextField();
+
+        txtSDT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSDTActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Mã KH:");
 
@@ -308,12 +314,8 @@ public class QLKhachHang extends javax.swing.JPanel {
                         .addComponent(btnXoa)
                         .addGap(18, 18, 18)
                         .addComponent(btnMoi))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                            .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,7 +323,12 @@ public class QLKhachHang extends javax.swing.JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(31, 31, 31)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtDiaChi, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                                 .addComponent(txtSDT)))))
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -391,42 +398,43 @@ public class QLKhachHang extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        
-              StringBuilder kh = new StringBuilder();
+        int chon = JOptionPane.showConfirmDialog(this, "bạn muốn thêm không?", "THông báo", JOptionPane.YES_NO_OPTION);
+        if (chon == JOptionPane.YES_OPTION) {
+            StringBuilder kh = new StringBuilder();
 
-      DataValidator.vailidateEmpty(txtMaKH, kh, "Mã KH không được để trống");
-        DataValidator.vailidateEmpty(txtTen, kh, "Tên không được để trống");
-        DataValidator.vailidateEmpty(txtNgaySinh, kh, "Ngày sinh không được để trống");
-        DataValidator.vailidateEmpty(txtSDT, kh, "Số điện thoại không được để trống");
-        DataValidator.vailidateEmpty(txtDiaChi, kh, "Địa chỉ không được để trống");
-        
-        DataValidator.vailidatePhoneNumber(txtSDT, kh);
+            DataValidator.vailidateEmpty(txtMaKH, kh, "Mã KH không được để trống");
+            DataValidator.vailidateEmpty(txtTen, kh, "Tên không được để trống");
+            DataValidator.vailidateEmpty(txtNgaySinh, kh, "Ngày sinh không được để trống");
+            DataValidator.vailidateEmpty(txtSDT, kh, "Số điện thoại không được để trống");
+            DataValidator.vailidateEmpty(txtDiaChi, kh, "Địa chỉ không được để trống");
 
-        try {
-            DataValidator.checkVailidateDate(txtNgaySinh, kh);
-        } catch (ParseException ex) {
-            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (kh.length() > 0) {
-            MessageDialogHelper.showErrorDialog(this, kh.toString(), "Lỗi");
-            return;
-        }
-        
-        
-        
-        
-        try {
-            // TODO add your handling code here:
-            KhanhHangViewModel khachHang = layTT();
-            if (quanLyKhachHangSevice.ThemKhachHang(khachHang) == true) {
-                JOptionPane.showMessageDialog(this, "Thêm thành công");
-                hienTHi();
-            } else {
-                JOptionPane.showMessageDialog(this, "Thêm thất bại");
+            DataValidator.vailidatePhoneNumber(txtSDT, kh);
+
+            try {
+                DataValidator.checkVailidateDate(txtNgaySinh, kh);
+            } catch (ParseException ex) {
+                Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+            if (kh.length() > 0) {
+                MessageDialogHelper.showErrorDialog(this, kh.toString(), "Lỗi");
+                return;
+            }
+
+            try {
+                // TODO add your handling code here:
+                KhanhHangViewModel khachHang = layTT();
+                if (quanLyKhachHangSevice.ThemKhachHang(khachHang) == true) {
+                    JOptionPane.showMessageDialog(this, "Thêm thành công");
+                    hienTHi();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Thêm thất bại");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
+
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void cbbTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTrangThaiActionPerformed
@@ -435,15 +443,18 @@ public class QLKhachHang extends javax.swing.JPanel {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            int index = JBang.getSelectedRow();
-            String ma = JBang.getValueAt(index, 0).toString();
-            quanLyKhachHangSevice.XoaKhachHang(txtMaKH.getText());
-            JOptionPane.showMessageDialog(this, "Xóa thành công");
-            hienTHi();
-        } catch (SQLException ex) {
-            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+        int chon = JOptionPane.showConfirmDialog(this, "bạn muốn xóa không?", "THông báo", JOptionPane.YES_NO_OPTION);
+        if (chon == JOptionPane.YES_OPTION) {
+            try {
+                // TODO add your handling code here:
+                int index = JBang.getSelectedRow();
+                String ma = JBang.getValueAt(index, 0).toString();
+                quanLyKhachHangSevice.XoaKhachHang(txtMaKH.getText());
+                JOptionPane.showMessageDialog(this, "Xóa thành công");
+                hienTHi();
+            } catch (SQLException ex) {
+                Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -454,19 +465,27 @@ public class QLKhachHang extends javax.swing.JPanel {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-                 try {
-            // TODO add your handling code here:
-            KhanhHangViewModel khachHang = layTT();
-            if (quanLyKhachHangSevice.SuaKhachHang(khachHang)) {
-                JOptionPane.showMessageDialog(this, "Sửa thành công");
-                hienTHi();
-            } else {
-                JOptionPane.showMessageDialog(this, "Sửa thất bại");
+        int chon = JOptionPane.showConfirmDialog(this, "bạn muốn sửa không?", "THông báo", JOptionPane.YES_NO_OPTION);
+        if (chon == JOptionPane.YES_OPTION) {
+
+            try {
+                // TODO add your handling code here:
+                KhanhHangViewModel khachHang = layTT();
+                if (quanLyKhachHangSevice.SuaKhachHang(khachHang)) {
+                    JOptionPane.showMessageDialog(this, "Sửa thành công");
+                    hienTHi();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Sửa thất bại");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void txtSDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSDTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSDTActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

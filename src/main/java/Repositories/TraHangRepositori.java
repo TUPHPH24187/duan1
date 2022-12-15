@@ -43,21 +43,24 @@ public class TraHangRepositori {
  public List<HoaDonChiTiet> layDLHD() throws SQLException {
         List<HoaDonChiTiet> hoaDonChiTiets= new ArrayList<>();
         Connection connection = DBConnection.openDbConnection();
-        String sql = "Select * from HoaDonChiTiet";
+        String sql = "select MaHD,HoaDonChiTiet.MaCTSP,HoaDonChiTiet.MaKhuyenMai,HoaDonChiTiet.SoLuong,GiaBan,HoaDonChiTiet.TrangThai,HoaDonChiTiet.MaHD,  sum( ((giaban*(100 - khuyenmai.GiamGia))/100)*HoaDonChiTiet.SoLuong) from hoadonchitiet join chitietsanpham on hoadonchitiet.maCTSP = chitietsanpham.MaCTSP\n" +
+"                              						join khuyenmai on hoadonchitiet.makhuyenmai = khuyenmai.makhuyenmai \n" +
+"                         						join kichthuoc on chitietsanpham.makichthuoc = kichthuoc.makichthuoc \n" +
+"          									\n" +
+"               									group by HoaDonChiTiet.MaHD,HoaDonChiTiet.MaCTSP,HoaDonChiTiet.MaKhuyenMai,HoaDonChiTiet.SoLuong,ChiTietSanPham.GiaBan,HoaDonChiTiet.TrangThai";
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             int maHDCT = rs.getInt(1);
             int maHD = rs.getInt(2);
             int maCTSP = rs.getInt(3);
-            int soLuong = rs.getInt(4);
-            BigDecimal gia = rs.getBigDecimal(5);
-            int giamGia = rs.getInt(6);
+            int maKM = rs.getInt(4);
+            int soLuong = rs.getInt(5);
+            BigDecimal gia = rs.getBigDecimal(6);
             BigDecimal thanhTien = rs.getBigDecimal(7);
-            String ghiChu = rs.getString(8);
-            int trangThai = rs.getInt(9);
+            int trangThai = rs.getInt(8);
 
-            HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet(maHD, maHDCT, maCTSP, soLuong, gia, giamGia, thanhTien, ghiChu, trangThai);
+            HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet(maHD, maHDCT, maCTSP, maKM, soLuong, gia, thanhTien, trangThai);
             hoaDonChiTiets.add(hoaDonChiTiet);
         }
         return hoaDonChiTiets;

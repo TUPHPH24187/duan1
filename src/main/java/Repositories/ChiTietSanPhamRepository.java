@@ -55,7 +55,27 @@ public class ChiTietSanPhamRepository {
      
     ////////////////////////////////////////////////////////////////////////////////////
    
-     
+     public boolean SuaKhachHang(ChiTietSanPham sp) throws SQLException {
+        Connection connection = DBConnection.openDbConnection();
+        String sql = "Update Chitietsanpham set TenCTSP = ? ,SoLuong = ? , GiaBan = ? , GiaNhap = ? ,GiamGia = ?,TrangThai = ? where MaCTSP = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        
+        statement.setString(1, sp.getTenCTSP());       
+        statement.setInt(2, sp.getSoLuong());
+        statement.setDouble(3, sp.getGiaBan());
+        statement.setDouble(4, sp.getGiaNhap());
+        statement.setDouble(5, sp.getGiamGia());
+        statement.setInt(6, sp.getTrangThai()); 
+        
+
+        int index = statement.executeUpdate();
+        if (index == 0) {
+            return false;
+
+        } else {
+            return true;
+        }
+    }
     
     /////////////////////////////////////////////////////////////////////
     

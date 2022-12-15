@@ -15,6 +15,7 @@ import ViewModels.KhuyenMaiViewModel;
 import ViewModels.SanPhamView;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -124,10 +125,10 @@ public class QLKhuyenMai extends javax.swing.JPanel {
     public KhuyenMaiViewModel layTT() {
         
         String maKM = txtMaKM.getText();
-        String tenCT = txtTenChuongTrinh.getText();
-        String maGG = txtMucGiamGia.getText();
-        String ngayBD = txtNgayBatDau.getText();
-        String ngayKT = txtNgayKetThuc.getText();
+        String tenCT = txtTen.getText();
+        String maGG = txtMuc.getText();
+        String ngayBD = dateBD.getText();
+        String ngayKT = dateKT.getText();
       
 
         KhuyenMaiViewModel khuyenMai = new KhuyenMaiViewModel(Integer.parseInt(maKM), tenCT, ngayBD, ngayKT, Integer.parseInt(maGG), 1);
@@ -137,10 +138,10 @@ public class QLKhuyenMai extends javax.swing.JPanel {
     public KhuyenMaiViewModel layTT234() {
         
         String maKM = txtMaKM.getText();
-        String tenCT = txtTenChuongTrinh.getText();
-        String maGG = txtMucGiamGia.getText();
-        String ngayBD = txtNgayBatDau.getText();
-        String ngayKT = txtNgayKetThuc.getText();
+        String tenCT = txtTen.getText();
+        String maGG = txtMuc.getText();
+        String ngayBD = dateBD.getText();
+        String ngayKT = dateKT.getText();
       
 
         KhuyenMaiViewModel khuyenMai = new KhuyenMaiViewModel(Integer.parseInt(maKM), tenCT, ngayBD, ngayKT, Integer.parseInt(maGG), 1);
@@ -158,11 +159,11 @@ public class QLKhuyenMai extends javax.swing.JPanel {
         
 
         txtMaKM.setText(maKM);
-        txtTenChuongTrinh.setText(tenKM);
+        txtTen.setText(tenKM);
         
-        txtNgayBatDau.setText(ngayBD);
-        txtNgayKetThuc.setText(ngayKT);
-        txtMucGiamGia.setText(giamGia);
+        dateBD.setText(ngayBD);
+        dateKT.setText(ngayKT);
+        txtMuc.setText(giamGia);
        
     }
     
@@ -178,11 +179,11 @@ public class QLKhuyenMai extends javax.swing.JPanel {
         
 
         txtMaKM.setText(maKM);
-        txtTenChuongTrinh.setText(tenKM);
+        txtTen.setText(tenKM);
         
-        txtNgayBatDau.setText(ngayBD);
-        txtNgayKetThuc.setText(ngayKT);
-        txtMucGiamGia.setText(giamGia);
+        dateBD.setText(ngayBD);
+        dateKT.setText(ngayKT);
+        txtMuc.setText(giamGia);
        
     }
     /**
@@ -208,10 +209,8 @@ public class QLKhuyenMai extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtTenChuongTrinh = new javax.swing.JTextField();
-        txtMucGiamGia = new javax.swing.JTextField();
-        txtNgayBatDau = new javax.swing.JTextField();
-        txtNgayKetThuc = new javax.swing.JTextField();
+        txtTen = new javax.swing.JTextField();
+        txtMuc = new javax.swing.JTextField();
         btnLuu = new javax.swing.JButton();
         btnCapNhap = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
@@ -219,6 +218,8 @@ public class QLKhuyenMai extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         txtMaKM = new javax.swing.JTextField();
         btnCapNhat = new javax.swing.JButton();
+        dateBD = new com.github.lgooddatepicker.components.DatePicker();
+        dateKT = new com.github.lgooddatepicker.components.DatePicker();
         TrangThai = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -375,11 +376,11 @@ public class QLKhuyenMai extends javax.swing.JPanel {
                                     .addComponent(jLabel8))))
                         .addGap(38, 38, 38)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtMucGiamGia, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                            .addComponent(txtNgayKetThuc, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                            .addComponent(txtNgayBatDau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                            .addComponent(txtTenChuongTrinh, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtMaKM)))
+                            .addComponent(txtMuc, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                            .addComponent(txtTen, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtMaKM)
+                            .addComponent(dateBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateKT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btnCapNhat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
@@ -392,21 +393,21 @@ public class QLKhuyenMai extends javax.swing.JPanel {
                     .addComponent(txtMaKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTenChuongTrinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtMucGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNgayBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(txtMuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(dateBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtNgayKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(dateKT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -416,7 +417,7 @@ public class QLKhuyenMai extends javax.swing.JPanel {
                 .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         TrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoạt Động", "Không Hoạt Động", " " }));
@@ -489,40 +490,50 @@ public class QLKhuyenMai extends javax.swing.JPanel {
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         // TODO add your handling code here:
-        StringBuilder km = new StringBuilder();
-
-     
-        DataValidator.vailidateEmpty(txtTenChuongTrinh, km, "Tên không được để trống");
-        DataValidator.vailidateEmpty(txtNgayBatDau, km, "Ngày bắt đầu không được để trống");
-        DataValidator.vailidateEmpty(txtNgayKetThuc, km, "Ngày kết thúc không được để trống");
-        DataValidator.vailidateEmpty(txtMucGiamGia, km, "Mức giảm giá không được để trống");
         
-        DataValidator.vailidateMucGiam(txtMucGiamGia, km);
-        
-         try {
-            DataValidator.checkVailidateDate(txtNgayBatDau, km);
-        } catch (ParseException ex) {
-            Logger.getLogger(QLKhuyenMai.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (km.length() > 0) {
-            MessageDialogHelper.showErrorDialog(this, km.toString(), "Lỗi");
-            return;
-        }
-        
-         try {
-            DataValidator.checkVailidateDate(txtNgayKetThuc, km);
-        } catch (ParseException ex) {
-            Logger.getLogger(QLKhuyenMai.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (km.length() > 0) {
-            MessageDialogHelper.showErrorDialog(this, km.toString(), "Lỗi");
-            return;
-        }
-         
         
         
         
           try {
+              StringBuilder km = new StringBuilder();
+
+     
+        DataValidator.vailidateEmpty(txtTen, km, "Tên không được để trống");
+        
+        DataValidator.vailidateEmpty(txtMuc, km, "Mức giảm giá không được để trống");
+        
+        DataValidator.vailidateMucGiam(txtMuc, km);
+        
+         if (txtMuc.getText().isBlank() || txtTen.getText().isBlank() || dateBD.getText().isBlank() || dateKT.getText().isBlank()) {
+                JOptionPane.showMessageDialog(this, "Bạn phải nhập đầy đủ thông tin");
+                return;
+            }
+            if (dateBD.getDate().isAfter(LocalDate.now())) {
+                JOptionPane.showMessageDialog(this, "Ngày bắt đầu phải lớn hơn hoặc bằng ngày hiện tại");
+                return;
+            }
+            if (dateBD.getDate().isAfter(dateKT.getDate())) {
+                JOptionPane.showMessageDialog(this, "Ngày bắt đầu phải lớn hơn ngày kết thúc");
+                return;
+            }
+            if (Integer.parseInt(txtMuc.getText()) < 0) {
+                JOptionPane.showMessageDialog(this, "Số lượng phải lớn hơn 0");
+                return;
+            }
+
+            if (Integer.parseInt(txtMuc.getText()) == 0) {
+                JOptionPane.showMessageDialog(this, "Số lượng phải lớn hơn 0");
+                return;
+            }
+            if (Integer.parseInt(txtMuc.getText()) > 100) {
+                JOptionPane.showMessageDialog(this, "Số lượng phải nhỏ hơn 100");
+                return;
+            }
+            String regex = "^[a-zA-Z]+$";
+            if (txtMuc.getText().matches(regex)) {
+                JOptionPane.showMessageDialog(this, "Số lượng phải là số nguyên dương");
+                return;
+            }
             // TODO add your handling code here:
             KhuyenMaiViewModel khuyenMai = layTT();
             if (khuyenMaiService.ThemKhuyenMai(khuyenMai) == true) {
@@ -562,10 +573,10 @@ public class QLKhuyenMai extends javax.swing.JPanel {
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         // TODO add your handling code here:
         txtMaKM.setText("");
-        txtTenChuongTrinh.setText("");
-        txtNgayBatDau.setText("");
-        txtNgayKetThuc.setText("");
-        txtMucGiamGia.setText("");
+        txtTen.setText("");
+        dateBD.setText("");
+        dateKT.setText("");
+        txtMuc.setText("");
         
     }//GEN-LAST:event_btnMoiActionPerformed
 
@@ -589,6 +600,8 @@ public class QLKhuyenMai extends javax.swing.JPanel {
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnXoa;
+    private com.github.lgooddatepicker.components.DatePicker dateBD;
+    private com.github.lgooddatepicker.components.DatePicker dateKT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -604,9 +617,7 @@ public class QLKhuyenMai extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbSanPham;
     private javax.swing.JTextField txtMaKM;
-    private javax.swing.JTextField txtMucGiamGia;
-    private javax.swing.JTextField txtNgayBatDau;
-    private javax.swing.JTextField txtNgayKetThuc;
-    private javax.swing.JTextField txtTenChuongTrinh;
+    private javax.swing.JTextField txtMuc;
+    private javax.swing.JTextField txtTen;
     // End of variables declaration//GEN-END:variables
 }

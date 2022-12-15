@@ -676,10 +676,29 @@ public class QLSanPham extends javax.swing.JPanel {
                 }
 
                 // giảm giá
-                if (Double.valueOf(giamGia) <= 0) {
-                    JOptionPane.showMessageDialog(this, "Không được được để âm hoặc bằng 0");
-                    this.txtGiamGia.setText("");
+                try {
+                    if (Double.valueOf(giamGiaS) < 0) {
+                        JOptionPane.showMessageDialog(this, "Không được được để âm");
+                        this.txtGiamGia.setText("");
+                        return;
+                    } else if (Double.valueOf(giamGiaS) == 0) {
+                        JOptionPane.showMessageDialog(this, "Không được được để giảm giá quá nhỏ");
+                        this.txtGiamGia.setText("");
+                        return;
+                    } else if (Double.valueOf(giamGiaS) > 100) {
+                        JOptionPane.showMessageDialog(this, "Không được được để giá nhập quá lớn");
+                        this.txtGiamGia.setText("");
+                        return;
+                    } else if (!giamGia.matches("\\d*+\\.\\d*||\\d*")) {
+                        JOptionPane.showMessageDialog(this, "Không được để khoảng trắng");
+                        this.txtGiamGia.setText("");
+                        return;
+                    }
 
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Không đúng định dạng");
+                    this.txtGiamGia.setText("");
+                    return;
                 }
 
                 String result = quanLySanPhamService.addCTSanPham(ctsp);

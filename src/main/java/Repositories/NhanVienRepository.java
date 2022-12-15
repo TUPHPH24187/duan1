@@ -37,7 +37,7 @@ public class NhanVienRepository {
             String DiaChi = rs.getString(6);
             String Email = rs.getString(7);
             String MatKhau = rs.getString(8);
-            String ChucVu = rs.getString(9);
+            Integer ChucVu = rs.getInt(9);
             Integer TrangThai = rs.getInt(10);
             
             NhanVien nhanVien = new NhanVien( MaNV,TenNV, NgaySinh, GioiTinh, SDT, DiaChi, Email,MatKhau, ChucVu, TrangThai);
@@ -61,7 +61,7 @@ public class NhanVienRepository {
             statement.setString(5, nhanVien.getDiaChi());
             statement.setString(6, nhanVien.getEmail());
             statement.setString(7, nhanVien.getMatKhau());
-            statement.setString(8, nhanVien.getChucVu());
+            statement.setInt(8, nhanVien.getChucVu());
             statement.setInt(9, nhanVien.getTrangThai());
 
             index = statement.executeUpdate();
@@ -87,7 +87,7 @@ public class NhanVienRepository {
         statement.setString(5, nhanVien.getDiaChi());
         statement.setString(6, nhanVien.getEmail());
         statement.setString(7, nhanVien.getMatKhau());
-        statement.setString(8, nhanVien.getChucVu());
+        statement.setInt(8, nhanVien.getChucVu());
         statement.setInt(9, nhanVien.getTrangThai());
         
 
@@ -130,7 +130,8 @@ public class NhanVienRepository {
                 if (rs.next()) {
                     NhanVien nv = new NhanVien();
                     nv.setEmail(tenDangNhap);
-                    nv.setChucVu(rs.getString("chucvu"));
+                    
+                    nv.setChucVu(rs.getInt(3));
                     return nv;
                 }
             }

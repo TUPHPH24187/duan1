@@ -67,7 +67,6 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btnQuenMatKhau" max="32767" attributes="0"/>
-                              <Component id="btnTraHang" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnThongKe" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnDangXuat" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnKhuyenMai" alignment="0" max="32767" attributes="0"/>
@@ -107,12 +106,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnThongKe" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnTraHang" min="-2" pref="55" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnQuenMatKhau" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnDangXuat" min="-2" pref="55" max="-2" attributes="0"/>
-                  <EmptySpace pref="49" max="32767" attributes="0"/>
+                  <EmptySpace pref="110" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -172,20 +169,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKhachHangActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnTraHang">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="cc" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\concu\Downloads\image\exchange.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="TR&#x1ea2; H&#xc0;NG"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTraHangActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnThongKe">

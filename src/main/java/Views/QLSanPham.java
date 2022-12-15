@@ -759,7 +759,7 @@ public class QLSanPham extends javax.swing.JPanel {
     }
 
     private void timKiem(ArrayList<ChiTietSanPham> list) {
-        defaultTableModel = (DefaultTableModel) tbSanPham.getModel();
+        defaultTableModel = (DefaultTableModel) tbSanPham1.getModel();
         defaultTableModel.setRowCount(0);
         for (ChiTietSanPham ctsp : list) {
             if (ctsp.getMaCTSP().equals(txtSP.getText()) || ctsp.getTenCTSP().equals(txtSP.getText())) {
@@ -772,7 +772,7 @@ public class QLSanPham extends javax.swing.JPanel {
     }
 
     private void loadTable(ArrayList<ChiTietSanPham> list) {
-        defaultTableModel = (DefaultTableModel) tbSanPham1.getModel();
+        defaultTableModel = (DefaultTableModel) tbSanPham.getModel();
         defaultTableModel.setRowCount(0);
         for (ChiTietSanPham ctsp : list) {
             defaultTableModel.addRow(new Object[]{

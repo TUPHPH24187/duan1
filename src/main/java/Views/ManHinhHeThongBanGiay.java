@@ -19,7 +19,7 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
     private QLNhanVien qlnhanvien;
     private QLKhachHang qlkhachhang;
     private QLKhuyenMai qlkhuyenmai;
-    private QLTraHang qLTraHang;
+    
     private QLThongKe qLThongke1;
 
     /**
@@ -53,7 +53,6 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
         btnGiaoDich = new javax.swing.JButton();
         btnNhanVien = new javax.swing.JButton();
         btnKhachHang = new javax.swing.JButton();
-        btnTraHang = new javax.swing.JButton();
         btnThongKe = new javax.swing.JButton();
         btnDangXuat = new javax.swing.JButton();
         btnKhuyenMai = new javax.swing.JButton();
@@ -106,15 +105,6 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
         btnKhachHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKhachHangActionPerformed(evt);
-            }
-        });
-
-        btnTraHang.setBackground(new java.awt.Color(204, 255, 255));
-        btnTraHang.setIcon(new javax.swing.ImageIcon("C:\\Users\\concu\\Downloads\\image\\exchange.png")); // NOI18N
-        btnTraHang.setText("TRẢ HÀNG");
-        btnTraHang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTraHangActionPerformed(evt);
             }
         });
 
@@ -208,7 +198,6 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnQuenMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTraHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnKhuyenMai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -242,12 +231,10 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTraHang, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnQuenMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         tbMain.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -308,14 +295,6 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
         tbMain.setSelectedComponent(qlkhachhang);
     }//GEN-LAST:event_btnKhachHangActionPerformed
 
-    private void btnTraHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraHangActionPerformed
-        if (qLTraHang == null) {
-            qLTraHang = new QLTraHang();
-            tbMain.addTab("Quản lý trả hàng", qLTraHang);
-        }
-        tbMain.setSelectedComponent(qLTraHang);
-    }//GEN-LAST:event_btnTraHangActionPerformed
-
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
         
         LoginDialog dialog = new LoginDialog(this, true);
@@ -358,24 +337,24 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
 
     private void processLoginSucess() {
         lblLogin.setText(ShareData.nguoiDangNhap.getEmail());
-        lblVaiTro.setText(ShareData.nguoiDangNhap.getChucVu());
+       //lblVaiTro.setText(ShareData.nguoiDangNhap.getChucVu());
 
-        if (ShareData.nguoiDangNhap.getChucVu().equals("Quản lý")) {
+        if (ShareData.nguoiDangNhap.getChucVu().equals(1)) {
             btnQuenMatKhau.setEnabled(true);
             btnGiaoDich.setEnabled(true);
             btnKhachHang.setEnabled(true);
             btnKhuyenMai.setEnabled(true);
-            btnTraHang.setEnabled(true);
+            
             btnSanPham.setEnabled(true);
             btnNhanVien.setEnabled(true);
             btnThongKe.setEnabled(true);
 
-        } else if (ShareData.nguoiDangNhap.getChucVu().equals("Nhân viên")) {
+        } else if (ShareData.nguoiDangNhap.getChucVu().equals(0)) {
             btnQuenMatKhau.setEnabled(false);
             btnGiaoDich.setEnabled(true);
             btnKhachHang.setEnabled(true);
             btnKhuyenMai.setEnabled(true);
-            btnTraHang.setEnabled(true);
+            
             btnSanPham.setEnabled(true);
             btnNhanVien.setEnabled(false);
             btnThongKe.setEnabled(false);
@@ -428,7 +407,6 @@ public class ManHinhHeThongBanGiay extends javax.swing.JFrame {
     private javax.swing.JButton btnQuenMatKhau;
     private javax.swing.JButton btnSanPham;
     private javax.swing.JButton btnThongKe;
-    private javax.swing.JButton btnTraHang;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblLogin;

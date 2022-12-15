@@ -62,7 +62,7 @@ public class QLNhanVien extends javax.swing.JPanel {
                     gioiTinh = "Nu";
                 }
                 Object[] nds = new Object[]{nv.getMaNV(),
-                    nv.getTenNV(), nv.getNgaySinh(), gioiTinh, nv.getSDT(), nv.getDiaChi(), nv.getEmail(),nv.getMatKhau(),nv.getChucVu(), nv.getTrangThai() == 1 ? "Hoat dong":"Khong hoat dong",};
+                    nv.getTenNV(), nv.getNgaySinh(), gioiTinh, nv.getSDT(), nv.getDiaChi(), nv.getEmail(),nv.getChucVu()==1 ? "Quản lý":"Nhân viên", nv.getTrangThai() == 1 ? "Hoat dong":"Khong hoat dong",};
                 model.addRow(nds);
 
             }
@@ -86,7 +86,15 @@ public class QLNhanVien extends javax.swing.JPanel {
         String DiaChi = txtDiaChi.getText();
         String Email = txtEmail.getText();
         String matKhau = new String(txtMatKhau.getPassword());
-        String chucVu = txtChucVu.getText();
+       
+        Integer ChucVu;
+        if (rbQuanly.isSelected()) {
+            ChucVu = 1;
+
+        } else {
+            ChucVu = 2;
+        }
+        
         Integer tt;
         if (rbHoatDong.isSelected()) {
             tt = 1;
@@ -94,7 +102,7 @@ public class QLNhanVien extends javax.swing.JPanel {
         } else {
             tt = 2;
         }
-        NhanVien nv = new NhanVien(maNV, hoTen, ngaySinh, gioiTinh, SDT, DiaChi, Email, matKhau, chucVu, tt);
+        NhanVien nv = new NhanVien(maNV, hoTen, ngaySinh, gioiTinh, SDT, DiaChi, Email, matKhau, ChucVu, tt);
         return nv;
 
     }
@@ -109,7 +117,7 @@ public class QLNhanVien extends javax.swing.JPanel {
         String SDT = tbNhanVien.getValueAt(index, 4).toString();
         String DiaChi = tbNhanVien.getValueAt(index, 5).toString();
         String Email = tbNhanVien.getValueAt(index, 6).toString();
-        String matKhau = tbNhanVien.getValueAt(index, 9).toString();
+        
         String ChucVu = tbNhanVien.getValueAt(index, 8).toString();
         String TrangThai = tbNhanVien.getValueAt(index, 7).toString();
 //            txtid.setText(id);
@@ -119,8 +127,17 @@ public class QLNhanVien extends javax.swing.JPanel {
         txtSDT.setText(SDT);
         txtDiaChi.setText(DiaChi);
         txtEmail.setText(Email);
-        txtMatKhau.setText(matKhau);
-        txtChucVu.setText(ChucVu);
+        
+        
+        if (ChucVu.equalsIgnoreCase("Quản lý")) {
+            rbHoatDong.setSelected(true);
+            rbQuanly.setSelected(false);
+        } else {
+
+            rbNhanvien.setSelected(true);
+            rbHoatDong.setSelected(false);
+        }
+        
         if (GioiTinh.equalsIgnoreCase("Nam")) {
             rbNam.setSelected(true);
         } else {
@@ -147,6 +164,7 @@ public class QLNhanVien extends javax.swing.JPanel {
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup5 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbNhanVien = new javax.swing.JTable();
@@ -167,7 +185,6 @@ public class QLNhanVien extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         txtDiaChi = new javax.swing.JTextField();
         txtMatKhau = new javax.swing.JPasswordField();
-        txtChucVu = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         rbHoatDong = new javax.swing.JRadioButton();
@@ -177,6 +194,8 @@ public class QLNhanVien extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         txtSDT = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
+        rbQuanly = new javax.swing.JRadioButton();
+        rbNhanvien = new javax.swing.JRadioButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("QUẢN LÝ NHÂN VIÊN");
@@ -186,15 +205,15 @@ public class QLNhanVien extends javax.swing.JPanel {
 
         tbNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Ma", "Tên NV", "Ngay Sinh", "Gioi Tinh", "So Dien Thoai", "Dia Chi", "Email", "Mat Khau", "Chuc Vu", "TrangThai"
+                "Ma", "Tên NV", "Ngay Sinh", "Gioi Tinh", "So Dien Thoai", "Dia Chi", "Email", "Chuc Vu", "TrangThai"
             }
         ));
         tbNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -255,8 +274,6 @@ public class QLNhanVien extends javax.swing.JPanel {
 
         jLabel3.setText("Ma nv:");
 
-        txtManv.setEnabled(false);
-
         jLabel9.setText("Ngày sinh:");
 
         txtTen.addActionListener(new java.awt.event.ActionListener() {
@@ -294,6 +311,12 @@ public class QLNhanVien extends javax.swing.JPanel {
             }
         });
 
+        buttonGroup2.add(rbQuanly);
+        rbQuanly.setText("Quản lý");
+
+        buttonGroup2.add(rbNhanvien);
+        rbNhanvien.setText("Nhân viên");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -324,7 +347,7 @@ public class QLNhanVien extends javax.swing.JPanel {
                         .addComponent(btnXoa)
                         .addGap(18, 18, 18)
                         .addComponent(btnMoi)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
@@ -347,8 +370,10 @@ public class QLNhanVien extends javax.swing.JPanel {
                                 .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGap(18, 18, 18)
+                            .addComponent(rbQuanly)
+                            .addGap(33, 33, 33)
+                            .addComponent(rbNhanvien))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -373,10 +398,11 @@ public class QLNhanVien extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
+                        .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(txtChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rbQuanly)
+                            .addComponent(rbNhanvien))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -448,7 +474,7 @@ public class QLNhanVien extends javax.swing.JPanel {
         DataValidator.vailidateEmpty(txtDiaChi, nv, "Địa chỉ không được để trống");
         DataValidator.vailidateEmpty(txtEmail, nv, "Email Không ĐƯƠC Đê Trông");
         DataValidator.vailidateEmpty(txtMatKhau, nv, "Mât Khâu Không ĐƯƠC Đê Trông");
-        DataValidator.vailidateEmpty(txtChucVu, nv, "Chưc Vu Không ĐƯƠC Đê Trông");
+        
         
         DataValidator.vailidatePhoneNumber(txtSDT, nv);
         
@@ -539,7 +565,7 @@ public class QLNhanVien extends javax.swing.JPanel {
         txtDiaChi.setText("");
         txtMatKhau.setText("");
         txtEmail.setText("");
-        txtChucVu.setText("");
+        
         
         txtManv.setBackground(Color.white);
         txtTen.setBackground(Color.white);
@@ -548,7 +574,7 @@ public class QLNhanVien extends javax.swing.JPanel {
         txtDiaChi.setBackground(Color.white);
         txtMatKhau.setBackground(Color.white);
         txtEmail.setBackground(Color.white);
-        txtChucVu.setBackground(Color.white);
+        
         
     }//GEN-LAST:event_btnMoiActionPerformed
 
@@ -574,6 +600,7 @@ public class QLNhanVien extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -590,9 +617,10 @@ public class QLNhanVien extends javax.swing.JPanel {
     private javax.swing.JRadioButton rbHoatDong;
     private javax.swing.JRadioButton rbKhonghoatDong;
     private javax.swing.JRadioButton rbNam;
+    private javax.swing.JRadioButton rbNhanvien;
     private javax.swing.JRadioButton rbNu;
+    private javax.swing.JRadioButton rbQuanly;
     private javax.swing.JTable tbNhanVien;
-    private javax.swing.JTextField txtChucVu;
     private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtManv;

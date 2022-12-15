@@ -5,10 +5,12 @@
 package Views;
 
 import DomainModels.Hienthigannhat;
+import DomainModels.HoaDonChiTietModel;
 import DomainModels.KhachHangModel;
 import DomainModels.TraHang;
 import Service.impl.TraHangImpl;
 import Services.TraHangService;
+import ViewModels.HoaDonChiTiet;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,8 @@ public class QLTraHang extends javax.swing.JPanel {
     public QLTraHang() {
         initComponents();
         loadtabe();
+        loatTabel();
+        loatTabelCT();
     }
 
     void loadtabe() {
@@ -69,32 +73,26 @@ public class QLTraHang extends javax.swing.JPanel {
     }
 
     public void loatTabel() {
-        defaultTableModel = (DefaultTableModel) tb_HDCT.getModel();
+        defaultTableModel = (DefaultTableModel) tbHoanTra.getModel();
         defaultTableModel.setRowCount(0);
         List<TraHang> ms = hangImpl.getList();
         for (TraHang m : ms) {
             defaultTableModel.addRow(new Object[]{
-                m.getTenkhachhang(), m.getMaHD(), m.getNgayTraHang(), m.getTienDaThanhToan(), m.getTongTien()
+                 m.getMaHD(),m.getTenkhachhang(), m.getNgayTraHang(), m.getTienDaThanhToan(), m.getTongTien()
             });
         }
     }
-
-    public void loatThangDauTien() {
-        int index = 0;
-        txt_khachHang.setText(tb_HDCT.getValueAt(index, 0).toString());
-        txt_maHD.setText(tb_HDCT.getValueAt(index, 1).toString());
-        txt_TDTT.setText(tb_HDCT.getValueAt(index, 2).toString());
+public void loatTabelCT() {
+        defaultTableModel = (DefaultTableModel) tb_HDCT.getModel();
+        defaultTableModel.setRowCount(0);
+        List<HoaDonChiTiet> ms = hangImpl.getlist();
+        for (HoaDonChiTiet h : ms) {
+            defaultTableModel.addRow(new Object[]{
+                h.getMaHDCT(),h.getMaHoaDon(),h.getMaCTSP(),h.getSoLuong(),h.getGia(),
+                h.getGiamGia(),h.getThanhTien(),h.getGhiChu(),h.getTrangThai()
+            });
+        }
     }
-
-    public TraHang laydulieu() {
-
-        String maHD = txt_maHD.getText();
-        String khachHang = txt_khachHang.getText();
-
-        return new TraHang(khachHang, WIDTH, BigDecimal.TEN, khachHang, khachHang);
-
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -121,7 +119,7 @@ public class QLTraHang extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_hoanTra = new javax.swing.JButton();
         txt_khachHang = new javax.swing.JTextField();
         txt_maHD = new javax.swing.JTextField();
         txt_TDTT = new javax.swing.JTextField();
@@ -238,7 +236,12 @@ public class QLTraHang extends javax.swing.JPanel {
 
         jLabel9.setText("Tông tien hoan tra");
 
-        jButton1.setText("Hoan Tra");
+        btn_hoanTra.setText("Hoan Tra");
+        btn_hoanTra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_hoanTraActionPerformed(evt);
+            }
+        });
 
         tbHoanTra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -251,6 +254,11 @@ public class QLTraHang extends javax.swing.JPanel {
                 "Khach Hang", "Ma HD", "Tien Da Thanh Toan", "Ngay Tra Hang", "Tong Tien Hoan Tra"
             }
         ));
+        tbHoanTra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbHoanTraMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tbHoanTra);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -273,7 +281,7 @@ public class QLTraHang extends javax.swing.JPanel {
                         .addComponent(txt_TDTT, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
                         .addComponent(txt_maHD)
                         .addComponent(txt_khachHang))
-                    .addComponent(jButton1))
+                    .addComponent(btn_hoanTra))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -305,7 +313,7 @@ public class QLTraHang extends javax.swing.JPanel {
                             .addComponent(jLabel9)
                             .addComponent(txt_TTHT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(btn_hoanTra)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -368,9 +376,24 @@ public class QLTraHang extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void tbHoanTraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbHoanTraMouseClicked
+        // TODO add your handling code here:
+        int index = tbHoanTra.getSelectedRow();
+        txt_maHD.setText(tbHoanTra.getValueAt(index, 0).toString());
+        txt_khachHang.setText(tbHoanTra.getValueAt(index, 1).toString());
+        txt_NTh.setText(tbHoanTra.getValueAt(index, 2).toString());
+        txt_TDTT.setText(tbHoanTra.getValueAt(index, 3).toString());
+        txt_TTHT.setText(tbHoanTra.getValueAt(index, 4).toString());
+        
+    }//GEN-LAST:event_tbHoanTraMouseClicked
+
+    private void btn_hoanTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hoanTraActionPerformed
+        // TODO add your handling code here:  
+    }//GEN-LAST:event_btn_hoanTraActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_hoanTra;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

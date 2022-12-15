@@ -7,6 +7,7 @@ package Services;
 import DomainModels.TraHang;
 import Repositories.TraHangRepositori;
 import Service.impl.TraHangImpl;
+import ViewModels.HoaDonChiTiet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
  */
 public class TraHangService implements TraHangImpl{
 private TraHangRepositori trahangRepository = new TraHangRepositori();
+
 
     @Override
     public List<TraHang> getList() {
@@ -34,4 +36,14 @@ private TraHangRepositori trahangRepository = new TraHangRepositori();
        return trahangRepository.Sua(traHang, MaHD);
     }
 
+    @Override
+    public List<HoaDonChiTiet> getlist() {
+    try {
+        return trahangRepository.layDLHD();
+    } catch (SQLException ex) {
+        Logger.getLogger(TraHangService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return null;
+
+}
 }

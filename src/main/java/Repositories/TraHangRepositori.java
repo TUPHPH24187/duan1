@@ -4,8 +4,10 @@
  */
 package Repositories;
 
+import DomainModels.HoaDonChiTietModel;
 import DomainModels.TraHang;
 import Utilities.DBConnection;
+import ViewModels.HoaDonChiTiet;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -38,7 +40,28 @@ public class TraHangRepositori {
         }
         return trahang;
     }
+ public List<HoaDonChiTiet> layDLHD() throws SQLException {
+        List<HoaDonChiTiet> hoaDonChiTiets= new ArrayList<>();
+        Connection connection = DBConnection.openDbConnection();
+        String sql = "Select * from HoaDonChiTiet";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            int maHDCT = rs.getInt(1);
+            int maHD = rs.getInt(2);
+            int maCTSP = rs.getInt(3);
+            int soLuong = rs.getInt(4);
+            BigDecimal gia = rs.getBigDecimal(5);
+            int giamGia = rs.getInt(6);
+            BigDecimal thanhTien = rs.getBigDecimal(7);
+            String ghiChu = rs.getString(8);
+            int trangThai = rs.getInt(9);
 
+            HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet(maHD, maHDCT, maCTSP, soLuong, gia, giamGia, thanhTien, ghiChu, trangThai);
+            hoaDonChiTiets.add(hoaDonChiTiet);
+        }
+        return hoaDonChiTiets;
+    }
     public boolean Sua(TraHang th, String MaHD) {
         Connection con = DBConnection.openDbConnection();
         String sql = "UPDATE [dbo].[TraHang]\n"

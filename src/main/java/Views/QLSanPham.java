@@ -21,6 +21,7 @@ import Service.impl.QuanLyChiTietSanPhamService;
 import Services.QuanLyChiTietSanPhamImpl;
 
 import Utilities.DBConnection;
+import ViewModels.SanPhamView;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Comparator;
@@ -719,20 +720,66 @@ public class QLSanPham extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_btnThemActionPerformed
+    public SanPhamView layTT(){
+        String hoatDong;
+        String maGiay = txtMaGiay.getText();
+        String hoTen = txtTenGiay.getText();
+     
+            String soLuong = txtSoLuong.getText();
+            
 
+            String giaBan = this.txtGiaBan.getText();
+            
+
+            String giaNhap = this.txtGiaNhap.getText();
+           
+
+            String giamGia = txtGiamGia.getText();
+            
+        
+        if (rbHoatDong.isSelected()) {
+            hoatDong = "1";
+        } else {
+            hoatDong = "2";
+        }
+
+        return new SanPhamView(maGiay, giaNhap, soLuong, giaBan, giaNhap, giamGia, giaNhap);
+    }
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-
+          try {
+            // TODO add your handling code here:
+            QuanLyChiTietSanPhamImpl imp = new QuanLyChiTietSanPhamImpl();
+              SanPhamView sp = layTT();
+           
+            if (imp.SuaSP(sp)) {
+                JOptionPane.showMessageDialog(this, "Sửa thành công");
+                loadTable(quanLySanPhamService.getListChiTietSanPham());
+            } else {
+                JOptionPane.showMessageDialog(this, "Sửa thất bại");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+            StringBuilder sb = new StringBuilder();
 
+            
+            
+            if (sb.length() > 0) {
+                MessageDialogHelper.showErrorDialog(this, sb.toString(), "Lỗi");
+                return;
+            }
         try {
+            
             int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa không", "Xác nhận", JOptionPane.YES_NO_OPTION);
 
             if (xacNhan == JOptionPane.YES_OPTION) {
                 // TODO add your handling code here:
+                DataValidator.vailidateEmpty(txtMaGiay, sb, "chọn mã muốn xóa");
                 int index = tbSanPham1.getSelectedRow();
                 String ma = tbSanPham1.getValueAt(index, 0).toString();
                 quanLySanPhamService.XoaSanPham(Integer.parseInt(txtMaGiay.getText()));

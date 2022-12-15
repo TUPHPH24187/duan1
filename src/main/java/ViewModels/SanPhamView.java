@@ -14,53 +14,32 @@ import java.math.BigDecimal;
  * @author concu
  */
 public class SanPhamView {
-    private Integer MaCTSP;
+    private String MaCTSP;
 
     
-    private String TenCTSP;
+    private String TenCTSP,SoLuong,GiaBan,GiaNhap,GiamGia,TrangThai;
 
     
-    private Integer SoLuong;
-
-    private BigDecimal Gia;
-
     
-    private BigDecimal GiamGia;
-
-    
-    private int TrangThai;
-
-    
-    private KichThuoc kichThuoc;
-
-    
-    private XuatXu XuatXu;
-
-    
-    private ChatLieu ChatLieu;
 
     public SanPhamView() {
     }
 
-    public SanPhamView(Integer MaCTSP, String TenCTSP, Integer SoLuong, BigDecimal Gia, BigDecimal GiamGia, int TrangThai, KichThuoc kichThuoc, XuatXu XuatXu, ChatLieu ChatLieu) {
+    public SanPhamView(String MaCTSP, String TenCTSP, String SoLuong, String GiaBan, String GiaNhap, String GiamGia, String TrangThai) {
         this.MaCTSP = MaCTSP;
         this.TenCTSP = TenCTSP;
         this.SoLuong = SoLuong;
-        this.Gia = Gia;
+        this.GiaBan = GiaBan;
+        this.GiaNhap = GiaNhap;
         this.GiamGia = GiamGia;
         this.TrangThai = TrangThai;
-        this.kichThuoc = kichThuoc;
-        this.XuatXu = XuatXu;
-        this.ChatLieu = ChatLieu;
     }
 
-    
-    
-    public Integer getMaCTSP() {
+    public String getMaCTSP() {
         return MaCTSP;
     }
 
-    public void setMaCTSP(Integer MaCTSP) {
+    public void setMaCTSP(String MaCTSP) {
         this.MaCTSP = MaCTSP;
     }
 
@@ -72,62 +51,47 @@ public class SanPhamView {
         this.TenCTSP = TenCTSP;
     }
 
-    public Integer getSoLuong() {
+    public String getSoLuong() {
         return SoLuong;
     }
 
-    public void setSoLuong(Integer SoLuong) {
+    public void setSoLuong(String SoLuong) {
         this.SoLuong = SoLuong;
     }
 
-    public BigDecimal getGia() {
-        return Gia;
+    public String getGiaBan() {
+        return GiaBan;
     }
 
-    public void setGia(BigDecimal Gia) {
-        this.Gia = Gia;
+    public void setGiaBan(String GiaBan) {
+        this.GiaBan = GiaBan;
     }
 
-    public BigDecimal getGiamGia() {
+    public String getGiaNhap() {
+        return GiaNhap;
+    }
+
+    public void setGiaNhap(String GiaNhap) {
+        this.GiaNhap = GiaNhap;
+    }
+
+    public String getGiamGia() {
         return GiamGia;
     }
 
-    public void setGiamGia(BigDecimal GiamGia) {
+    public void setGiamGia(String GiamGia) {
         this.GiamGia = GiamGia;
     }
 
-    public int getTrangThai() {
+    public String getTrangThai() {
         return TrangThai;
     }
 
-    public void setTrangThai(int TrangThai) {
+    public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
     }
 
-    public KichThuoc getKichThuoc() {
-        return kichThuoc;
-    }
-
-    public void setKichThuoc(KichThuoc kichThuoc) {
-        this.kichThuoc = kichThuoc;
-    }
-
-    public XuatXu getXuatXu() {
-        return XuatXu;
-    }
-
-    public void setXuatXu(XuatXu XuatXu) {
-        this.XuatXu = XuatXu;
-    }
-
-    public ChatLieu getChatLieu() {
-        return ChatLieu;
-    }
-
-    public void setChatLieu(ChatLieu ChatLieu) {
-        this.ChatLieu = ChatLieu;
-    }
-
+   
     
     
     

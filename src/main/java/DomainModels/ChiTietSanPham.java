@@ -68,6 +68,16 @@ public class ChiTietSanPham implements Serializable {
         this.MaCTSP = MaCTSP;
     }
 
+    public ChiTietSanPham(Integer MaCTSP, String TenCTSP, Integer SoLuong, double GiaBan, double GiaNhap, double GiamGia, int TrangThai) {
+        this.MaCTSP = MaCTSP;
+        this.TenCTSP = TenCTSP;
+        this.SoLuong = SoLuong;
+        this.GiaBan = GiaBan;
+        this.GiaNhap = GiaNhap;
+        this.GiamGia = GiamGia;
+        this.TrangThai = TrangThai;
+    }
+
     public ChiTietSanPham(Integer MaCTSP, String TenCTSP, Integer SoLuong, double GiaBan, double GiaNhap, double GiamGia, int TrangThai, KichThuoc kichThuoc, XuatXu xuatXu, ChatLieu chatLieu) {
         this.MaCTSP = MaCTSP;
         this.TenCTSP = TenCTSP;

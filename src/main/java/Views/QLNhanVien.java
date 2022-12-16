@@ -518,10 +518,19 @@ public class QLNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSDTActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
+      
+        
         try {
-            // TODO add your handling code here:
-            NhanVien nhanVien = layTT();
+            int index1 = tbNhanVien.getSelectedRow();
+            if (index1 == -1) {
+                JOptionPane.showMessageDialog(this, "Chưa có đối tượng để xóa");
+                return;
+            }
+            int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa không", "Xác nhận", JOptionPane.YES_NO_OPTION);
+
+            if (xacNhan == JOptionPane.YES_OPTION) {
+                // TODO add your handling code here:
+                NhanVien nhanVien = layTT();
             int index = tbNhanVien.getSelectedRow();
             Integer Ma = Integer.parseInt(tbNhanVien.getValueAt(index, 0).toString());
             if (quanLyNhanVienService.XoaNhanVien(Ma) == true) {
@@ -530,8 +539,15 @@ public class QLNhanVien extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(this, "Xoa that Bai");
             }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
+
+            }
+
         } catch (SQLException ex) {
-            Logger.getLogger(QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QLSanPham.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -558,7 +574,7 @@ public class QLNhanVien extends javax.swing.JPanel {
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         // TODO add your handling code here:
-        txtManv.setText("");
+        
         txtTen.setText("");
         txtns.setText("");
         txtSDT.setText("");

@@ -95,17 +95,10 @@ public class QuanLyChiTietSanPhamImpl implements QuanLyChiTietSanPhamService {
         return spS;
     }
 
-        public boolean SuaSP(SanPhamView sp) throws SQLException {
-       SanPhamView sp1 = new SanPhamView();
-        sp1.setMaCTSP(sp.getMaCTSP());
-        sp1.setTenCTSP(sp.getTenCTSP());
-        sp1.setSoLuong(sp.getSoLuong());
-        sp1.setGiaBan(sp.getGiaBan());
-        sp1.setGiaNhap(sp.getGiaNhap());
-        sp1.setGiamGia(sp.getGiamGia());
-        sp1.setTrangThai(sp.getTrangThai());
+        public boolean SuaSanPham(SanPhamView ctsp, Integer maCTSP) throws SQLException {
 
-        return chiTietsanPhamRepository.SuaSanPham(sp);
+
+        return chiTietsanPhamRepository.SuaSanPham(ctsp, maCTSP);
     }
     
     

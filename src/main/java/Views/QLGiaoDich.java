@@ -927,12 +927,14 @@ public class QLGiaoDich extends javax.swing.JPanel {
                 return;
             }
 
-            SanPhamModel sp = service.listSP().get(tblSP.getSelectedRow());
+       String maSP1 = txtSP_GH.getText();
+            SanPhamModel sp = service.timKiemSPPPPP(maSP1).get(0);
             int slsp = sp.getSoLuong();
-//            if (slsp < Integer.parseInt(txtSoLuong_GH.getText())) {
-//                JOptionPane.showMessageDialog(this, "Sản phẩm không đủ");
-//                return;
-//            }
+            if (slsp < Integer.parseInt(txtSoLuong_GH.getText())) {
+                JOptionPane.showMessageDialog(this, "Sản phẩm không đủ");
+                return;
+            }
+            
             if (Integer.parseInt(txtSoLuong_GH.getText()) < 0) {
                 JOptionPane.showMessageDialog(this, "Số lượng phải lớn hơn 0");
                 return;

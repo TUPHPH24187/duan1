@@ -19,10 +19,19 @@ public class SanPhamView {
     
     private String TenCTSP,SoLuong,GiaBan,GiaNhap,GiamGia,TrangThai;
 
-    
-    
+    private String xuatXu,kichThuoc,chatLieu;
 
-    public SanPhamView() {
+    public SanPhamView(String MaCTSP, String TenCTSP, String SoLuong, String GiaBan, String GiaNhap, String GiamGia, String TrangThai, String xuatXu, String kichThuoc, String chatLieu) {
+        this.MaCTSP = MaCTSP;
+        this.TenCTSP = TenCTSP;
+        this.SoLuong = SoLuong;
+        this.GiaBan = GiaBan;
+        this.GiaNhap = GiaNhap;
+        this.GiamGia = GiamGia;
+        this.TrangThai = TrangThai;
+        this.xuatXu = xuatXu;
+        this.kichThuoc = kichThuoc;
+        this.chatLieu = chatLieu;
     }
 
     public SanPhamView(String MaCTSP, String TenCTSP, String SoLuong, String GiaBan, String GiaNhap, String GiamGia, String TrangThai) {
@@ -34,6 +43,39 @@ public class SanPhamView {
         this.GiamGia = GiamGia;
         this.TrangThai = TrangThai;
     }
+    
+
+    
+    
+    
+    public SanPhamView() {
+    }
+
+    public String getXuatXu() {
+        return xuatXu;
+    }
+
+    public void setXuatXu(String xuatXu) {
+        this.xuatXu = xuatXu;
+    }
+
+    public String getKichThuoc() {
+        return kichThuoc;
+    }
+
+    public void setKichThuoc(String kichThuoc) {
+        this.kichThuoc = kichThuoc;
+    }
+
+    public String getChatLieu() {
+        return chatLieu;
+    }
+
+    public void setChatLieu(String chatLieu) {
+        this.chatLieu = chatLieu;
+    }
+
+    
 
     public String getMaCTSP() {
         return MaCTSP;

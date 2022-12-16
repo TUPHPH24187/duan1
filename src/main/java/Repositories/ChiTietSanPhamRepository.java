@@ -54,14 +54,18 @@ public class ChiTietSanPhamRepository {
     }
     
      
+    
+   
+    
     ////////////////////////////////////////////////////////////////////////////////////
    
-     public boolean SuaSanPham(SanPhamView sp) throws SQLException {
+     public boolean SuaSanPham(SanPhamView sp,Integer maSP) throws SQLException {
         Connection connection = DBConnection.openDbConnection();
         String sql = "Update Chitietsanpham set TenCTSP = ? ,SoLuong = ? , GiaBan = ? , GiaNhap = ? ,GiamGia = ?,TrangThai = ? where MaCTSP = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         
-        statement.setString(1, sp.getTenCTSP());       
+        statement.setString(1, sp.getTenCTSP());  
+        
         statement.setString(2, sp.getSoLuong());
         statement.setString(3, sp.getGiaBan());
         statement.setString(4, sp.getGiaNhap());

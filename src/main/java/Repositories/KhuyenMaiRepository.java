@@ -43,7 +43,7 @@ public class KhuyenMaiRepository {
         int index = 0;
         try {
             Connection connection = DBConnection.openDbConnection();
-            String sql = "Insert into KhuyenMai (TenKhuyenMai,NgayBatDau,NgayKetThuc,GiamGia,TrangThai) values(?,?,?,?,?)";
+            String sql = "Insert into KhuyenMai (TenKhuyenMai,NgayBatDau,NgayKetThuc,MucGiamGia,TrangThai) values(?,?,?,?,?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, khuyenMai.getTenKhuyenMai());
             statement.setString(2, khuyenMai.getNgayBatDau());
@@ -79,7 +79,7 @@ public class KhuyenMaiRepository {
 
     public boolean SuaKhuyenMai(KhuyenMai khuyenMai) throws SQLException {
         Connection connection = DBConnection.openDbConnection();
-String sql = "Update KhuyenMai set TenKhuyenMai = ? ,NgayBatDau = ? ,NgayKetThuc = ? ,GiamGia = ? ,TrangThai = ? where MaKhuyenMai = ?";
+String sql = "Update KhuyenMai set TenKhuyenMai = ? ,NgayBatDau = ? ,NgayKetThuc = ? ,MucGiamGia = ? ,TrangThai = ? where MaKhuyenMai = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
 
         statement.setString(1, khuyenMai.getTenKhuyenMai());

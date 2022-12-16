@@ -127,15 +127,20 @@ public class QLSanPham extends javax.swing.JPanel {
 
         tbSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Mã giày", "Tên giày", "Xuất xứ", "Size", "Chất liệu", "Số lượng", "Giá bán", "Giá nhập", "Giảm giá", "Trạng thái"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbSanPhamMouseClicked(evt);
@@ -407,7 +412,7 @@ public class QLSanPham extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnTimKiem.setText("Tìm kiếm:");
+        btnTimKiem.setText("Tìm kiếm theo mã");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiemActionPerformed(evt);
@@ -421,8 +426,8 @@ public class QLSanPham extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnTimKiem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtSP, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtSP, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -437,15 +442,20 @@ public class QLSanPham extends javax.swing.JPanel {
 
         tbSanPham1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Mã giày", "Tên giày", "Xuất xứ", "Size", "Chất liệu", "Số lượng", "Giá bán", "Giá nhập", "Giảm giá", "Trạng thái"
+                "Mã giày", "Tên giày", "Số lượng", "Giá bán", "Giá nhập", "Giảm giá", "Trạng thái", "Size", "Xuất xứ", "Chất liệu"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbSanPham1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbSanPham1MouseClicked(evt);
@@ -482,12 +492,11 @@ public class QLSanPham extends javax.swing.JPanel {
                             .addComponent(jSeparator2)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(70, 365, Short.MAX_VALUE)))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -720,61 +729,65 @@ public class QLSanPham extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_btnThemActionPerformed
-    public SanPhamView layTT(){
+    public SanPhamView layTT() {
         String hoatDong;
         String maGiay = txtMaGiay.getText();
         String hoTen = txtTenGiay.getText();
-     
-            String soLuong = txtSoLuong.getText();
-            
-
-            String giaBan = this.txtGiaBan.getText();
-            
-
-            String giaNhap = this.txtGiaNhap.getText();
-           
-
-            String giamGia = txtGiamGia.getText();
-            
+        String KichThuoc = null;
+        String xuatXu = null;
+        String ChatLieu = null;
         
+        String soLuong = txtSoLuong.getText();
+
+        String giaBan = this.txtGiaBan.getText();
+
+        String giaNhap = this.txtGiaNhap.getText();
+
+        String giamGia = txtGiamGia.getText();
+
         if (rbHoatDong.isSelected()) {
             hoatDong = "1";
         } else {
             hoatDong = "2";
         }
 
-        return new SanPhamView(maGiay, giaNhap, soLuong, giaBan, giaNhap, giamGia, giaNhap);
+        return new SanPhamView(maGiay, hoTen, soLuong, giaBan, giaNhap, giamGia, giaNhap);
     }
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-          try {
+       
+        
+        try {
             // TODO add your handling code here:
             QuanLyChiTietSanPhamImpl imp = new QuanLyChiTietSanPhamImpl();
-              SanPhamView sp = layTT();
-           
-            if (imp.SuaSP(sp)) {
-                JOptionPane.showMessageDialog(this, "Sửa thành công");
+            SanPhamView sp = layTT();
+            int index = tbSanPham1.getSelectedRow();
+            Integer Ma = Integer.parseInt(tbSanPham1.getValueAt(index, 0).toString());
+            if (imp.SuaSanPham(sp, Ma) == true) {
+                JOptionPane.showMessageDialog(this, "Sua Thanh Cong");
                 loadTable(quanLySanPhamService.getListChiTietSanPham());
             } else {
-                JOptionPane.showMessageDialog(this, "Sửa thất bại");
+                JOptionPane.showMessageDialog(this, "Sua that Bai");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(QLKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QLSanPham.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-            StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
-            
-            
-            if (sb.length() > 0) {
-                MessageDialogHelper.showErrorDialog(this, sb.toString(), "Lỗi");
+        if (sb.length() > 0) {
+            MessageDialogHelper.showErrorDialog(this, sb.toString(), "Lỗi");
+            return;
+        }
+        try {
+            int index1 = tbSanPham1.getSelectedRow();
+            if (index1 == -1) {
+                JOptionPane.showMessageDialog(this, "Chưa có đối tượng để xóa");
                 return;
             }
-        try {
-            
             int xacNhan = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xóa không", "Xác nhận", JOptionPane.YES_NO_OPTION);
 
             if (xacNhan == JOptionPane.YES_OPTION) {
@@ -806,21 +819,22 @@ public class QLSanPham extends javax.swing.JPanel {
 
         String TenGiay = tbSanPham.getValueAt(index, 1).toString();
 
-        String xuatXu = tbSanPham.getValueAt(index, 2).toString();
+       
+        String soLuong = tbSanPham.getValueAt(index, 2).toString();
 
-        String kichThuoc = tbSanPham.getValueAt(index, 3).toString();
+        String giaBan = tbSanPham.getValueAt(index, 3).toString();
 
-        String ChatLieu = tbSanPham.getValueAt(index, 4).toString();
+        String giaNhap = tbSanPham.getValueAt(index, 4).toString();
 
-        String soLuong = tbSanPham.getValueAt(index, 5).toString();
+        String giamGia = tbSanPham.getValueAt(index, 5).toString();
 
-        String giaBan = tbSanPham.getValueAt(index, 6).toString();
+        String TrangThai = tbSanPham.getValueAt(index, 6).toString();
+         String xuatXu = tbSanPham.getValueAt(index, 7).toString();
 
-        String giaNhap = tbSanPham.getValueAt(index, 7).toString();
+        String kichThuoc = tbSanPham.getValueAt(index, 8).toString();
 
-        String giamGia = tbSanPham.getValueAt(index, 8).toString();
+        String ChatLieu = tbSanPham.getValueAt(index, 9).toString();
 
-        String TrangThai = tbSanPham.getValueAt(index, 9).toString();
 
         txtMaGiay.setText(MaGiay);
         txtTenGiay.setText(TenGiay);
@@ -899,21 +913,21 @@ public class QLSanPham extends javax.swing.JPanel {
 
         String TenGiay = tbSanPham1.getValueAt(index, 1).toString();
 
-        String xuatXu = tbSanPham1.getValueAt(index, 2).toString();
+        String xuatXu = tbSanPham1.getValueAt(index, 8).toString();
 
-        String kichThuoc = tbSanPham1.getValueAt(index, 3).toString();
+        String kichThuoc = tbSanPham1.getValueAt(index, 7).toString();
 
-        String ChatLieu = tbSanPham1.getValueAt(index, 4).toString();
+        String ChatLieu = tbSanPham1.getValueAt(index, 9).toString();
 
-        String soLuong = tbSanPham1.getValueAt(index, 5).toString();
+        String soLuong = tbSanPham1.getValueAt(index, 2).toString();
 
-        String giaBan = tbSanPham1.getValueAt(index, 6).toString();
+        String giaBan = tbSanPham1.getValueAt(index, 3).toString();
 
-        String giaNhap = tbSanPham1.getValueAt(index, 7).toString();
+        String giaNhap = tbSanPham1.getValueAt(index, 4).toString();
 
-        String giamGia = tbSanPham1.getValueAt(index, 8).toString();
+        String giamGia = tbSanPham1.getValueAt(index, 5).toString();
 
-        String TrangThai = tbSanPham1.getValueAt(index, 9).toString();
+        String TrangThai = tbSanPham1.getValueAt(index, 6).toString();
 
         txtMaGiay.setText(MaGiay);
         txtTenGiay.setText(TenGiay);
@@ -942,8 +956,8 @@ public class QLSanPham extends javax.swing.JPanel {
         for (ChiTietSanPham ctsp : list) {
             if (ctsp.getMaCTSP().equals(txtSP.getText()) || ctsp.getTenCTSP().equals(txtSP.getText())) {
                 defaultTableModel.addRow(new Object[]{
-                    ctsp.getMaCTSP(), ctsp.getTenCTSP(), ctsp.getXuatXu(), ctsp.getKichThuoc(),
-                    ctsp.getChatLieu(), ctsp.getSoLuong(), ctsp.getGiaBan(), ctsp.getGiaNhap(), ctsp.getGiamGia(), ctsp.getTrangThai() == 1 ? "Hoạt động" : "Không hoạt động",});
+                ctsp.getMaCTSP(), ctsp.getTenCTSP(), ctsp.getSoLuong(), ctsp.getGiaBan(), ctsp.getGiaNhap(), ctsp.getGiamGia(), ctsp.getTrangThai() == 1 ? "Hoạt động" : "Không hoạt động", ctsp.getKichThuoc(), ctsp.getXuatXu(),
+                ctsp.getChatLieu()});
             }
         }
 
@@ -954,8 +968,8 @@ public class QLSanPham extends javax.swing.JPanel {
         defaultTableModel.setRowCount(0);
         for (ChiTietSanPham ctsp : list) {
             defaultTableModel.addRow(new Object[]{
-                ctsp.getMaCTSP(), ctsp.getTenCTSP(), ctsp.getXuatXu(), ctsp.getKichThuoc(),
-                ctsp.getChatLieu(), ctsp.getSoLuong(), ctsp.getGiaBan(), ctsp.getGiaNhap(), ctsp.getGiamGia(), ctsp.getTrangThai() == 1 ? "Hoạt động" : "Không hoạt động",});
+                ctsp.getMaCTSP(), ctsp.getTenCTSP(), ctsp.getSoLuong(), ctsp.getGiaBan(), ctsp.getGiaNhap(), ctsp.getGiamGia(), ctsp.getTrangThai() == 1 ? "Hoạt động" : "Không hoạt động", ctsp.getKichThuoc(), ctsp.getXuatXu(),
+                ctsp.getChatLieu()});
         }
 
     }
